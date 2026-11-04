@@ -357,6 +357,25 @@ pre, code, kbd, samp {
     border-color 500ms var(--ease-premium);
   position: relative;
 }
+
+/* ── ADDITIONAL EXERCISES GROUP (collapsed by default) ── */
+.extra-toggle {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  width: 100%; padding: 18px 24px; cursor: pointer;
+  background: var(--surface); color: var(--text);
+  border: 1.5px solid var(--border); border-radius: 24px;
+  font: inherit; font-size: 1.1rem; font-weight: 800; text-align: left;
+  transition: border-color 250ms var(--ease-out), box-shadow 220ms var(--ease-out);
+}
+.extra-toggle:hover { border-color: var(--accent); }
+.extra-group.extra-open .card-chevron { transform: rotate(180deg); border-color: var(--accent); color: var(--accent); }
+.extra-group.extra-open .card-chevron::before { transform: scale(1); }
+.extra-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 450ms var(--ease-gentle); }
+.extra-group.extra-open .extra-body { grid-template-rows: 1fr; }
+.extra-body-inner { overflow: hidden; min-height: 0; display: flex; flex-direction: column; gap: 28px; }
+.extra-group.extra-open .extra-body-inner { padding-top: 28px; }
+[data-theme="light"] .extra-toggle { background: #ffffff; }
+
 .bubble-card.bubble-in { opacity: 1; transform: translateY(0) scale(1); }
 
 .bubble-card.track-0.bubble-in { border-left-color: var(--c0); }
@@ -480,22 +499,6 @@ pre, code, kbd, samp {
   transition: background 200ms var(--ease-out);
 }
 .use-case-header:hover { background: #1e2130; }
-.uc-num {
-  width: 30px; height: 30px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.78rem; font-weight: 800;
-  color: white; flex-shrink: 0;
-  transition: transform 300ms var(--ease-spring);
-}
-.use-case.uc-open .uc-num { transform: scale(1.2); }
-.track-0 .uc-num { background: var(--c0); }
-.track-1 .uc-num { background: var(--c1); }
-.track-2 .uc-num { background: var(--c2); }
-.track-3 .uc-num { background: var(--c3); }
-.track-4 .uc-num { background: var(--c4); }
-.track-5 .uc-num { background: var(--c5); }
-.track-6 .uc-num { background: var(--c6); }
-.track-7 .uc-num { background: var(--c7); }
 .uc-title { font-size: 0.92rem; font-weight: 700; color: var(--text); flex: 1; line-height: 1.4; }
 .uc-arrow { color: var(--muted); flex-shrink: 0; transition: transform 250ms var(--ease-gentle); }
 .uc-arrow svg { width: 14px; height: 14px; display: block; }
@@ -531,6 +534,24 @@ pre, code, kbd, samp {
 .step-title { font-size: 0.82rem; font-weight: 700; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
 .step-desc  { font-size: 0.78rem; color: var(--muted); line-height: 1.55; margin-bottom: 10px; }
 .step-desc:last-child { margin-bottom: 0; }
+
+/* Bob mode pill — same class inline in text and at the top of a step */
+.mode-pill {
+  display: inline-flex; align-items: center;
+  font-size: 0.72rem; font-weight: 700; line-height: 1.5;
+  padding: 1px 9px; border-radius: 100px;
+  border: 1px solid var(--mode-border); color: var(--mode-fg); background: var(--mode-bg);
+  letter-spacing: 0.02em; white-space: nowrap; vertical-align: baseline;
+}
+.step-body > .mode-pill { display: flex; width: fit-content; margin-bottom: 6px; }
+.use-case-header > .mode-pill { flex-shrink: 0; }
+.card-meta > .mode-pill { padding: 3px 10px; font-weight: 600; line-height: 1.6; }
+.mode-pill--developer { --mode-fg: #78a9ff; --mode-bg: rgba(15,98,254,0.14);  --mode-border: rgba(15,98,254,0.45); }
+.mode-pill--database  { --mode-fg: #be95ff; --mode-bg: rgba(138,63,252,0.14); --mode-border: rgba(138,63,252,0.45); }
+.mode-pill--agent     { --mode-fg: #a8b3c7; --mode-bg: rgba(111,123,145,0.16); --mode-border: rgba(111,123,145,0.50); }
+[data-theme="light"] .mode-pill--developer { --mode-fg: #0043ce; --mode-bg: rgba(15,98,254,0.10);  --mode-border: rgba(15,98,254,0.40); }
+[data-theme="light"] .mode-pill--database  { --mode-fg: #6929c4; --mode-bg: rgba(138,63,252,0.10); --mode-border: rgba(138,63,252,0.40); }
+[data-theme="light"] .mode-pill--agent     { --mode-fg: #3d4757; --mode-bg: rgba(111,123,145,0.12); --mode-border: rgba(111,123,145,0.45); }
 
 /* Step prompt box */
 .step-prompt {
@@ -630,6 +651,21 @@ pre, code, kbd, samp {
   background: #1c2236; padding: 5px 10px;
   text-align: center; border-top: 1px solid var(--border);
 }
+
+/* Shared spacing / layout classes (replace one-off inline styles) */
+.mt-s { margin-top: 0.5rem; }
+.mt-m { margin-top: 0.75rem; }
+.mt-l { margin-top: 1rem; }
+.mb-s { margin-bottom: 0.5rem; }
+.mb-m { margin-bottom: 0.75rem; }
+.mb-l { margin-bottom: 1rem; }
+.step-screenshot--sm { max-width: 480px; }
+.card-detail a { color: var(--ibm-blue); }
+.detail-list {
+  margin: 0.5rem 0 0.75rem 1.25rem; padding: 0;
+  font-size: 0.85rem; line-height: 1.7; color: var(--muted);
+}
+.detail-list strong { color: var(--text); }
 
 /* Table styles */
 .data-table {

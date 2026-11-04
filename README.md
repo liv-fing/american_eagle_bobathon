@@ -19,7 +19,7 @@ Complete all steps below before starting any exercise. Start by installing and l
 
 ---
 
-### Step 1 — Pre-Requisite Bob Setup
+### 0.1 — Pre-Requisite Bob Setup
 
 Check your inbox for the **"You've been invited to join your team"** email, then follow these steps to install Bob and sign in for the first time.
 
@@ -36,7 +36,7 @@ Check your inbox for the **"You've been invited to join your team"** email, then
 
 ---
 
-### Step 2 — Verify and Install Required Extensions
+### 0.2 — Verify and Install Required Extensions
 
 Two extensions are required. The **IBM Bob Premium Package for i** is often pre-installed for your team — verify it below. The **IBM i Development Pack** must be installed manually.
 
@@ -50,7 +50,7 @@ Two extensions are required. The **IBM Bob Premium Package for i** is often pre-
 
 ---
 
-### Step 3 — Find Your Assigned Library Number
+### 0.3 — Find Your Assigned Library Number
 
 Your instructor will assign you a library number. Each participant has their own copy of the FLIGHT400 application in a library named **FLGHT4nn** (e.g. FLGHT401, FLGHT402). **Use only your assigned number throughout all exercises so everyone can work independently.**
 
@@ -107,7 +107,7 @@ Your instructor will assign you a library number. Each participant has their own
 | 49 | `FLGHT449` | 3049 | `http://localhost:3049` |
 | 50 | `FLGHT450` | 3050 | `http://localhost:3050` |
 
-> 💡 The **Dev Port** is only needed for **Exercise 7**. When Bob asks you to pin your Vite dev server to a port, use the value from the Dev Port column. Your React app will be reachable at the React App URL shown — provided your SSH tunnel (Step 5) is active.
+> 💡 The **Dev Port** is only needed for **Exercise 7**. When Bob asks you to pin your Vite dev server to a port, use the value from the Dev Port column. Your React app will be reachable at the React App URL shown — provided your SSH tunnel (0.5) is active.
 
 > ✅ If you have a 5250 terminal, you can also add the library with `ADDLIBLE FLGHT4nn` and launch the app with `GO FLGHT4nn/FRSMAIN`.
 
@@ -115,7 +115,7 @@ Your instructor will assign you a library number. Each participant has their own
 
 ---
 
-### Step 4 — Connect Bob IDE to IBM i
+### 0.4 — Connect Bob IDE to IBM i
 
 1. **Open the IBM i panel in Bob IDE** — Click the IBM i icon in the left Activity Bar.
 
@@ -142,7 +142,7 @@ Your instructor will assign you a library number. Each participant has their own
 
 ---
 
-### Step 5 — SSH Tunnel (For Green Screen and Exercise 7)
+### 0.5 — SSH Tunnel (for Green Screen and Exercise 7)
 
 Your instructor will give you the host IP address, user profile, and password for your IBM i environment.
 
@@ -190,7 +190,7 @@ CALL FLGHT4nn/FRS021
 
 ---
 
-### 1a — Browse the Application in the Object Browser
+### 1.1 — Browse the Application in the Object Browser
 
 1. In the IBM i sidebar, expand **User Library List** and **Object Browser**.
 2. Add a filter for `FLGHT4nn` in the Object Browser if not already done, and set Object types to `*ALL` so you see: `*PGM` (RPG and CL programs), `*FILE` (display and database files), `*MENU` (application menus).
@@ -203,7 +203,7 @@ CALL FLGHT4nn/FRS021
 
 ---
 
-### 1b — Initialize Bob's Context with `/init`
+### 1.2 — Initialize Bob's Context with `/init`
 
 > **New feature of IBM Bob Premium Package for i** — `/init` works in QSYS (library list), IFS, and local workspace modes.
 
@@ -242,7 +242,7 @@ Open the **Object Browser**, expand `FLGHT4nn` → `QBOBSRC`, and click **agents
 
 ---
 
-### 1c — Understand, Application Map & Dependency Analysis
+### 1.3 — Understand, Application Map & Dependency Analysis
 
 > **New feature of IBM Bob Premium Package for i.** The **Understand Dashboard** is included in the Premium Package — confirm it is active under Extensions before starting.
 
@@ -264,7 +264,7 @@ The **Understand Dashboard** scans your IBM i library and builds a live dependen
 
 <img src="docs/img/understand2.png" alt="New Application dialog in Understand Dashboard" width="560"/>
 
-#### Explore the Application Inventory
+#### Explore the application inventory
 
 Once the scan completes, the dashboard shows a summary of every object in the application. Review the inventory and answer these questions — the numbers are shown directly on the dashboard:
 
@@ -281,7 +281,7 @@ Once the scan completes, the dashboard shows a summary of every object in the ap
 
 <img src="docs/img/understand3.png" alt="Understand Dashboard application inventory" width="600"/>
 
-#### Identify the Most Referenced Objects
+#### Identify the most referenced objects
 
 In the **Insights** tab, explore the **Most referenced objects** list. It shows which objects have the most inbound dependencies — these are your highest change-risk objects. Note which types of objects appear at the top and what that tells you about where the application's core data dependencies lie.
 
@@ -303,7 +303,7 @@ Bob activates the **understand-app-overview** skill and uses the Understand scan
 
 ---
 
-### 1d — Generate an Architecture Explanation with Bob
+### 1.4 — Generate an Architecture Explanation with Bob
 
 1. Switch to **IBM i Developer** mode. Click the **+ (Scope) button** and select **(QSYS) Library List** as the context scope. Make sure `FLGHT4nn` is in the library list.
 2. Replace `nn` with your library number and type:
@@ -316,7 +316,7 @@ Bob activates the **understand-app-overview** skill and uses the Understand scan
 
 ---
 
-### 1e — Generate an Entity Relationship Diagram
+### 1.5 — Generate an Entity Relationship Diagram
 
 1. Switch to **IBM i Database** mode using the mode selector. Type the slash command so `/erd` is highlighted in the Bob chat. Replace `4nn` with your number:
 
@@ -328,7 +328,7 @@ Bob activates the **understand-app-overview** skill and uses the Understand scan
 
 ---
 
-### 1f — *(Optional)* Generate a Draw.io Architecture Diagram
+### 1.6 — *(Optional)* Generate a Draw.io Architecture Diagram
 
 > **Prerequisite:** Install the **Draw.io Integration** extension (`Cmd+Shift+X` → search *"Draw.io Integration"* → Install).
 
@@ -342,7 +342,7 @@ In the **IFS Browser**, navigate to `$HOME/docs/` and click the `.drawio` file t
 
 ---
 
-### 1g — *(Optional)* Business Rules Extraction
+### 1.7 — *(Optional)* Business Rules Extraction
 
 Drill down on a specific member using the Business Rules Extraction workflow. Click the **workflow icon** at the top of the Bob panel, choose to run the workflow in your library list, and select **Business Rules Extraction**.
 
@@ -368,7 +368,7 @@ At the end, specify an output path unique to your library number, e.g. `/home/IT
 
 **Goal:** Understand an old OPM RPG program, then modernize it to free-format ILE RPG using the Bob modernization workflow. This exercise takes about 15 minutes to complete.
 
-### 2a — Understand FRS409 (Order Modification Confirmation)
+### 2.1 — Understand FRS409 (Order Modification Confirmation)
 
 1. Switch Bob to **IBM i Developer** mode.
 2. In the Object Browser, navigate to `FLGHT4nn/QRPGSRC` and open `FRS409`.
@@ -378,7 +378,7 @@ At the end, specify an output path unique to your library number, e.g. `/home/IT
 
 4. Bob will explain that `FRS409` is the **Order Modification Confirmation Window** — an OPM RPG program that displays a confirmation popup when a user modifies an order. It handles F3 (Exit), F12 (Cancel), and Enter key inputs via a `DOUEQ` loop with `CASEQ` dispatch subroutines.
 
-### 2b — Modernize FRS409 Using the RPG Modernization Workflow
+### 2.2 — Modernize FRS409 Using the RPG Modernization Workflow
 
 1. With `FRS409` still open in the editor, type in the Bob chat:
 
@@ -395,7 +395,7 @@ At the end, specify an output path unique to your library number, e.g. `/home/IT
 
 4. When Bob prompts **"Confirm Output Member Location"**, ensure the path contains your library number. Approve the requested tasks. Bob will place the modernized source at `FLGHT4nn/QRPGLESRC/FRS409.RPGLE`.
 
-### 2c — Review the Modernization Summary
+### 2.3 — Review the Modernization Summary
 
 Bob automatically generates a **Modernization Summary Report** in the chat, including:
 - What was changed and why
@@ -423,7 +423,7 @@ The completed field will use the following names:
 
 ---
 
-### 3a — Create a Custom Rule for Bob
+### 3.1 — Create a Custom Rule for Bob
 
 Custom rules allow you to add personalized or organization-specific instructions to Bob's context window. Rather than pasting standing rules into chat every session, you can bake them permanently into the **IBM i Developer** mode so Bob always follows them. Follow these steps to add the rules through the UI.
 
@@ -459,7 +459,7 @@ Custom rules allow you to add personalized or organization-specific instructions
 
 ---
 
-### 3b — Explore the Flight Maintenance Screen
+### 3.2 — Explore the Flight Maintenance Screen
 
 ```
 Preview the display file FRS021DF from FLGHT4nn/QDDSSRCD and list every field on the Flight Maintenance screen, noting the input/output type of each and the screen-field naming convention (e.g. SFLGHT, SMILES, SSEATS, SPRICE). Do not modify anything.
@@ -467,7 +467,7 @@ Preview the display file FRS021DF from FLGHT4nn/QDDSSRCD and list every field on
 
 Bob should preview the screen and list fields such as Flight Number, From/To City, Departure/Arrival Time, Mileage, Seats Available, and Ticket Price — and identify the `S`-prefix naming pattern (`SFLGHT`, `SMILES`, `SSEATS`, `SPRICE`).
 
-**Optional — see it live in a 5250 emulator:** With the SSH tunnel from Step 5 running, open IBM i Access Client Solutions and connect, then:
+**Optional — see it live in a 5250 emulator:** With the SSH tunnel from 0.5 running, open IBM i Access Client Solutions and connect, then:
 
 ```bash
 ADDLIBLE FLGHT4nn
@@ -480,7 +480,7 @@ CALL FLGHT4nn/FRS021
 
 ---
 
-### 3c — Plan the Change
+### 3.3 — Plan the Change
 
 Here you ask Bob to plan the change *with* you first — reasoning through a step-by-step plan *without* writing, editing, saving, or compiling anything. This single prompt carries the full spec, and the execution steps that follow just reference the approved plan.
 
@@ -523,7 +523,7 @@ Bob should return a numbered plan mapping the existing Mileage path to the new f
 
 ---
 
-### 3d — Implement the DDS Files
+### 3.4 — Implement the DDS Files
 
 Implement the three DDS members first — the two database files and the screen. Bob shows a diff for each and waits for your approval before saving. No compiling yet.
 
@@ -540,7 +540,7 @@ As Bob works through each member, confirm:
 
 ---
 
-### 3e — Implement the RPG Program
+### 3.5 — Implement the RPG Program
 
 `FRS021` is fixed-form OPM RPG and the most alignment-sensitive member, so implement it in **three smaller diffs** rather than one big one. Approve each before moving to the next. Still no compiling.
 
@@ -572,7 +572,7 @@ Finally apply just the O-spec changes to FRS021: add FHRS to both the ADDFLT and
 
 ---
 
-### 3f — Build the Direct Demo Path
+### 3.6 — Build the Direct Demo Path
 
 ```
 Build only the four demo objects in order: (1) apply DDS for FLIGHTS, (2) rebuild FLIGHTSZ, (3) compile FRS021DF, (4) compile FRS021. Use the correct IBM i command for each source type. If one fails, stop, report the compile error briefly, and wait for my direction. Do not touch unrelated programs.
@@ -593,7 +593,7 @@ If a compile **fails**, keep Bob scoped to the four objects: *"Explain the direc
 
 ---
 
-### 3g — Validate the Result
+### 3.7 — Validate the Result
 
 ```
 Validate the completed change: confirm FLHRS exists in FLGHT4nn/FLIGHTS, FHRS is available through FLIGHTSZ, SFLHRS appears immediately after Mileage in the FRS021DF Previewer, FRS021 compiled, and FRS021DF has no COLHDG. Finish with a one-line end-to-end field mapping and list any additional impacted programs as follow-up. Do not modify anything.
@@ -608,7 +608,7 @@ Bob should confirm the complete path end-to-end:
 | RPG program | `FRS021` |
 | Screen | `FRS021DF.SFLHRS` |
 
-Repeat step **3b** (and optionally the 5250 view) — you should now see the new **Flight Hours** field on the flight schedule screen! 🎉
+Repeat step **3.2** (and optionally the 5250 view) — you should now see the new **Flight Hours** field on the flight schedule screen! 🎉
 
 <img src="docs/img/newfield.png" alt="New field on screen" width="600"/>
 
@@ -622,11 +622,11 @@ Repeat step **3b** (and optionally the 5250 view) — you should now see the new
 
 **Goal:** Review a complex SQL query written by a junior developer, validate and correct it with Bob, analyze performance bottlenecks, and apply the Index Advisor workflow to improve query efficiency. This exercise takes about 15 minutes to complete.
 
-### 4a — Switch to IBM i Database Mode
+### 4.1 — Switch to IBM i Database Mode
 
 In the Bob chat panel, use the mode selector to switch to **IBM i Database** mode.
 
-### 4b — Review the Query with Bob
+### 4.2 — Review the Query with Bob
 
 Type `/review` first so it is highlighted in the Bob chat, then paste the query below. Replace **all four** occurrences of `FLGHT4nn` with your library number.
 
@@ -683,7 +683,7 @@ Bob may inspect the connected IBM i catalog to verify names and data types. Expe
 - ✅ `FETCH FIRST 100 ROWS ONLY` is a useful testing safeguard.
 - 💡 Bob may recommend using descriptive SQL column names instead of generated IBM i system names.
 
-### 4c — *(Optional)* Explain the Performance Characteristics
+### 4.3 — *(Optional)* Explain the Performance Characteristics
 
 After Bob has reviewed the query, ask:
 
@@ -697,7 +697,7 @@ Bob should identify that:
 
 > 💡 This step is informational and may vary slightly depending on the optimizer and statistics available in your environment.
 
-### 4d — Run the Index Advisor Workflow
+### 4.4 — Run the Index Advisor Workflow
 
 Still in **IBM i Database** mode, click the **workflow icon** at the top of the Bob panel. When the workflow options appear, select **Library List** as the scope first, then choose **SQL Index Strategy Advisor**.
 
@@ -785,9 +785,9 @@ These two workflows work together in sequence:
 - **RPGUnit Test Plan Creation** — analyzes exported procedures, generates Templates, Modules, Test Suites, and Test Utilities documents.
 - **RPGUnit Test Suite Implementation** — reads those documents, writes RPGUnit source members, runs the suites, and iterates until tests pass.
 
-### Prerequisites — Install RPGUnit
+### 6.1 — Prerequisites — Install RPGUnit
 
-1. **Verify the IBM i Testing Extension** — The **IBM i Testing** extension is included in the **IBM Bob Premium Package for i** installed during Setup. Open the Extensions panel (`Cmd+Shift+X` / `Ctrl+Shift+X`), search for **"IBM i Testing"**, and confirm it shows as *Installed*. If not, click **Install**.
+1. **Verify the IBM i Testing extension** — The **IBM i Testing** extension is included in the **IBM Bob Premium Package for i** installed during Setup. Open the Extensions panel (`Cmd+Shift+X` / `Ctrl+Shift+X`), search for **"IBM i Testing"**, and confirm it shows as *Installed*. If not, click **Install**.
 
 2. **Install RPGUnit to IBM i** — Connect to your IBM i. Right-click your connection in the IBM i panel and open its settings. Navigate to the **Components** tab → **Add Component** → select **RPGUnit** → **Install**.
 
@@ -800,7 +800,7 @@ These two workflows work together in sequence:
 
    <img src="docs/img/testing-libraries.png" alt="Library list with testing libraries" width="480"/>
 
-### 6a — Create the CUSTCHK Source Member
+### 6.2 — Create the CUSTCHK Source Member
 
 In the Object Browser, find the `QRPGLESRC` folder in your `FLGHT4nn` library. Right-click → **New Member**.
 
@@ -829,7 +829,7 @@ dcl-proc checkCustomerExists export;
 end-proc;
 ```
 
-### 6b — Run the RPGUnit Test Plan Creation Workflow
+### 6.3 — Run the RPGUnit Test Plan Creation Workflow
 
 Click the **workflow icon** at the top of the Bob panel and choose **RPGUnit Test Plan Creation** in your library list.
 
@@ -842,13 +842,13 @@ Click the **workflow icon** at the top of the Bob panel and choose **RPGUnit Tes
 
 > 💡 If Bob asks to run the RPGUnit Test Plan Creation workflow again at any point, select **No thanks**.
 
-Bob will write the test plan documents and store them in the IFS directory you specified. At the bottom of the chat panel, review the files it created — these Markdown documents will be used in 6c.
+Bob will write the test plan documents and store them in the IFS directory you specified. At the bottom of the chat panel, review the files it created — these Markdown documents will be used in 6.4.
 
-### 6c — Run the RPGUnit Test Suite Implementation Workflow
+### 6.4 — Run the RPGUnit Test Suite Implementation Workflow
 
-1. Click the **workflow icon** at the top of the Bob panel and choose **RPGUnit Test Suite Implementation** in your library list. Click **Proceed** (the test plan from 6b is already ready).
+1. Click the **workflow icon** at the top of the Bob panel and choose **RPGUnit Test Suite Implementation** in your library list. Click **Proceed** (the test plan from 6.3 is already ready).
 2. Select your library `FLGHT4nn`.
-3. Enter the same IFS project directory used in 6b. Confirm the path to the test suites — Bob should pre-fill the correct default.
+3. Enter the same IFS project directory used in 6.3. Confirm the path to the test suites — Bob should pre-fill the correct default.
 4. Choose to **validate the environment**. If Bob prompts to download RPGUnit again, click **Install**, then **Cancel** on the follow-up popup that asks to delete the existing version. Bob will generate the test source members, run the suites, and iterate until the new tests pass or Bob discovers an error in the source code.
 
    ![Tests passing](docs/img/tests-pass.png)
@@ -865,7 +865,7 @@ Bob will write the test plan documents and store them in the IFS directory you s
 
 ![Flight400 React agentic demo](docs/img/Flight-react-agentic.png)
 
-### Step 1 — Create a Helper Skill (Sharpen Your Skill)
+### 7.1 — Create a Helper Skill (Sharpen Your Skill)
 
 Before generating the React app, give Bob extra context about running React + Vite on IBM i PASE by creating a small helper Skill.
 
@@ -874,13 +874,13 @@ Before generating the React app, give Bob extra context about running React + Vi
 
    > *"Create a skill from the pasted text."*
 
-### Step 2 — Generate the React App
+### 7.2 — Generate the React App
 
 Switch to **IBM i Developer** mode, then click the **+** button and select your **FLGHT4nn** library list as the context. Drag or paste the [FLIGHT400 screenshot](docs/img/flight400.png) into the Bob chat prompt, then replace `4nn` and `30nn` with your assigned numbers and send:
 
 > *"Given this screenshot of the 5250 flight order screen from the Application Flight4nn in @FLGHT4nn, Build a single-page React 18 + Vite 4 app on IBM i (PASE) using @carbon/react ^1.x with the g100 dark theme that modernises the IBM i 5250 screen shown in the attached screenshot. Create the app in the IFS at $HOME/flight4nn-frontend-apps/screen-name/. Use the g100 dark theme. All fields should have a list of values to select from. The dev server must run in the background using nohup ... & and write output to /tmp/vite-dev.log. Pin the Vite dev server to port 30nn if available."*
 
-### Step 3 — Start the App and Open It in Your Browser
+### 7.3 — Start the App and Open It in Your Browser
 
 After Bob generates the files, ask Bob to start the dev server:
 
@@ -888,7 +888,7 @@ After Bob generates the files, ask Bob to start the dev server:
 
 Then open `http://localhost:30nn` in your browser — replacing `30nn` with your Dev Port from the Setup table.
 
-> 💡 **Nothing showing in your browser?** Make sure you have completed Step 5 of Environment Setup (the SSH tunnel) and that it includes your port number.
+> 💡 **Nothing showing in your browser?** Make sure you have completed 0.5 of Environment Setup (the SSH tunnel) and that it includes your port number.
 
 ### Wrap-Up — Skills & Tools Used Behind the Scenes
 

@@ -133,6 +133,8 @@
   // but is superseded by the local-override mechanism above.
 
   var DEFAULT_TRACK_SLUGS = ['setup', 'track-1', 'track-2', 'track-3', 'track-4', 'track-5', 'track-6', 'track-7'];
+  // Tracks shown inside the collapsed "Additional Exercises" group.
+  var ADDITIONAL_SLUGS = ['track-5', 'track-6', 'track-7'];
   var cfgTracks = (window.FLIGHT400_CONFIG || {}).tracks;
   var TRACK_SLUGS = (cfgTracks && cfgTracks.length) ? cfgTracks : DEFAULT_TRACK_SLUGS;
 
@@ -142,6 +144,33 @@
   var localBase = window.location.pathname.replace(/\/?$/, '/');
 
   var stream = document.getElementById('tracks-stream');
+  var extraGroup = null;   // created when the first additional track loads
+  var extraInner = null;
+
+  // Builds the collapsed "Additional Exercises" group and returns its inner container.
+  function createExtraGroup() {
+    extraGroup = document.createElement('div');
+    extraGroup.className = 'extra-group';
+    extraGroup.innerHTML =
+      '<button class="extra-toggle" type="button" aria-expanded="false" aria-controls="extra-body">' +
+        '<span class="extra-toggle-label">Additional Exercises</span>' +
+        '<span class="card-chevron" aria-hidden="true">' +
+          '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5l5 5 5-5"/></svg>' +
+        '</span>' +
+      '</button>' +
+      '<div class="extra-body" id="extra-body"><div class="extra-body-inner"></div></div>';
+    stream.appendChild(extraGroup);
+    extraInner = extraGroup.querySelector('.extra-body-inner');
+
+    extraGroup.querySelector('.extra-toggle').addEventListener('click', function () {
+      var isOpen = extraGroup.classList.toggle('extra-open');
+      this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (isOpen) {
+        // Cards inside the collapsed group never intersect the viewport, so reveal them directly.
+        extraInner.querySelectorAll('.bubble-card').forEach(function (c) { c.classList.add('bubble-in'); });
+      }
+    });
+  }
 
   function loadTrackSlug(index) {
     if (index >= TRACK_SLUGS.length) {
@@ -168,7 +197,13 @@
       .then(function (html) {
         var wrapper = document.createElement('div');
         wrapper.innerHTML = html;
-        while (wrapper.firstChild) stream.appendChild(wrapper.firstChild);
+        if (ADDITIONAL_SLUGS.indexOf(slug) !== -1) {
+          if (!extraGroup) createExtraGroup();
+          while (wrapper.firstChild) extraInner.appendChild(wrapper.firstChild);
+        } else {
+          // Keep main tracks above the Additional Exercises group, whatever the configured order.
+          while (wrapper.firstChild) stream.insertBefore(wrapper.firstChild, extraGroup);
+        }
         loadTrackSlug(index + 1);
       })
       .catch(function (err) {

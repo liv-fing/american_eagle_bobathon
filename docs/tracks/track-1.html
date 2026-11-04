@@ -11,8 +11,8 @@
       <div class="card-desc">Use Bob to browse the application, initialise context with <code>/init</code>, analyse dependencies with the Understand Dashboard, generate an architecture overview, and produce an Entity Relationship Diagram.</div>
       <div class="card-meta">
         <span class="card-tag">~40 min</span>
-        <span class="card-tag">IBM i Developer mode</span>
-        <span class="card-tag">IBM i Database mode</span>
+        <span class="mode-pill mode-pill--developer">IBM i Developer mode</span>
+        <span class="mode-pill mode-pill--database">IBM i Database mode</span>
         <span class="card-tag">PPi</span>
       </div>
     </div>
@@ -25,21 +25,20 @@
     <div class="card-detail-inner">
       <div class="detail-intro">Generate a living architecture document and ERD from the legacy FLGHT4nn codebase — no manual reverse-engineering required.</div>
 
-      <div class="info-box" style="margin-bottom:1.25rem">
+      <div class="info-box mb-l">
         <strong>📦 IBM Bob Premium Package for i (PPi) — two features that change how you work with large codebases:</strong>
-        <ul style="margin:0.5rem 0 0 1rem;padding:0">
+        <ul class="detail-list">
           <li><strong><code>/init</code></strong> — scans your library once and writes a persistent <code>AGENTS</code> context file. Every subsequent Bob session reads it automatically, so Bob always knows your source layout, compile conventions, and project-specific gotchas without re-reading source each time.</li>
           <li><strong>Understand</strong> — builds a persistent, scanned dependency graph of your entire application. Instead of feeding source members to the AI, Bob queries the pre-built metadata: object inventory, inbound/outbound dependencies, signals, and usage statistics are answered instantly from the scan.</li>
         </ul>
-        <p style="margin:0.5rem 0 0">Together, these two features make IBM i modernisation tasks <strong>more accurate and dramatically cheaper in Bob Coins</strong> — Bob reasons from structured metadata rather than consuming tokens re-reading hundreds of source members on every question. Less token usage, deterministic dependency data, and shared metadata across your whole team: this is what PPi is designed for.</p>
+        <p class="mt-s">Together, these two features make IBM i modernisation tasks <strong>more accurate and dramatically cheaper in Bob Coins</strong> — Bob reasons from structured metadata rather than consuming tokens re-reading hundreds of source members on every question. Less token usage, deterministic dependency data, and shared metadata across your whole team: this is what PPi is designed for.</p>
       </div>
 
       <div class="use-cases">
 
         <div class="use-case">
           <div class="use-case-header">
-            <div class="uc-num">1</div>
-            <div class="uc-title">1a — Browse the Application in the Object Browser</div>
+            <div class="uc-title">1.1 — Browse the Application in the Object Browser</div>
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
@@ -72,8 +71,7 @@
 
         <div class="use-case">
           <div class="use-case-header">
-            <div class="uc-num">2</div>
-            <div class="uc-title">1b — Initialize Bob's Context with <code>/init</code></div>
+            <div class="uc-title">1.2 — Initialize Bob's Context with <code>/init</code></div>
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
@@ -91,9 +89,10 @@
               <div class="mode-step">
                 <div class="step-num">2</div>
                 <div class="step-body">
+                  <span class="mode-pill mode-pill--developer">IBM i Developer mode</span>
                   <div class="step-title">Run <code>/init</code></div>
                   <div class="step-desc">In the Bob chat panel, confirm you are in <strong>IBM i Developer</strong> mode with scope set to <strong>Library List (QSYS)</strong>. Type <code>/init</code> in the chat and press <strong>Enter</strong>.</div>
-                  <div class="step-desc" style="margin-top:0.5rem">Bob will scan your library — measuring source files, member types, service programs, IWS web services, naming conventions, and database objects — then create a <code>QBOBSRC</code> source physical file in <code>FLGHT4nn</code> (if it does not exist) and write an <code>AGENTS</code> member at <code>FLGHT4nn/QBOBSRC/AGENTS</code> in Markdown format.</div>
+                  <div class="step-desc mt-s">Bob will scan your library — measuring source files, member types, service programs, IWS web services, naming conventions, and database objects — then create a <code>QBOBSRC</code> source physical file in <code>FLGHT4nn</code> (if it does not exist) and write an <code>AGENTS</code> member at <code>FLGHT4nn/QBOBSRC/AGENTS</code> in Markdown format.</div>
                 </div>
               </div>
               <div class="mode-step">
@@ -110,131 +109,158 @@
 
         <div class="use-case">
           <div class="use-case-header">
-            <div class="uc-num">3</div>
-            <div class="uc-title">1c — Understand: Application Map &amp; Dependency Analysis</div>
+            <div class="uc-title">1.3 — Understand: Application Map &amp; Dependency Analysis</div>
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
             <p class="uc-desc"><strong>New feature of IBM Bob Premium Package for i.</strong> The <strong>Understand Dashboard</strong> scans your IBM i library and builds a live dependency graph of every program, file, service program, menu, and command — without you reading a single line of source.</p>
-            <div class="info-box" style="margin-bottom:1rem">💡 <strong>Metadata Database &amp; Multi-Developer Sharing:</strong> Understand is configured with a metadata database (library) to store the scanned application metadata. In a team environment, this metadata library can be shared across multiple developers so everyone benefits from a single scan, assuming each developer has the necessary authority to access the 'understand' library (ex: BOBLIB). For these labs on a shared IBM i, each lab practitioner can also create and use their own metadata library (e.g., <code>BOBLIBnn</code>, replacing <code>nn</code> with your assigned number), though in practice it could be shared.</div>
+            <div class="info-box mb-l">💡 <strong>Metadata Database &amp; Multi-Developer Sharing:</strong> Understand is configured with a metadata database (library) to store the scanned application metadata. In a team environment, this metadata library can be shared across multiple developers so everyone benefits from a single scan, assuming each developer has the necessary authority to access the 'understand' library (ex: BOBLIB). For these labs on a shared IBM i, each lab practitioner can also create and use their own metadata library (e.g., <code>BOBLIBnn</code>, replacing <code>nn</code> with your assigned number), though in practice it could be shared.</div>
             <div class="mode-steps">
               <div class="mode-step">
                 <div class="step-num">1</div>
                 <div class="step-body">
                   <div class="step-title">Open the Understand Dashboard</div>
                   <div class="step-desc">In the Bob Activity Bar, click the <strong>Understand</strong> icon, or run <strong>"Get Started with Understand"</strong> from the Bob command palette (<code>Cmd/Ctrl+Shift+P</code>). If not already done, install the Understand Component on IBM i, specifying the 'understand' library and other necessary information.</div>
-                  <div class="step-screenshot"><img src="img/understand1.png" alt="Get Started with Understand command palette" style="max-width:480px"/></div>
-                  <div class="step-desc" style="margin-top:0.75rem">If no application exists yet, click <strong>New Application</strong>, name it <code>FLGHT4nn</code> (replace <code>nn</code> with your number), add your application library <code>FLGHT4nn</code> (the library containing compiled objects, not source) and metadata library <code>BOBLIBnn</code>, then click <strong>Scan</strong>. The scan takes about 30–60 seconds.</div>
-                  <div class="step-screenshot"><img src="img/understand2.png" alt="New Application dialog in Understand Dashboard" style="max-width:560px"/></div>
+                  <div class="step-screenshot step-screenshot--sm"><img src="img/understand1.png" alt="Get Started with Understand command palette"/></div>
+                  <div class="step-desc mt-m">If no application exists yet, click <strong>New Application</strong>, name it <code>FLGHT4nn</code> (replace <code>nn</code> with your number), add your application library <code>FLGHT4nn</code> (the library containing compiled objects, not source) and metadata library <code>BOBLIBnn</code>, then click <strong>Scan</strong>. The scan takes about 30–60 seconds.</div>
+                  <div class="step-screenshot"><img src="img/understand2.png" alt="New Application dialog in Understand Dashboard"/></div>
                   <div class="info-box">If an application named <code>FLGHT4nn</code> already exists and shows <strong>SCANNED</strong>, skip directly to the next step.</div>
                 </div>
               </div>
               <div class="mode-step">
                 <div class="step-num">2</div>
                 <div class="step-body">
-                  <div class="step-title">Explore the Application Inventory</div>
+                  <div class="step-title">Explore the application inventory</div>
                   <div class="step-desc">Once the scan completes, the dashboard shows a summary of every object in the application. Review the inventory and answer these questions — the numbers are shown directly on the dashboard:</div>
-                  <table style="width:100%;border-collapse:collapse;margin:0.75rem 0;font-size:0.875rem">
-                    <thead><tr style="background:var(--surface,#f7f8fa)">
-                      <th style="text-align:left;padding:0.4rem 0.6rem;border:1px solid var(--border,#e5e7eb)">Question</th>
-                      <th style="text-align:left;padding:0.4rem 0.6rem;border:1px solid var(--border,#e5e7eb)">Where to look</th>
+                  <table class="data-table">
+                    <thead><tr>
+                      <th>Question</th>
+                      <th>Where to look</th>
                     </tr></thead>
                     <tbody>
-                      <tr><td style="padding:0.4rem 0.6rem;border:1px solid var(--border,#e5e7eb)">How many programs are there?</td><td style="padding:0.4rem 0.6rem;border:1px solid var(--border,#e5e7eb)">Objects panel — <code>PGM</code> row</td></tr>
-                      <tr><td style="padding:0.4rem 0.6rem;border:1px solid var(--border,#e5e7eb)">How many are OPM (legacy RPG/CL) vs ILE?</td><td style="padding:0.4rem 0.6rem;border:1px solid var(--border,#e5e7eb)">Objects panel — OPM/ILE column</td></tr>
-                      <tr><td style="padding:0.4rem 0.6rem;border:1px solid var(--border,#e5e7eb)">How many physical files (tables)?</td><td style="padding:0.4rem 0.6rem;border:1px solid var(--border,#e5e7eb)">Objects panel — <code>FILE / PF</code> row</td></tr>
-                      <tr><td style="padding:0.4rem 0.6rem;border:1px solid var(--border,#e5e7eb)">Are there any service programs?</td><td style="padding:0.4rem 0.6rem;border:1px solid var(--border,#e5e7eb)">Objects panel — <code>SRVPGM</code> row</td></tr>
-                      <tr><td style="padding:0.4rem 0.6rem;border:1px solid var(--border,#e5e7eb)">Is there any dynamic SQL?</td><td style="padding:0.4rem 0.6rem;border:1px solid var(--border,#e5e7eb)">Insight panel — Dynamic SQL risks</td></tr>
+                      <tr><td>How many programs are there?</td><td>Objects panel — <code>PGM</code> row</td></tr>
+                      <tr><td>How many are OPM (legacy RPG/CL) vs ILE?</td><td>Objects panel — OPM/ILE column</td></tr>
+                      <tr><td>How many physical files (tables)?</td><td>Objects panel — <code>FILE / PF</code> row</td></tr>
+                      <tr><td>Are there any service programs?</td><td>Objects panel — <code>SRVPGM</code> row</td></tr>
+                      <tr><td>Is there any dynamic SQL?</td><td>Insight panel — Dynamic SQL risks</td></tr>
                     </tbody>
                   </table>
                   <div class="info-box">💡 <strong>What you should find for FLGHT4nn:</strong> ~42 programs (39 OPM, 3 ILE), 15 physical files, 6 ILE service programs (the REST API layer), and 0 dynamic SQL objects. These numbers confirm this is a classic OPM RPG application with a modern REST layer added on top.</div>
-                  <div class="step-screenshot"><img src="img/understand3.png" alt="Understand Dashboard application inventory" style="max-width:600px"/></div>
+                  <div class="step-screenshot"><img src="img/understand3.png" alt="Understand Dashboard application inventory"/></div>
                 </div>
               </div>
               <div class="mode-step">
                 <div class="step-num">3</div>
                 <div class="step-body">
-                  <div class="step-title">Identify the Most Referenced Objects</div>
+                  <div class="step-title">Identify the most referenced objects</div>
                   <div class="step-desc">In the <strong>Insights</strong> tab, explore the <strong>Most referenced objects</strong> list. It shows which objects have the most inbound dependencies — these are your highest change-risk objects. Note which types of objects appear at the top and what that tells you about where the application's core data dependencies lie.</div>
-                  <div class="step-screenshot"><img src="img/understand4.png" alt="Most referenced objects in Understand Insights tab" style="max-width:600px"/></div>
+                  <div class="step-screenshot"><img src="img/understand4.png" alt="Most referenced objects in Understand Insights tab"/></div>
                 </div>
               </div>
               <div class="mode-step">
                 <div class="step-num">4</div>
                 <div class="step-body">
+                  <span class="mode-pill mode-pill--developer">IBM i Developer mode</span>
                   <div class="step-title">Ask Bob more about the application</div>
-                  <div class="step-desc">Switch to <strong>IBM i Developer</strong> mode, set the scope to your library list, and ask:</div>
+                  <div class="step-desc">Verify that you are in <strong>IBM i Developer</strong> mode, set the scope to your library list, and ask:</div>
                   <div class="step-prompt"><pre>What are the high-level functional areas of FLGHT4nn?</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-                  <div class="step-desc" style="margin-top:0.5rem">Bob activates the <strong>understand-app-overview</strong> skill and uses the Understand scan data to return an application overview — functional areas, key programs, and architecture diagrams — without reading individual source members.</div>
+                  <div class="step-desc mt-s">Bob activates the <strong>understand-app-overview</strong> skill and uses the Understand scan data to return an application overview — functional areas, key programs, and architecture diagrams — without reading individual source members.</div>
                 </div>
               </div>
             </div>
-            <div class="info-box" style="margin-top:0.75rem">💡 <strong>Tip:</strong> The <strong>Understand</strong> component and <strong>Documentation</strong> (IBM i Documentation RAG-based tool) can be leveraged across all other steps and exercises (such as Documentation, Refactoring, and Testing). Make sure to enable both <strong>Documentation</strong> and <strong>Understand</strong> in the <strong>Permissions</strong> menu for each Bob Task (chat) to fully leverage these capabilities.</div>
-            <div class="step-screenshot" style="margin:0.75rem 0"><img src="img/enable-permissions.png" alt="Enable Documentation and Understand permissions in Bob chat" style="max-width:560px"/></div>
+            <div class="info-box mt-m">💡 <strong>Tip:</strong> The <strong>Understand</strong> component and <strong>Documentation</strong> (IBM i Documentation RAG-based tool) can be leveraged across all other steps and exercises (such as Documentation, Refactoring, and Testing). Make sure to enable both <strong>Documentation</strong> and <strong>Understand</strong> in the <strong>Permissions</strong> menu for each Bob Task (chat) to fully leverage these capabilities.</div>
+            <div class="step-screenshot"><img src="img/enable-permissions.png" alt="Enable Documentation and Understand permissions in Bob chat"/></div>
             <div class="info-box">✅ <strong>What Understand tells you in under 5 minutes:</strong> Map programs, files and dependencies. Find the most referenced objects, reveal dependencies, and review dynamic SQL, triggers and foreign keys.</div>
           </div></div>
         </div>
 
         <div class="use-case">
           <div class="use-case-header">
-            <div class="uc-num">4</div>
-            <div class="uc-title">1d — Generate an Architecture Explanation with Bob</div>
+            <div class="uc-title">1.4 — Generate an Architecture Explanation with Bob</div>
+            <span class="mode-pill mode-pill--developer">IBM i Developer mode</span>
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">Switch to <strong>IBM i Developer</strong> mode. Click the <strong>+ (Scope) button</strong> and select <strong>(QSYS) Library List</strong> as the context scope. Make sure <code>FLGHT4nn</code> is in the library list. Replace <code>nn</code> with your library number in the prompt below.</p>
-            <div class="step-prompt"><pre>Generate a comprehensive architecture overview of the FLGHT4nn application in QSYS in Markdown format. Include a high-level description, the main program flows, key programs and their roles, a Mermaid architecture diagram, and a summary of the database tables used.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-            <p class="uc-desc" style="margin-top:1rem">Bob will analyze the programs, source members, and database files and return a structured Markdown document. Review the output — notice how it identifies the menu-driven architecture, the core transaction programs, and the underlying database schema.</p>
-            <div class="info-box">Copy the output to a new file <code>FLGHT4nn-Architecture.md</code> in your workspace for reference.</div>
-          </div></div>
-        </div>
-
-        <div class="use-case">
-          <div class="use-case-header">
-            <div class="uc-num">5</div>
-            <div class="uc-title">1e — Generate an Entity Relationship Diagram</div>
-            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
-          </div>
-          <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">Switch to <strong>IBM i Database</strong> mode using the mode selector. Type the slash command below so <code>/erd</code> is highlighted in the Bob chat. Replace <code>4nn</code> with your number.</p>
-            <div class="step-prompt"><pre>/erd FLGHT4nn</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-            <div class="info-box">Bob will introspect the physical files (FLIGHTS, ORDERS, CUSTOMERS, AGENTS, etc.) and generate a Mermaid ERD. Key relationships: ORDERS links to FLIGHTS, CUSTOMERS, and AGENTS; FLIGHTS references FRCITY and TOCITY. Copy the ERD to your architecture document.</div>
-          </div></div>
-        </div>
-
-        <div class="use-case">
-          <div class="use-case-header">
-            <div class="uc-num">6</div>
-            <div class="uc-title">1f — (Optional) Generate a Draw.io Architecture Diagram</div>
-            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
-          </div>
-          <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc"><strong>Prerequisite:</strong> Install the <strong>Draw.io Integration</strong> extension (<code>Cmd+Shift+X</code> → search "Draw.io Integration" → Install). Then in IBM i Developer mode with Library List scope, replace <code>4nn</code> with your number:</p>
-            <div class="step-prompt"><pre>Analyze the FLGHT4nn application from the library list and generate a draw.io architecture diagram showing the main programs, menus, and database files. Save the file as `FLGHT4nn-architecture.drawio` in `$HOME/docs/` on IBM i.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-            <div class="step-screenshot">
-              <img src="img/drawIo.png" alt="Draw.io architecture diagram generated by Bob"/>
-              <div class="step-screenshot-caption">Example Draw.io architecture diagram — rendered directly in Bob IDE</div>
+            <div class="mode-steps">
+              <div class="mode-step">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                  <div class="step-desc">Verify that you are in <strong>IBM i Developer</strong> mode. Click the <strong>+ (Scope) button</strong> and select <strong>(QSYS) Library List</strong> as the context scope. Make sure <code>FLGHT4nn</code> is in the library list. Replace <code>nn</code> with your library number in the prompt below.</div>
+                  <div class="step-prompt"><pre>Generate a comprehensive architecture overview of the FLGHT4nn application in QSYS in Markdown format. Include a high-level description, the main program flows, key programs and their roles, a Mermaid architecture diagram, and a summary of the database tables used.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-desc">Bob will analyze the programs, source members, and database files and return a structured Markdown document. Review the output — notice how it identifies the menu-driven architecture, the core transaction programs, and the underlying database schema.</div>
+                  <div class="info-box">Copy the output to a new file <code>FLGHT4nn-Architecture.md</code> in your workspace for reference.</div>
+                </div>
+              </div>
             </div>
           </div></div>
         </div>
 
         <div class="use-case">
           <div class="use-case-header">
-            <div class="uc-num">7</div>
-            <div class="uc-title">1g — (Optional) Business Rules Extraction</div>
+            <div class="uc-title">1.5 — Generate an Entity Relationship Diagram</div>
+            <span class="mode-pill mode-pill--database">IBM i Database mode</span>
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">Drill down on a specific member using the Business Rules Extraction workflow. Click the <strong>workflow icon</strong> at the top of the Bob panel, choose to run the workflow in your library list, and select <strong>Business Rules Extraction</strong>.</p>
-            <div class="step-screenshot">
-              <img src="img/workflows-icon.png" alt="Workflows icon in Bob IDE"/>
-              <div class="step-screenshot-caption">Click the workflows icon to launch a workflow</div>
+            <div class="mode-steps">
+              <div class="mode-step">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                  <div class="step-desc">Switch to <strong>IBM i Database</strong> mode using the mode selector. Type the slash command below so <code>/erd</code> is highlighted in the Bob chat. Replace <code>4nn</code> with your number.</div>
+                  <div class="step-prompt"><pre>/erd FLGHT4nn</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="info-box">Bob will introspect the physical files (FLIGHTS, ORDERS, CUSTOMERS, AGENTS, etc.) and generate a Mermaid ERD. Key relationships: ORDERS links to FLIGHTS, CUSTOMERS, and AGENTS; FLIGHTS references FRCITY and TOCITY. Copy the ERD to your architecture document.</div>
+                </div>
+              </div>
             </div>
-            <div class="info-box">When prompted, use: <strong>Library:</strong> FLGHT4nn · <strong>Source File:</strong> QRPGLESRC · <strong>Member:</strong> FRS401.RPGLE. At the end, specify an output path unique to your library number, e.g. <code>/home/ITZUSER/flght4nn/docs/business-rules/FRS401-report.md</code></div>
-            <p class="uc-desc" style="margin-top:0.75rem">Watch Bob create a guided workflow and generate a complete report describing a business function — business rules, decision logic, Mermaid diagrams, process flows, and more. Documentation is written in business-friendly language, not technical jargon.</p>
-            <div class="step-screenshot">
-              <img src="img/IFS-location.png" alt="IFS output path dialog after Business Rules Extraction workflow"/>
-              <div class="step-screenshot-caption">Enter a path unique to your library number when prompted for the output location</div>
+          </div></div>
+        </div>
+
+        <div class="use-case">
+          <div class="use-case-header">
+            <div class="uc-title">1.6 — (Optional) Generate a Draw.io Architecture Diagram</div>
+            <span class="mode-pill mode-pill--developer">IBM i Developer mode</span>
+            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
+          </div>
+          <div class="uc-body"><div class="uc-body-inner">
+            <div class="mode-steps">
+              <div class="mode-step">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                  <div class="step-desc"><strong>Prerequisite:</strong> Install the <strong>Draw.io Integration</strong> extension (<code>Cmd+Shift+X</code> → search "Draw.io Integration" → Install). Then in IBM i Developer mode with Library List scope, replace <code>4nn</code> with your number:</div>
+                  <div class="step-prompt"><pre>Analyze the FLGHT4nn application from the library list and generate a draw.io architecture diagram showing the main programs, menus, and database files. Save the file as `FLGHT4nn-architecture.drawio` in `$HOME/docs/` on IBM i.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-screenshot">
+                    <img src="img/drawIo.png" alt="Draw.io architecture diagram generated by Bob"/>
+                    <div class="step-screenshot-caption">Example Draw.io architecture diagram — rendered directly in Bob IDE</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="use-case">
+          <div class="use-case-header">
+            <div class="uc-title">1.7 — (Optional) Business Rules Extraction</div>
+            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
+          </div>
+          <div class="uc-body"><div class="uc-body-inner">
+            <div class="mode-steps">
+              <div class="mode-step">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                  <div class="step-desc">Drill down on a specific member using the Business Rules Extraction workflow. Click the <strong>workflow icon</strong> at the top of the Bob panel, choose to run the workflow in your library list, and select <strong>Business Rules Extraction</strong>.</div>
+                  <div class="step-screenshot">
+                    <img src="img/workflows-icon.png" alt="Workflows icon in Bob IDE"/>
+                    <div class="step-screenshot-caption">Click the workflows icon to launch a workflow</div>
+                  </div>
+                  <div class="info-box">When prompted, use: <strong>Library:</strong> FLGHT4nn · <strong>Source File:</strong> QRPGLESRC · <strong>Member:</strong> FRS401.RPGLE. At the end, specify an output path unique to your library number, e.g. <code>/home/ITZUSER/flght4nn/docs/business-rules/FRS401-report.md</code></div>
+                  <div class="step-desc">Watch Bob create a guided workflow and generate a complete report describing a business function — business rules, decision logic, Mermaid diagrams, process flows, and more. Documentation is written in business-friendly language, not technical jargon.</div>
+                  <div class="step-screenshot">
+                    <img src="img/IFS-location.png" alt="IFS output path dialog after Business Rules Extraction workflow"/>
+                    <div class="step-screenshot-caption">Enter a path unique to your library number when prompted for the output location</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div></div>
         </div>
