@@ -179,8 +179,9 @@
     }
     var slug      = TRACK_SLUGS[index];
     var file      = slug + '.html';
-    var localUrl  = localBase + 'tracks/' + file;
-    var sharedUrl = 'tracks/' + file;   // resolves via <base href="../"> to docs/tracks/
+    var cb        = '?v=' + Date.now();
+    var localUrl  = localBase + 'tracks/' + file + cb;
+    var sharedUrl = 'tracks/' + file + cb;   // resolves via <base href="../"> to docs/tracks/
 
     fetch(localUrl)
       .then(function (r) {
