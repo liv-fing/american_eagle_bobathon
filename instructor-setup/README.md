@@ -190,7 +190,7 @@ The Save File `FLGHT400.FILE` contains the code, programs, database files etc. E
 | … | … | … | … |
 | 50 | FLGHT450 | 3050 | http://localhost:3050 |
 
-> 💡 The **Dev Port** is only needed if you complete **Exercise 1 (Optional Warm-Up)**. When Bob asks you to pin your Vite dev server to a port, use the value from the **Dev Port** column above. Your React app will then be reachable at the **React App URL** shown — provided your SSH tunnel from step 6 is active.
+> 💡 The **Dev Port** is only needed if you complete **Exercise 4 (Optional)**. When Bob asks you to pin your Vite dev server to a port, use the value from the **Dev Port** column above. Your React app will then be reachable at the **React App URL** shown — provided your SSH tunnel from step 6 is active.
 
 > ✅ **End of Quick Setup.** The FLIGHT400 application is now restored on your IBM i in the `FLGHT4nn` library.
 
@@ -202,7 +202,7 @@ The Save File `FLGHT400.FILE` contains the code, programs, database files etc. E
 
 ## Exercise-specific Setups
 
-### Exercise 1 — Optional Warm-Up: Generate a React Carbon App from a Green Screen
+### Exercise 4 — Optional: Generate a React Carbon App from a Green Screen
 
 Before the lab, use Bob to install Node.js 22 once on the IBM i partition used for the workshop:
 
