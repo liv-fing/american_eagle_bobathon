@@ -486,9 +486,41 @@
     }, 2000);
   }
 
+  // ── SCREENSHOT LIGHTBOX ───────────────────────────────────────────────────
+  // Click any .step-screenshot image to view it full size; close with the
+  // Close button, a click on the dark background, or the Escape key.
+  var lightbox = document.createElement('div');
+  lightbox.className = 'img-lightbox';
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('aria-label', 'Expanded screenshot');
+  lightbox.innerHTML =
+    '<button type="button" class="img-lightbox-close" aria-label="Close expanded image">&times; Close</button>' +
+    '<img class="img-lightbox-img" alt="" />';
+  document.body.appendChild(lightbox);
+  var lightboxImg = lightbox.querySelector('.img-lightbox-img');
+  var lightboxClose = lightbox.querySelector('.img-lightbox-close');
+
+  function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('active');
+    lightboxClose.focus();
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    lightboxImg.removeAttribute('src');
+  }
+
+  document.addEventListener('click', function (e) {
+    var img = e.target.closest('.step-screenshot img');
+    if (img) { openLightbox(img.currentSrc || img.src, img.alt); return; }
+    if (e.target === lightbox || e.target.closest('.img-lightbox-close')) closeLightbox();
+  });
+
   // ── ESCAPE KEY ────────────────────────────────────────────────────────────
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeNtb();
+    if (e.key === 'Escape') { closeNtb(); closeLightbox(); }
   });
 
 })();

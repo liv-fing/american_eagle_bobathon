@@ -42,11 +42,26 @@ Two extensions are required. The **IBM Bob Premium Package for i** is often pre-
 
 1. Open the Extensions view: press `Cmd+Shift+X` (macOS) or `Ctrl+Shift+X` (Windows/Linux).
 
-2. **Verify IBM Bob Premium Package for i** — Search for `"IBM Bob Premium"`. If **IBM Bob Premium Package for i** (publisher: IBM) appears under *Installed*, you're all set — skip to step 3. If it is not installed, click **Install** now. This package includes Code for IBM i (source editing, object browser, IFS browser, Db2 for i, and more).
+<img src="docs/img/open-market.png" alt="Extensions icon in the Bob Activity Bar" width="600"/>
 
-3. **Confirm it is activated in Bob** — In the Bob Activity sidebar, open the Bob extension settings and verify **IBM Bob Premium Package for i** is activated. If you just installed it, reload Bob when prompted first. Activation unlocks the IBM i Developer and IBM i Database modes.
+2. **Verify IBM Bob Premium Package for i** — Search for `"IBM Bob Premium"`. If **IBM Bob Premium Package for i** (publisher: IBM) appears with an **Install** button on the right, click **Install** now. If there is no **Install** button, you're all set — skip to step 3. This package includes Code for IBM i (source editing, object browser, IFS browser, Db2 for i, and more).
 
-4. **Install IBM i Development Pack** — Search for `"IBM i Development Pack"` in the Extensions panel. This extension is **not** pre-installed — click **Install** if it does not appear under *Installed*. Reload Bob if prompted.
+<img src="docs/img/searching-ibm-i.png" alt="Searching for IBM Bob Premium in the Extensions panel" width="600"/>
+
+3. **Install IBM i Development Pack** — Just like the previous step, search for `"IBM i Development Pack"` in the Extensions panel. This extension is **not** pre-installed — click **Install** if it does not appear under *Installed*. Reload Bob if prompted.
+
+4. **Open Bob Settings** — After the extension installation has wrapped up, look towards the bottom-right corner of the Bob IDE interface. Along the bottom edge of the interface there will be an interactable button labelled **Bob Settings** — click this button to open the Settings panel.
+
+<img src="docs/img/bob_settings.png" alt="Bob Settings button in the bottom-right corner of the Bob IDE" width="600"/>
+
+5. **Install Premium Package for i** — Afterwards, further down the panel adjacent the "Add ons" setting, you should now see the IBM Bob Premium Package for i displayed. Look towards the right and click the "Install" button then Bob IDE might request an application restart to implement the changes; if this is the case, accept and restart the IDE.
+
+<img src="docs/img/activatedd.png" alt="IBM Bob Premium Package for i shown next to the Add ons setting with an Install button" width="600"/>
+
+6. **Confirm it is activated in Bob** — Now click the icon in the very top-right corner (shown in the first screenshot below) to return to your Bob chat. From there, click either **Agent** or the **+** sign, and you should see the **IBM i Developer** and **IBM i Database** modes listed as options. If they don’t appear, your IBM Bob account likely hasn’t been linked to your Premium Package for i entitlements yet.
+
+<img src="docs/img/sidebar-button.png" alt="Icon in the top-right corner of Bob to return to the chat" width="300"/>
+<img src="docs/img/new-modes.png" alt="IBM i Developer and IBM i Database modes in the mode selector" width="500"/>
 
 ---
 
@@ -119,6 +134,8 @@ Your instructor will assign you a library number. Each participant has their own
 
 1. **Open the IBM i panel in Bob IDE** — Click the IBM i icon in the left Activity Bar.
 
+   <img src="docs/img/ibmi_icon.png" alt="IBM i icon in the Bob Activity Bar" width="600"/>
+
 2. **Add a new connection** — Click **New Connection** and enter the host IP, user profile, and `ssh_private_key` provided by your instructor. **Do not use the password here — use only the `ssh_private_key`.**
 
    <img src="docs/img/i-connection.png" alt="IBM i connection dialog" width="480"/>
@@ -134,11 +151,13 @@ Your instructor will assign you a library number. Each participant has their own
 > **📝 Note:** Replace `nn` in `FLGHT4nn` with your team number (e.g. `FLGHT401`, `FLGHT402`…). If you are working alone on the system, use `FLGHT400`.
 
    <img src="docs/img/add-object-filter.png" alt="Object Browser filter" width="450"/>
-   <img src="docs/img/object-filter-fields.png" alt="Object Browser filter fields" width="480"/>
+   <img src="docs/img/objectfilter.jpeg" alt="Object Browser filter fields with Object types set to *ALL" width="480"/>
 
 5. **Set the workspace to Library List** — Click the **+** icon above the Bob chat window. When the options appear, make sure your library is listed under **New Task in Library List** and select that option.
 
    <img src="docs/img/set-workspace.png" alt="Bob scope picker" width="580"/>
+
+   <img src="docs/img/librarylist.png" alt="Library List scope selected in the Bob chat" width="580"/>
 
 ---
 
@@ -192,14 +211,23 @@ CALL FLGHT4nn/FRS021
 
 ### 1.1 — Browse the Application in the Object Browser
 
-1. In the IBM i sidebar, expand **User Library List** and **Object Browser**.
-2. Add a filter for `FLGHT4nn` in the Object Browser if not already done, and set Object types to `*ALL` so you see: `*PGM` (RPG and CL programs), `*FILE` (display and database files), `*MENU` (application menus).
-3. Expand **Source Files** and open a few programs from `QRPGSRC` to get a feel for the classic fixed-format style.
-4. Navigate to `QDDSSRCD` and open `FRS001DF`. Click **Preview All** on the first line to see the green-screen layout rendered visually.
+1. In the IBM i sidebar, expand **User Library List** and **Object Browser**, then expand **Source Files**. From there, search for the folder `QDDSSRCD`, which is where the classic fixed-format RPG programs are stored.
 
-   > 💡 Try previewing `FRS021DF` as well — this is the **Flight Maintenance** screen used in Exercise 3.
+   <img src="docs/img/expand.png" alt="Expanding the Object Browser filter and Source Files" width="600"/>
 
-5. In the Object Browser, click `FRS000.pgm` — the flight reservation logon. Check its **Detail**: it was compiled in 1997, over 30 years ago!
+   <img src="docs/img/search1.png" alt="Searching for QDDSSRCD in the Object Browser" width="600"/>
+
+2. Then navigate to `QDDSSRCD`, expand the folder, and open `FRS001DF`. Click **Preview All** on the first line to see the green-screen layout rendered visually.
+
+   <img src="docs/img/search2.png" alt="Opening FRS001DF in QDDSSRCD and clicking Preview All" width="600"/>
+
+   <img src="docs/img/prev.png" alt="Rendered preview of the FRS001DF screen" width="600"/>
+
+   > 💡 Try `FRS021DF` as well — this is the **Flight Maintenance** screen used in Exercise 3.
+
+   <img src="docs/img/search3.png" alt="Opening FRS021DF in QDDSSRCD and clicking Preview All" width="600"/>
+
+   <img src="docs/img/prev3.png" alt="Rendered preview of the FRS021DF Flight Maintenance screen" width="600"/>
 
 ---
 
@@ -218,10 +246,14 @@ Before running `/init` in QSYS mode, a **current library** must be set:
 
 > ⚠️ Without a current library set, `/init` will prompt you to set one and stop. IBM-supplied system libraries (`QGPL`, `QTEMP`) cannot be used.
 
+<img src="docs/img/currlib.png" alt="FLGHT4nn set as the Current Library in the User Library List" width="600"/>
+
 #### Run `/init`
 
 1. In the Bob chat panel, confirm you are in **IBM i Developer** mode with scope set to **Library List (QSYS)**.
 2. Type `/init` in the chat and press **Enter**.
+
+<img src="docs/img/initc.png" alt="Running /init in the Bob chat in IBM i Developer mode with Library List scope" width="600"/>
 
 Bob will scan your library — measuring source files, member types, service programs, IWS web services, naming conventions, and database objects — then:
 - Create a `QBOBSRC` source physical file in `FLGHT4nn` (if it does not exist)
@@ -229,7 +261,11 @@ Bob will scan your library — measuring source files, member types, service pro
 
 #### Explore the result
 
-Open the **Object Browser**, expand `FLGHT4nn` → `QBOBSRC`, and click **agents.md** to view the generated member. It contains IBM i–specific facts discovered directly from your source, for example:
+Open the **Object Browser**, expand `FLGHT4nn` → `QBOBSRC`, and click **agents.md** to view the generated member.
+
+<img src="docs/img/checking.png" alt="Checking QBOBSRC in the Object Browser for the generated AGENTS member" width="600"/>
+
+It contains IBM i–specific facts discovered directly from your source, for example:
 
 - Which source file holds IWS REST service programs (`EVFTEMPF01`) and why they must be compiled with `CRTSQLRPGI` instead of `CRTBNDRPG`
 - The `*Z` logical files (`AGENTSZ`, `FLIGHTSZ`, etc.) exist only for legacy Query/400 — do not use them as access paths in new code
@@ -252,17 +288,27 @@ The **Understand Dashboard** scans your IBM i library and builds a live dependen
 
 #### Open the Understand Dashboard
 
-1. In the Bob Activity Bar, click the **Understand** icon (the graph/network icon in the IBM i section), or run the command **"Get Started with Understand"** from the Bob command palette (`Cmd/Ctrl+Shift+P`). If not already done, Install the Understand Component on IBM i, specifying the 'understand' library and other necessary information. 
+1. In the Bob Activity Bar, click the **Understand** icon (the graph/network icon in the IBM i section), or run the command **"Get Started with Understand"** from the Bob command palette (`Cmd/Ctrl+Shift+P`).
 
-<img src="docs/img/understand1.png" alt="Get Started with Understand command palette" width="480"/>
- 
+<img src="docs/img/understandicon.png" alt="Understand icon in the Bob Activity Bar" width="600"/>
 
-2. If no application exists yet, click **New Application**, name it `FLGHT4nn` (replace `nn` with your number), add your application library `FLGHT4nn` (the library that contains the compiled objects, not the source) and metadata library `BOBLIBnn`, then click **Scan**. The scan takes about 30–60 seconds.
+2. **Install the Understand Component** — If not already done, install the Understand Component on IBM i, specifying the 'understand' library and other necessary information.
+
+<img src="docs/img/udl.png" alt="Understand overview showing the component as Not installed with an Install Understand button" width="600"/>
+
+You will then see a pop up confirming whether you wish to proceed with the Understand installation — click **Proceed**.
+
+<img src="docs/img/pop.png" alt="Understand Installation confirmation pop up with Proceed button" width="267"/>
+
+3. **Adding an Application** — If no application exists yet, click **New Application**, name it `FLGHT4nn` (replace `nn` with your number), add your application library `FLGHT4nn` (the library that contains the compiled objects, not the source) and metadata library `BOBLIBnn`, then click **Scan**. The scan takes about 30–60 seconds.
+
+<img src="docs/img/clickaddapp.png" alt="Click New Application in the Understand Dashboard" width="600"/>
+
+<img src="docs/img/addapp.png" alt="Add application form with the FLGHT4nn library selected" width="600"/>
+
+<img src="docs/img/scan.png" alt="Scan button for the new application in Understand" width="600"/>
 
 > 💡 If an application named `FLGHT4nn` already exists and shows **SCANNED**, skip directly to the next step.
-
-
-<img src="docs/img/understand2.png" alt="New Application dialog in Understand Dashboard" width="560"/>
 
 #### Explore the application inventory
 
@@ -297,6 +343,8 @@ Switch to **IBM i Developer** mode, set the scope to your library list, and ask:
 
 Bob activates the **understand-app-overview** skill and uses the Understand scan data to return an application overview — functional areas, key programs, and architecture diagrams — without reading individual source members.
 
+<img src="docs/img/verifyidevv.png" alt="Bob answering the high-level functional areas question using Understand" width="600"/>
+
 > 💡 **Tip:** The **Understand** component and **Documentation** (IBM i Documentation RAG-based tool) can be leveraged across all other steps and exercises (such as Documentation, Refactoring, and Testing). Make sure to enable both **Documentation** and **Understand** in the **Permissions** menu for each Bob Task (chat) to fully leverage these capabilities.
 
 <img src="pics/enable-permissions.png" alt="Enable Documentation and Understand permissions in Bob chat" width="560"/>
@@ -312,7 +360,11 @@ Bob activates the **understand-app-overview** skill and uses the Understand scan
 
 3. Bob will analyze the programs, source members, and database files and return a structured Markdown document. Review the output — notice how it identifies the menu-driven architecture, the core transaction programs, and the underlying database schema.
 
-   > 💡 Copy the output to a new file `FLGHT4nn-Architecture.md` in your workspace for reference.
+4. **Now have Bob save it**
+
+   Replace `4nn` with your library number, then type:
+
+   > *"Save this output as new file titled FLGHT4nn-Architecture.md in /FLGHT4nn/QBOBSRC/."*
 
 ---
 
@@ -321,6 +373,9 @@ Bob activates the **understand-app-overview** skill and uses the Understand scan
 1. Switch to **IBM i Database** mode using the mode selector. Type the slash command so `/erd` is highlighted in the Bob chat. Replace `4nn` with your number:
 
    > `/erd FLGHT4nn`
+   <img src="docs/img/ibmdb.png" alt="IBM i Database mode with the /erd command" width="600"/>
+
+   <img src="docs/img/erd.png" alt="Generated Mermaid ERD" width="600"/>
 
 2. Bob will introspect the physical files (`FLIGHTS`, `ORDERS`, `CUSTOMERS`, `AGENTS`, etc.) and generate a Mermaid ERD. Key relationships: `ORDERS` links to `FLIGHTS`, `CUSTOMERS`, and `AGENTS`; `FLIGHTS` references `FRCITY` and `TOCITY`. Copy the ERD to your architecture document.
 

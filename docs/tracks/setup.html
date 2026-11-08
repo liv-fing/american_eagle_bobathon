@@ -91,27 +91,65 @@
                 <div class="step-body">
                   <div class="step-title">Open the Extensions view</div>
                   <div class="step-desc">Click the Extensions icon in the Activity Bar — the vertical strip of icons on the far left side of Bob — or press <code>Cmd+Shift+X</code> (macOS) or <code>Ctrl+Shift+X</code> (Windows/Linux) to open the Extensions panel.</div>
+                  <div class="step-screenshot">
+                    <img src="img/open-market.png" alt="Extensions icon in the Bob Activity Bar"/>
+                    <div class="step-screenshot-caption">Click the Extensions icon in the Activity Bar to open the Extensions panel</div>
+                  </div>
                 </div>
               </div>
               <div class="mode-step">
                 <div class="step-num">2</div>
                 <div class="step-body">
                   <div class="step-title">Verify IBM Bob Premium Package for i</div>
-                  <div class="step-desc">Search for <strong>"IBM Bob Premium"</strong>. If <strong>IBM Bob Premium Package for i</strong> (publisher: IBM) appears under <em>Installed</em>, you're all set — skip to step 3. If it is not installed, click <strong>Install</strong> now. This package includes Code for IBM i (source editing, object browser, IFS browser, Db2 for i, and more).</div>
+                  <div class="step-desc">Search for <strong>"IBM Bob Premium"</strong>. If <strong>IBM Bob Premium Package for i</strong> (publisher: IBM) appears with an <strong>Install</strong> button on the right, click <strong>Install</strong> now. If there is no <strong>Install</strong> button, you're all set — skip to step 3. This package includes Code for IBM i (source editing, object browser, IFS browser, Db2 for i, and more).</div>
+                  <div class="step-screenshot">
+                    <img src="img/searching-ibm-i.png" alt="Searching for IBM Bob Premium in the Extensions panel"/>
+                    <div class="step-screenshot-caption">Search for "IBM Bob Premium" — an Install button on the right means it still needs to be installed</div>
+                  </div>
                 </div>
               </div>
               <div class="mode-step">
                 <div class="step-num">3</div>
                 <div class="step-body">
-                  <div class="step-title">Confirm it is activated in Bob</div>
-                  <div class="step-desc">In the Extensions panel, confirm that <strong>IBM Bob Premium Package for i</strong> shows as <strong>Enabled</strong>. If you just installed it, reload Bob when prompted first. Activation unlocks the IBM i Developer and IBM i Database modes.</div>
+                  <div class="step-title">Install IBM i Development Pack</div>
+                  <div class="step-desc">Just like the previous step, search for <strong>"IBM i Development Pack"</strong> in the Extensions panel. This extension is <strong>not</strong> pre-installed — click <strong>Install</strong> if it does not appear under <em>Installed</em>. Reload Bob if prompted.</div>
                 </div>
               </div>
               <div class="mode-step">
                 <div class="step-num">4</div>
                 <div class="step-body">
-                  <div class="step-title">Install IBM i Development Pack</div>
-                  <div class="step-desc">Search for <strong>"IBM i Development Pack"</strong> in the Extensions panel. This extension is <strong>not</strong> pre-installed — click <strong>Install</strong> if it does not appear under <em>Installed</em>. Reload Bob if prompted.</div>
+                  <div class="step-title">Open Bob Settings</div>
+                  <div class="step-desc">After the extension installation has wrapped up, look towards the bottom-right corner of the Bob IDE interface. Along the bottom edge of the interface there will be an interactable button labelled <strong>Bob Settings</strong> — click this button to open the Settings panel.</div>
+                  <div class="step-screenshot">
+                    <img src="img/bob_settings.png" alt="Bob Settings button in the bottom-right corner of the Bob IDE"/>
+                    <div class="step-screenshot-caption">Click Bob Settings in the bottom-right corner of the Bob IDE</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mode-step">
+                <div class="step-num">5</div>
+                <div class="step-body">
+                  <div class="step-title">Install Premium Package for i</div>
+                  <div class="step-desc">Afterwards, further down the panel adjacent the "Add ons" setting, you should now see the IBM Bob Premium Package for i displayed. Look towards the right and click the "Install" button then Bob IDE might request an application restart to implement the changes; if this is the case, accept and restart the IDE.</div>
+                  <div class="step-screenshot">
+                    <img src="img/activatedd.png" alt="IBM Bob Premium Package for i shown next to the Add ons setting with an Install button"/>
+                    <div class="step-screenshot-caption">Click Install next to IBM Bob Premium Package for i under Add ons</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mode-step">
+                <div class="step-num">6</div>
+                <div class="step-body">
+                  <div class="step-title">Confirm it is activated in Bob</div>
+                  <div class="step-desc">Now click the icon in the very top-right corner (shown in the first screenshot below) to return to your Bob chat. From there, click either <strong>Agent</strong> or the <strong>+</strong> sign, and you should see the <strong>IBM i Developer</strong> and <strong>IBM i Database</strong> modes listed as options. If they don’t appear, your IBM Bob account likely hasn’t been linked to your Premium Package for i entitlements yet.</div>
+                  <div class="step-screenshot step-screenshot--sm">
+                    <img src="img/sidebar-button.png" alt="Icon in the top-right corner of Bob to return to the chat"/>
+                    <div class="step-screenshot-caption">Click the icon in the top-right corner to return to the Bob chat</div>
+                  </div>
+                  <div class="step-screenshot">
+                    <img src="img/new-modes.png" alt="IBM i Developer and IBM i Database modes in the mode selector"/>
+                    <div class="step-screenshot-caption">IBM i Developer and IBM i Database appear in the mode list</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -214,6 +252,10 @@
                   <div class="step-title">Add a new connection</div>
                   <div class="step-desc">Click the IBM i icon in the Activity Bar (shown circled in red in the screenshot below), then click <strong>New Connection</strong>. Enter the host IP, user profile, and <code>ssh_private_key</code> provided in <span id="box-folder-link-container">the Box folder↗</span>. When prompted for the private key, browse to the downloaded <code>ssh_private_key.pem</code> file on your computer. <strong>Do not use the password here — use only the <code>ssh_private_key.pem</code> private key file.</strong></div>
                   <div class="step-screenshot">
+                    <img src="img/ibmi_icon.png" alt="IBM i icon in the Bob Activity Bar"/>
+                    <div class="step-screenshot-caption">Click the IBM i icon in the Activity Bar</div>
+                  </div>
+                  <div class="step-screenshot">
                     <img src="img/i-connection.png" alt="IBM i connection dialog in Bob IDE"/>
                     <div class="step-screenshot-caption">IBM i connection panel</div>
                   </div>
@@ -249,7 +291,7 @@
                   <div class="step-desc">Name your filter (e.g. your assigned number). In <strong>Libraries</strong>, enter your assigned library <code>FLGHT4nn</code>. For <strong>Object types</strong>, change it to <strong>*ALL</strong> to see all object types: <code>*PGM</code> (RPG and CL programs), <code>*FILE</code> (display and database files), <code>*MENU</code> (application menus).</div>
                   <div class="warn-box">⚠️ <strong>Use <code>*ALL</code>, not <code>*</code></strong> — the wildcard <code>*</code> does not work for filtering object types in the Object Browser. You must type <code>*ALL</code> exactly.</div>
                   <div class="step-screenshot">
-                    <img src="img/object-filter-fields.png" alt="Object Browser filter fields showing library and object type inputs"/>
+                    <img src="img/objectfilter.jpeg" alt="Object Browser filter fields with Object types set to *ALL"/>
                     <div class="step-screenshot-caption">Enter FLGHT4nn as the library and choose your object types</div>
                   </div>
                   <div class="step-desc">Scroll down and click <strong>Save Settings</strong>. Your named filter will now appear in the Object Browser, and you can navigate and expand the members inside your library.</div>
@@ -265,6 +307,10 @@
                   <div class="step-screenshot">
                     <img src="img/set-workspace.png" alt="Bob scope picker showing New Task in Library List option"/>
                     <div class="step-screenshot-caption">Select "New Task in Library List" — confirm your FLGHT4nn library is listed</div>
+                  </div>
+                  <div class="step-screenshot">
+                    <img src="img/librarylist.png" alt="Library List scope selected in the Bob chat"/>
+                    <div class="step-screenshot-caption">Verify the chat scope shows Library List</div>
                   </div>
                 </div>
               </div>

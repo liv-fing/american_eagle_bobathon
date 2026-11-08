@@ -48,21 +48,39 @@
                 <div class="step-num">1</div>
                 <div class="step-body">
                   <div class="step-title">Expand your library in the Object Browser</div>
-                  <div class="step-desc">In the IBM i sidebar, expand <strong>User Library List</strong> and <strong>Object Browser</strong>. Add a filter for <code>FLGHT4nn</code> in the Object Browser if not already done, and set Object types to <code>*ALL</code> so you see: <code>*PGM</code> (RPG and CL programs), <code>*FILE</code> (display and database files), <code>*MENU</code> (application menus).</div>
+                  <div class="step-desc">In the IBM i sidebar, expand <strong>User Library List</strong> and <strong>Object Browser</strong>, then expand <strong>Source Files</strong>. From there, search for the folder <code>QDDSSRCD</code>, which is where the classic fixed-format RPG programs are stored.</div>
+                  <div class="step-screenshot">
+                    <img src="img/expand.png" alt="Expanding the Object Browser filter and Source Files"/>
+                    <div class="step-screenshot-caption">Expand your library filter and Source Files in the Object Browser</div>
+                  </div>
+                  <div class="step-screenshot">
+                    <img src="img/search1.png" alt="Searching for QDDSSRCD in the Object Browser"/>
+                    <div class="step-screenshot-caption">Search for QDDSSRCD</div>
+                  </div>
                 </div>
               </div>
               <div class="mode-step">
                 <div class="step-num">2</div>
                 <div class="step-body">
                   <div class="step-title">Browse source members and preview a display file</div>
-                  <div class="step-desc">Expand <strong>Source Files</strong> and open a few programs from <code>QRPGSRC</code> to get a feel for the classic fixed-format style. Then navigate to <code>QDDSSRCD</code> and open <code>FRS001DF</code>. Click <strong>Preview All</strong> on the first line to see the green-screen layout rendered visually. Try <code>FRS021DF</code> as well — this is the Flight Maintenance screen used in Exercise 3.</div>
-                </div>
-              </div>
-              <div class="mode-step">
-                <div class="step-num">3</div>
-                <div class="step-body">
-                  <div class="step-title">Check how old the programs are</div>
-                  <div class="step-desc">In the Object Browser, click <code>FRS000.pgm</code> — the flight reservation logon. Check its <strong>Detail</strong>: it was compiled in 1997, over 30 years ago!</div>
+                  <div class="step-desc">Then navigate to <code>QDDSSRCD</code>, expand the folder, and open <code>FRS001DF</code>. Click <strong>Preview All</strong> on the first line to see the green-screen layout rendered visually.</div>
+                  <div class="step-screenshot">
+                    <img src="img/search2.png" alt="Opening FRS001DF in QDDSSRCD and clicking Preview All"/>
+                    <div class="step-screenshot-caption">Open FRS001DF and click Preview All</div>
+                  </div>
+                  <div class="step-screenshot">
+                    <img src="img/prev.png" alt="Rendered preview of the FRS001DF screen"/>
+                    <div class="step-screenshot-caption">Rendered preview of FRS001DF</div>
+                  </div>
+                  <div class="info-box">💡 Try <code>FRS021DF</code> as well — this is the <strong>Flight Maintenance</strong> screen used in Exercise 3.</div>
+                  <div class="step-screenshot">
+                    <img src="img/search3.png" alt="Opening FRS021DF in QDDSSRCD and clicking Preview All"/>
+                    <div class="step-screenshot-caption">Open FRS021DF and click Preview All</div>
+                  </div>
+                  <div class="step-screenshot">
+                    <img src="img/prev3.png" alt="Rendered preview of the FRS021DF Flight Maintenance screen"/>
+                    <div class="step-screenshot-caption">Rendered preview of FRS021DF</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -84,6 +102,10 @@
                   <div class="step-title">Set your current library first</div>
                   <div class="step-desc">In the <strong>Code for IBM i</strong> sidebar, expand <strong>User Library List</strong>. Right-click <code>FLGHT4nn</code> and select <strong>Set as Current Library</strong>.</div>
                   <div class="warn-box">⚠️ Without a current library set, <code>/init</code> will prompt you to set one and stop. IBM-supplied system libraries (<code>QGPL</code>, <code>QTEMP</code>) cannot be used.</div>
+                  <div class="step-screenshot">
+                    <img src="img/currlib.png" alt="FLGHT4nn set as the Current Library in the User Library List"/>
+                    <div class="step-screenshot-caption">FLGHT4nn shows the Current Library badge in the User Library List</div>
+                  </div>
                 </div>
               </div>
               <div class="mode-step">
@@ -93,6 +115,10 @@
                   <div class="step-title">Run <code>/init</code></div>
                   <div class="step-desc">In the Bob chat panel, confirm you are in <strong>IBM i Developer</strong> mode with scope set to <strong>Library List (QSYS)</strong>. Type <code>/init</code> in the chat and press <strong>Enter</strong>.</div>
                   <div class="info-box">💡 <strong>Slash commands:</strong> The <code>/</code> prefix triggers a Bob built-in action. Typing <code>/</code> followed by a command name tells Bob to run that specific action rather than treating it as a regular chat message.</div>
+                  <div class="step-screenshot">
+                    <img src="img/initc.png" alt="Running /init in the Bob chat in IBM i Developer mode with Library List scope"/>
+                    <div class="step-screenshot-caption">Run /init in IBM i Developer mode with Library List scope</div>
+                  </div>
                   <div class="step-desc mt-s">Bob will scan your library — measuring source files, member types, service programs, IWS web services, naming conventions, and database objects — then create a <code>QBOBSRC</code> source physical file in <code>FLGHT4nn</code> (if it does not exist) and write an <code>AGENTS</code> member at <code>FLGHT4nn/QBOBSRC/AGENTS</code> in Markdown format. Bob may ask for your approval at points during the process — click <strong>Approve</strong> to continue.</div>
                 </div>
               </div>
@@ -101,6 +127,10 @@
                 <div class="step-body">
                   <div class="step-title">Explore the result</div>
                   <div class="step-desc">Open the <strong>Object Browser</strong>, expand <code>FLGHT4nn</code> → <code>QBOBSRC</code>, and click <strong>agents.md</strong> to view the generated member. It contains IBM i–specific facts discovered directly from your source — compile conventions, legacy logical files to avoid, function key constants, and non-default compile parameters.</div>
+                  <div class="step-screenshot">
+                    <img src="img/checking.png" alt="Checking QBOBSRC in the Object Browser for the generated AGENTS member"/>
+                    <div class="step-screenshot-caption">Find QBOBSRC in the Object Browser and open agents.md</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -122,16 +152,51 @@
                 <div class="step-body">
                   <div class="step-title">Open the Understand Dashboard</div>
                   <div class="step-desc">In the Activity Bar, click the <strong>Understand</strong> icon. Alternatively, open the command palette with <code>Cmd+Shift+P</code> (macOS) or <code>Ctrl+Shift+P</code> (Windows/Linux), type <strong>"get started with understand"</strong>, and select <strong>IBM Bob Premium Package for i: Get Started with Understand</strong>.</div>
+                  <div class="step-screenshot">
+                    <img src="img/understandicon.png" alt="Understand icon in the Bob Activity Bar"/>
+                    <div class="step-screenshot-caption">Click the Understand icon in the Activity Bar</div>
+                  </div>
                   <div class="step-screenshot"><img src="img/understand_command_palette.png" alt="Command palette showing Get Started with Understand option"/><div class="step-screenshot-caption">Type "get started with understand" in the command palette and select the IBM Bob Premium Package for i option</div></div>
-                  <div class="step-desc mt-m">If not already done, install the Understand Component on IBM i, specifying the 'understand' library and other necessary information.</div>
-                  <div class="step-screenshot step-screenshot--sm"><img src="img/understand1.png" alt="Get Started with Understand command palette"/></div>
-                  <div class="step-desc mt-m">If no application exists yet, click <strong>New Application</strong>, name it <code>FLGHT4nn</code> (replace <code>nn</code> with your number), add your application library <code>FLGHT4nn</code> (the library containing compiled objects, not source) and metadata library <code>BOBLIBnn</code>, then click <strong>Scan</strong>. The scan takes about 30–60 seconds.</div>
-                  <div class="step-screenshot"><img src="img/understand2.png" alt="New Application dialog in Understand Dashboard"/></div>
-                  <div class="info-box">If an application named <code>FLGHT4nn</code> already exists and shows <strong>SCANNED</strong>, skip directly to the next step.</div>
                 </div>
               </div>
               <div class="mode-step">
                 <div class="step-num">2</div>
+                <div class="step-body">
+                  <div class="step-title">Install the Understand Component</div>
+                  <div class="step-desc">If not already done, install the Understand Component on IBM i, specifying the 'understand' library and other necessary information.</div>
+                  <div class="step-screenshot">
+                    <img src="img/udl.png" alt="Understand overview showing the component as Not installed with an Install Understand button"/>
+                    <div class="step-screenshot-caption">Click Install Understand</div>
+                  </div>
+                  <div class="step-desc mt-m">You will then see a pop up confirming whether you wish to proceed with the Understand installation — click <strong>Proceed</strong>.</div>
+                  <div class="step-screenshot step-screenshot--xs">
+                    <img src="img/pop.png" alt="Understand Installation confirmation pop up with Proceed button"/>
+                    <div class="step-screenshot-caption">Click Proceed to confirm the Understand installation</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mode-step">
+                <div class="step-num">3</div>
+                <div class="step-body">
+                  <div class="step-title">Adding an Application</div>
+                  <div class="step-desc">If no application exists yet, click <strong>New Application</strong>, name it <code>FLGHT4nn</code> (replace <code>nn</code> with your number), add your application library <code>FLGHT4nn</code> (the library containing compiled objects, not source) and metadata library <code>BOBLIBnn</code>, then click <strong>Scan</strong>. The scan takes about 30–60 seconds.</div>
+                  <div class="step-screenshot">
+                    <img src="img/clickaddapp.png" alt="Click New Application in the Understand Dashboard"/>
+                    <div class="step-screenshot-caption">Click New Application</div>
+                  </div>
+                  <div class="step-screenshot">
+                    <img src="img/addapp.png" alt="Add application form with the FLGHT4nn library selected"/>
+                    <div class="step-screenshot-caption">Enter the application name and library, then click Add application</div>
+                  </div>
+                  <div class="step-screenshot">
+                    <img src="img/scan.png" alt="Scan button for the new application in Understand"/>
+                    <div class="step-screenshot-caption">Click Scan</div>
+                  </div>
+                  <div class="info-box">If an application named <code>FLGHT4nn</code> already exists and shows <strong>SCANNED</strong>, skip directly to the next step.</div>
+                </div>
+              </div>
+              <div class="mode-step">
+                <div class="step-num">4</div>
                 <div class="step-body">
                   <div class="step-title">Explore the application inventory</div>
                   <div class="step-desc">Once the scan completes, the dashboard shows a summary of every object in the application. Review the inventory and answer these questions — the numbers are shown directly on the dashboard:</div>
@@ -153,7 +218,7 @@
                 </div>
               </div>
               <div class="mode-step">
-                <div class="step-num">3</div>
+                <div class="step-num">5</div>
                 <div class="step-body">
                   <div class="step-title">Identify the most referenced objects</div>
                   <div class="step-desc">In the <strong>Insights</strong> tab, explore the <strong>Most referenced objects</strong> list. It shows which objects have the most inbound dependencies — these are your highest change-risk objects. Note which types of objects appear at the top and what that tells you about where the application's core data dependencies lie.</div>
@@ -161,13 +226,14 @@
                 </div>
               </div>
               <div class="mode-step">
-                <div class="step-num">4</div>
+                <div class="step-num">6</div>
                 <div class="step-body">
                   <span class="mode-pill mode-pill--developer">IBM i Developer mode</span>
                   <div class="step-title">Ask Bob more about the application</div>
                   <div class="step-desc">Verify that you are in <strong>IBM i Developer</strong> mode, set the scope to your library list, and ask:</div>
                   <div class="step-prompt"><pre>What are the high-level functional areas of FLGHT4nn?</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
                   <div class="step-desc mt-s">Bob activates the <strong>understand-app-overview</strong> skill and uses the Understand scan data to return an application overview — functional areas, key programs, and architecture diagrams — without reading individual source members.</div>
+                  <div class="step-screenshot"><img src="img/verifyidevv.png" alt="Bob answering the high-level functional areas question using Understand"/></div>
                 </div>
               </div>
             </div>
@@ -191,7 +257,14 @@
                   <div class="step-desc">Verify that you are in <strong>IBM i Developer</strong> mode. Click the <strong>+ (Scope) button</strong> and select <strong>(QSYS) Library List</strong> as the context scope. Make sure <code>FLGHT4nn</code> is in the library list. Replace <code>nn</code> with your library number in the prompt below.</div>
                   <div class="step-prompt"><pre>Generate a comprehensive architecture overview of the FLGHT4nn application in QSYS in Markdown format. Include a high-level description, the main program flows, key programs and their roles, a Mermaid architecture diagram, and a summary of the database tables used.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
                   <div class="step-desc">Bob will analyze the programs, source members, and database files and return a structured Markdown document. Review the output — notice how it identifies the menu-driven architecture, the core transaction programs, and the underlying database schema.</div>
-                  <div class="info-box">Copy the output to a new file <code>FLGHT4nn-Architecture.md</code> in your workspace for reference.</div>
+                </div>
+              </div>
+              <div class="mode-step">
+                <div class="step-num">2</div>
+                <div class="step-body">
+                  <div class="step-title">Now have Bob save it</div>
+                  <div class="step-desc">Replace <code>4nn</code> with your library number in the prompt below.</div>
+                  <div class="step-prompt"><pre>Save this output as new file titled FLGHT4nn-Architecture.md in /FLGHT4nn/QBOBSRC/.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
                 </div>
               </div>
             </div>
@@ -211,6 +284,8 @@
                 <div class="step-body">
                   <div class="step-desc">Switch to <strong>IBM i Database</strong> mode using the mode selector. Type the slash command below so <code>/erd</code> is highlighted in the Bob chat. Replace <code>4nn</code> with your number.</div>
                   <div class="step-prompt"><pre>/erd FLGHT4nn</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-screenshot"><img src="img/ibmdb.png" alt="IBM i Database mode with the /erd command"/></div>
+                  <div class="step-screenshot"><img src="img/erd.png" alt="Generated Mermaid ERD"/></div>
                   <div class="info-box">Bob will introspect the physical files (FLIGHTS, ORDERS, CUSTOMERS, AGENTS, etc.) and generate a Mermaid ERD. Key relationships: ORDERS links to FLIGHTS, CUSTOMERS, and AGENTS; FLIGHTS references FRCITY and TOCITY. Copy the ERD to your architecture document.</div>
                 </div>
               </div>
