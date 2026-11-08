@@ -122,7 +122,7 @@ Your instructor will assign you a library number. Each participant has their own
 | 49 | `FLGHT449` | 3049 | `http://localhost:3049` |
 | 50 | `FLGHT450` | 3050 | `http://localhost:3050` |
 
-> 💡 The **Dev Port** is only needed for **Exercise 7**. When Bob asks you to pin your Vite dev server to a port, use the value from the Dev Port column. Your React app will be reachable at the React App URL shown — provided your SSH tunnel (0.5) is active.
+> 💡 The **Dev Port** is only needed for **Exercise 4**. When Bob asks you to pin your Vite dev server to a port, use the value from the Dev Port column. Your React app will be reachable at the React App URL shown — provided your SSH tunnel (0.5) is active.
 
 > ✅ If you have a 5250 terminal, you can also add the library with `ADDLIBLE FLGHT4nn` and launch the app with `GO FLGHT4nn/FRSMAIN`.
 
@@ -161,7 +161,7 @@ Your instructor will assign you a library number. Each participant has their own
 
 ---
 
-### 0.5 — SSH Tunnel (for Green Screen and Exercise 7)
+### 0.5 — SSH Tunnel (for Green Screen and Exercise 4)
 
 Your instructor will give you the host IP address, user profile, and password for your IBM i environment.
 
@@ -223,7 +223,7 @@ CALL FLGHT4nn/FRS021
 
    <img src="docs/img/prev.png" alt="Rendered preview of the FRS001DF screen" width="600"/>
 
-   > 💡 Try `FRS021DF` as well — this is the **Flight Maintenance** screen used in Exercise 3.
+   > 💡 Try `FRS021DF` as well — this is the **Flight Maintenance** screen used in Exercise 5.
 
    <img src="docs/img/search3.png" alt="Opening FRS021DF in QDDSSRCD and clicking Preview All" width="600"/>
 
@@ -462,7 +462,94 @@ Bob automatically generates a **Modernization Summary Report** in the chat, incl
 
 ---
 
-## Exercise 3 — Field Expansion: Add Total Flight Hours
+## Exercise 3 — Ask Bob About Your System
+
+**Goal:** Use Bob in IBM i Developer mode to answer system-level questions using natural language prompts. This exercise takes about 10 minutes to complete.
+
+Switch back to **IBM i Developer** mode and try these prompts:
+
+**Prompt 1 — CPU Usage by Active Jobs:**
+> *"Which active jobs have accumulated the most CPU time? For the top jobs, distinguish cumulative CPU time from their current elapsed CPU percentage."*
+
+Bob will query system services such as `QSYS2.ACTIVE_JOB_INFO` and return a summary of active jobs with CPU utilization — giving you an instant health check on your LPAR. You might see the Node.js job running if you completed Exercise 4 and never stopped the web server.
+
+### 3.1 — Prompt 1 — CPU Usage by Active Jobs
+
+> *"Which active jobs have accumulated the most CPU time? For the top jobs, distinguish cumulative CPU time from their current elapsed CPU percentage."*
+
+### 3.2 — (Optional) Prompt 2 — Inspect the Top Job
+
+> *"Inspect the job ranked first and determine whether it is currently CPU-bound. Check its job log and take one fresh elapsed CPU measurement. If the log is empty and the job is a PASE process, inspect its IFS job information for its executable, working directory, and open application or log files. Stop after that investigation. Distinguish facts from inferences and provide no more than two recommendations."*
+
+Bob will drill into the top job using tools like `QSYS2.JOBLOG_INFO` and `QSYS2.ACTIVE_JOB_INFO`, take a live CPU snapshot, and — if the job is a PASE process — switch to IFS inspection to identify the executable and any open files. The response will clearly separate what Bob observed from what it inferred, and surface at most two actionable recommendations.
+
+### 3.3 — Prompt 3 — Stale Programs in Your Library
+
+Replace `FLGHT4nn` with your library number:
+
+> *"Which programs in the FLGHT4nn library have not been recompiled in the last 5 years?"*
+
+Bob will query `QSYS2.OBJECT_STATISTICS` filtering on object type `*PGM` in `FLGHT4nn`, compare the `LAST_USED_TIMESTAMP` or `OBJCREATED` attributes, and list the stale programs — perfect input for a modernization backlog.
+
+---
+
+## Exercise 4 — Generate a React Carbon App from a Green Screen *(Optional)*
+
+**Goal:** Use Bob in IBM i Developer mode to analyze the FLIGHT400 5250 screen and generate a modern React web application styled with IBM Carbon, running directly on IBM i PASE. This exercise takes about 30 minutes to complete.
+
+![Flight400 React agentic demo](docs/img/Flight-react-agentic.png)
+
+### 4.1 — Create a Helper Skill (Sharpen Your Skill)
+
+Before generating the React app, give Bob extra context about running React + Vite on IBM i PASE by creating a small helper Skill.
+
+1. In **Agent** mode, click the **+** button (top right) and select **Local Workspace** as the task context.
+2. Open [`SAMPLE-SKILL.md`](./SAMPLE-SKILL.md), copy its entire content, paste it into the Bob chat, then append the following instruction and send:
+
+   > *"Create a skill from the pasted text."*
+
+### 4.2 — Generate the React App
+
+Switch to **IBM i Developer** mode, then click the **+** button and select your **FLGHT4nn** library list as the context. Drag or paste the [FLIGHT400 screenshot](docs/img/flight400.png) into the Bob chat prompt, then replace `4nn` and `30nn` with your assigned numbers and send:
+
+> *"Given this screenshot of the 5250 flight order screen from the Application Flight4nn in @FLGHT4nn, Build a single-page React 18 + Vite 4 app on IBM i (PASE) using @carbon/react ^1.x with the g100 dark theme that modernises the IBM i 5250 screen shown in the attached screenshot. Create the app in the IFS at $HOME/flight4nn-frontend-apps/screen-name/. Use the g100 dark theme. All fields should have a list of values to select from. The dev server must run in the background using nohup ... & and write output to /tmp/vite-dev.log. Pin the Vite dev server to port 30nn if available."*
+
+### 4.3 — Start the App and Open It in Your Browser
+
+After Bob generates the files, ask Bob to start the dev server:
+
+> *"Please start the dev server for the app you just created."*
+
+Then open `http://localhost:30nn` in your browser — replacing `30nn` with your Dev Port from the Setup table.
+
+> 💡 **Nothing showing in your browser?** Make sure you have completed 0.5 of Environment Setup (the SSH tunnel) and that it includes your port number.
+
+### Wrap-Up — Skills & Tools Used Behind the Scenes
+
+In addition to the sample Skill created in step 1, a set of unique Skills shipped with the **IBM Bob Premium Package for i** powered this exercise:
+
+| Tool / Skill | Role |
+|---|---|
+| `dds-primer-basics` skill | Parses `FRS001DF.DSPF` — screen layout, field names, subfile windows |
+| `rpg-primer-basics` skill | Reads `FRS001.RPG` — extracts pricing logic and field definitions |
+| IFS write tools | Creates project files directly in `$HOME/flight4nn-react/` on IBM i |
+| IBM i PASE | Runs `npm install`, `npm run build`, `npm start` natively on IBM i |
+
+Once you finish playing around with the React app, ask Bob to stop it:
+
+> *"Stop the web service for FLGHT4nn on port 30nn"*
+
+> ⚠️ **This app runs with sample data only.** The natural next step is to add a REST / Web Services layer connecting the React front end to the real IBM i business logic and Db2 for i database.
+
+---
+
+## Additional Exercises
+
+The following exercises go deeper on specific IBM i skills. Work through them in any order after completing the exercises above.
+
+---
+
+## Exercise 5 — Field Expansion: Add Total Flight Hours
 
 **Goal:** Use Bob's IBM i Developer mode to plan the change first, then implement it — adding a new business field, *Total Flight Hours*, from the physical file all the way to the 5250 screen. This exercise takes about 30 minutes to complete.
 
@@ -478,7 +565,7 @@ The completed field will use the following names:
 
 ---
 
-### 3.1 — Create a Custom Rule for Bob
+### 5.1 — Create a Custom Rule for Bob
 
 Custom rules allow you to add personalized or organization-specific instructions to Bob's context window. Rather than pasting standing rules into chat every session, you can bake them permanently into the **IBM i Developer** mode so Bob always follows them. Follow these steps to add the rules through the UI.
 
@@ -514,7 +601,7 @@ Custom rules allow you to add personalized or organization-specific instructions
 
 ---
 
-### 3.2 — Explore the Flight Maintenance Screen
+### 5.2 — Explore the Flight Maintenance Screen
 
 ```
 Preview the display file FRS021DF from FLGHT4nn/QDDSSRCD and list every field on the Flight Maintenance screen, noting the input/output type of each and the screen-field naming convention (e.g. SFLGHT, SMILES, SSEATS, SPRICE). Do not modify anything.
@@ -535,7 +622,7 @@ CALL FLGHT4nn/FRS021
 
 ---
 
-### 3.3 — Plan the Change
+### 5.3 — Plan the Change
 
 Here you ask Bob to plan the change *with* you first — reasoning through a step-by-step plan *without* writing, editing, saving, or compiling anything. This single prompt carries the full spec, and the execution steps that follow just reference the approved plan.
 
@@ -578,7 +665,7 @@ Bob should return a numbered plan mapping the existing Mileage path to the new f
 
 ---
 
-### 3.4 — Implement the DDS Files
+### 5.4 — Implement the DDS Files
 
 Implement the three DDS members first — the two database files and the screen. Bob shows a diff for each and waits for your approval before saving. No compiling yet.
 
@@ -595,11 +682,11 @@ As Bob works through each member, confirm:
 
 ---
 
-### 3.5 — Implement the RPG Program
+### 5.5 — Implement the RPG Program
 
 `FRS021` is fixed-form OPM RPG and the most alignment-sensitive member, so implement it in **three smaller diffs** rather than one big one. Approve each before moving to the next. Still no compiling.
 
-**5.1 — File & Input specs** (record length + the packed input field):
+**Step 1 — File & Input specs** (record length + the packed input field):
 
 ```
 Apply just the F-spec and I-spec changes to FLGHT4nn/QRPGSRC(FRS021): increase the FLIGHTSZ record length from 233 to 236, and add the FHRS input-spec entry at positions 234-236 using data-type P (packed) in column 43, mirroring the exact column alignment of the neighboring FMILES entry. Show the diff and wait for my approval; do not compile.
@@ -607,7 +694,7 @@ Apply just the F-spec and I-spec changes to FLGHT4nn/QRPGSRC(FRS021): increase t
 
 Confirm: F-spec now reads `236`; new I-spec line is `FHRS` at 234-236 with `P` in the data-type column (not `B`).
 
-**5.2 — Calculation specs** (screen ⇄ database moves + validation):
+**Step 2 — Calculation specs** (screen ⇄ database moves + validation):
 
 ```
 Now apply just the C-spec changes to FRS021: after every successful CHAIN that loads an existing flight, move FHRS to SFLHRS; move SFLHRS to FHRS on both the add and update paths (mirroring the existing Z-ADD SMILES/FMILES lines); and add an SFLHRS validation consistent with the SMILES check using the next free indicator. Show the diff and wait for my approval; do not compile.
@@ -615,7 +702,7 @@ Now apply just the C-spec changes to FRS021: after every successful CHAIN that l
 
 Confirm: `FHRS→SFLHRS` on retrieve; `SFLHRS→FHRS` on add and update; validation mirrors the Mileage check.
 
-**5.3 — Output specs** (the alignment-sensitive part):
+**Step 3 — Output specs** (the alignment-sensitive part):
 
 ```
 Finally apply just the O-spec changes to FRS021: add FHRS to both the ADDFLT and UPDFLT output records. Copy the exact column positions of the neighboring FMILES O-spec line and change only the field name and end position — the end position must stay right-justified in the same columns, with the packed data-type letter in the same column as FMILES's B. Do not eyeball the spacing. Show the diff and wait for my approval; do not compile.
@@ -627,7 +714,7 @@ Finally apply just the O-spec changes to FRS021: add FHRS to both the ADDFLT and
 
 ---
 
-### 3.6 — Build the Direct Demo Path
+### 5.6 — Build the Direct Demo Path
 
 ```
 Build only the four demo objects in order: (1) apply DDS for FLIGHTS, (2) rebuild FLIGHTSZ, (3) compile FRS021DF, (4) compile FRS021. Use the correct IBM i command for each source type. If one fails, stop, report the compile error briefly, and wait for my direction. Do not touch unrelated programs.
@@ -648,7 +735,7 @@ If a compile **fails**, keep Bob scoped to the four objects: *"Explain the direc
 
 ---
 
-### 3.7 — Validate the Result
+### 5.7 — Validate the Result
 
 ```
 Validate the completed change: confirm FLHRS exists in FLGHT4nn/FLIGHTS, FHRS is available through FLIGHTSZ, SFLHRS appears immediately after Mileage in the FRS021DF Previewer, FRS021 compiled, and FRS021DF has no COLHDG. Finish with a one-line end-to-end field mapping and list any additional impacted programs as follow-up. Do not modify anything.
@@ -663,25 +750,25 @@ Bob should confirm the complete path end-to-end:
 | RPG program | `FRS021` |
 | Screen | `FRS021DF.SFLHRS` |
 
-Repeat step **3.2** (and optionally the 5250 view) — you should now see the new **Flight Hours** field on the flight schedule screen! 🎉
+Repeat step **5.2** (and optionally the 5250 view) — you should now see the new **Flight Hours** field on the flight schedule screen! 🎉
 
 <img src="docs/img/newfield.png" alt="New field on screen" width="600"/>
 
-> ✅ **Exercise 3 complete** — Total Flight Hours now flows end-to-end: `FLIGHTS.FLHRS` → `FLIGHTSZ.FHRS` → `FRS021` → `FRS021DF.SFLHRS`.
+> ✅ **Exercise 5 complete** — Total Flight Hours now flows end-to-end: `FLIGHTS.FLHRS` → `FLIGHTSZ.FHRS` → `FRS021` → `FRS021DF.SFLHRS`.
 
 **Follow-up Work:** Bob may identify other programs that use `FLIGHTS` or `FLIGHTSZ`. Those dependencies are valuable impact-analysis findings but are outside the scope of this exercise.
 
 ---
 
-## Exercise 4 — Database Optimization
+## Exercise 6 — Database Optimization
 
 **Goal:** Review a complex SQL query written by a junior developer, validate and correct it with Bob, analyze performance bottlenecks, and apply the Index Advisor workflow to improve query efficiency. This exercise takes about 15 minutes to complete.
 
-### 4.1 — Switch to IBM i Database Mode
+### 6.1 — Switch to IBM i Database Mode
 
 In the Bob chat panel, use the mode selector to switch to **IBM i Database** mode.
 
-### 4.2 — Review the Query with Bob
+### 6.2 — Review the Query with Bob
 
 Type `/review` first so it is highlighted in the Bob chat, then paste the query below. Replace **all four** occurrences of `FLGHT4nn` with your library number.
 
@@ -738,7 +825,7 @@ Bob may inspect the connected IBM i catalog to verify names and data types. Expe
 - ✅ `FETCH FIRST 100 ROWS ONLY` is a useful testing safeguard.
 - 💡 Bob may recommend using descriptive SQL column names instead of generated IBM i system names.
 
-### 4.3 — *(Optional)* Explain the Performance Characteristics
+### 6.3 — *(Optional)* Explain the Performance Characteristics
 
 After Bob has reviewed the query, ask:
 
@@ -752,7 +839,7 @@ Bob should identify that:
 
 > 💡 This step is informational and may vary slightly depending on the optimizer and statistics available in your environment.
 
-### 4.4 — Run the Index Advisor Workflow
+### 6.4 — Run the Index Advisor Workflow
 
 Still in **IBM i Database** mode, click the **workflow icon** at the top of the Bob panel. When the workflow options appear, select **Library List** as the scope first, then choose **SQL Index Strategy Advisor**.
 
@@ -806,33 +893,7 @@ For this lab, review and create the highest-priority recommendation for your ass
 
 ---
 
-## Exercise 5 — Ask Bob About Your System
-
-**Goal:** Use Bob in IBM i Developer mode to answer system-level questions using natural language prompts. This exercise takes about 10 minutes to complete.
-
-Switch back to **IBM i Developer** mode and try these prompts:
-
-**Prompt 1 — CPU Usage by Active Jobs:**
-> *"Which active jobs have accumulated the most CPU time? For the top jobs, distinguish cumulative CPU time from their current elapsed CPU percentage."*
-
-Bob will query system services such as `QSYS2.ACTIVE_JOB_INFO` and return a summary of active jobs with CPU utilization — giving you an instant health check on your LPAR. You might see the Node.js job running if you completed Exercise 7 and never stopped the web server.
-
-**(Optional) Prompt 2 — Inspect the Top Job:**
-> *"Inspect the job ranked first and determine whether it is currently CPU-bound. Check its job log and take one fresh elapsed CPU measurement. If the log is empty and the job is a PASE process, inspect its IFS job information for its executable, working directory, and open application or log files. Stop after that investigation. Distinguish facts from inferences and provide no more than two recommendations."*
-
-Bob will drill into the top job using tools like `QSYS2.JOBLOG_INFO` and `QSYS2.ACTIVE_JOB_INFO`, take a live CPU snapshot, and — if the job is a PASE process — switch to IFS inspection to identify the executable and any open files. The response will clearly separate what Bob observed from what it inferred, and surface at most two actionable recommendations.
-
-**Prompt 3 — Stale Programs in Your Library:**
-
-Replace `FLGHT4nn` with your library number:
-
-> *"Which programs in the FLGHT4nn library have not been recompiled in the last 5 years?"*
-
-Bob will query `QSYS2.OBJECT_STATISTICS` filtering on object type `*PGM` in `FLGHT4nn`, compare the `LAST_USED_TIMESTAMP` or `OBJCREATED` attributes, and list the stale programs — perfect input for a modernization backlog.
-
----
-
-## Exercise 6 — RPGUnit Test Planning & Implementation
+## Exercise 7 — RPGUnit Test Planning & Implementation
 
 **Goal:** Use Bob's guided RPGUnit workflows to build a structured test plan for an IBM i program, then implement and run the test suites — without writing test boilerplate by hand. This exercise takes about 20 minutes to complete.
 
@@ -840,7 +901,7 @@ These two workflows work together in sequence:
 - **RPGUnit Test Plan Creation** — analyzes exported procedures, generates Templates, Modules, Test Suites, and Test Utilities documents.
 - **RPGUnit Test Suite Implementation** — reads those documents, writes RPGUnit source members, runs the suites, and iterates until tests pass.
 
-### 6.1 — Prerequisites — Install RPGUnit
+### 7.1 — Prerequisites — Install RPGUnit
 
 1. **Verify the IBM i Testing extension** — The **IBM i Testing** extension is included in the **IBM Bob Premium Package for i** installed during Setup. Open the Extensions panel (`Cmd+Shift+X` / `Ctrl+Shift+X`), search for **"IBM i Testing"**, and confirm it shows as *Installed*. If not, click **Install**.
 
@@ -855,7 +916,7 @@ These two workflows work together in sequence:
 
    <img src="docs/img/testing-libraries.png" alt="Library list with testing libraries" width="480"/>
 
-### 6.2 — Create the CUSTCHK Source Member
+### 7.2 — Create the CUSTCHK Source Member
 
 In the Object Browser, find the `QRPGLESRC` folder in your `FLGHT4nn` library. Right-click → **New Member**.
 
@@ -884,7 +945,7 @@ dcl-proc checkCustomerExists export;
 end-proc;
 ```
 
-### 6.3 — Run the RPGUnit Test Plan Creation Workflow
+### 7.3 — Run the RPGUnit Test Plan Creation Workflow
 
 Click the **workflow icon** at the top of the Bob panel and choose **RPGUnit Test Plan Creation** in your library list.
 
@@ -897,13 +958,13 @@ Click the **workflow icon** at the top of the Bob panel and choose **RPGUnit Tes
 
 > 💡 If Bob asks to run the RPGUnit Test Plan Creation workflow again at any point, select **No thanks**.
 
-Bob will write the test plan documents and store them in the IFS directory you specified. At the bottom of the chat panel, review the files it created — these Markdown documents will be used in 6.4.
+Bob will write the test plan documents and store them in the IFS directory you specified. At the bottom of the chat panel, review the files it created — these Markdown documents will be used in 7.4.
 
-### 6.4 — Run the RPGUnit Test Suite Implementation Workflow
+### 7.4 — Run the RPGUnit Test Suite Implementation Workflow
 
-1. Click the **workflow icon** at the top of the Bob panel and choose **RPGUnit Test Suite Implementation** in your library list. Click **Proceed** (the test plan from 6.3 is already ready).
+1. Click the **workflow icon** at the top of the Bob panel and choose **RPGUnit Test Suite Implementation** in your library list. Click **Proceed** (the test plan from 7.3 is already ready).
 2. Select your library `FLGHT4nn`.
-3. Enter the same IFS project directory used in 6.3. Confirm the path to the test suites — Bob should pre-fill the correct default.
+3. Enter the same IFS project directory used in 7.3. Confirm the path to the test suites — Bob should pre-fill the correct default.
 4. Choose to **validate the environment**. If Bob prompts to download RPGUnit again, click **Install**, then **Cancel** on the follow-up popup that asks to delete the existing version. Bob will generate the test source members, run the suites, and iterate until the new tests pass or Bob discovers an error in the source code.
 
    ![Tests passing](docs/img/tests-pass.png)
@@ -914,54 +975,6 @@ Bob will write the test plan documents and store them in the IFS directory you s
 
 ---
 
-## Exercise 7 — Generate a React Carbon App from a Green Screen *(Optional)*
-
-**Goal:** Use Bob in IBM i Developer mode to analyze the FLIGHT400 5250 screen and generate a modern React web application styled with IBM Carbon, running directly on IBM i PASE. This exercise takes about 30 minutes to complete.
-
-![Flight400 React agentic demo](docs/img/Flight-react-agentic.png)
-
-### 7.1 — Create a Helper Skill (Sharpen Your Skill)
-
-Before generating the React app, give Bob extra context about running React + Vite on IBM i PASE by creating a small helper Skill.
-
-1. In **Agent** mode, click the **+** button (top right) and select **Local Workspace** as the task context.
-2. Open [`SAMPLE-SKILL.md`](./SAMPLE-SKILL.md), copy its entire content, paste it into the Bob chat, then append the following instruction and send:
-
-   > *"Create a skill from the pasted text."*
-
-### 7.2 — Generate the React App
-
-Switch to **IBM i Developer** mode, then click the **+** button and select your **FLGHT4nn** library list as the context. Drag or paste the [FLIGHT400 screenshot](docs/img/flight400.png) into the Bob chat prompt, then replace `4nn` and `30nn` with your assigned numbers and send:
-
-> *"Given this screenshot of the 5250 flight order screen from the Application Flight4nn in @FLGHT4nn, Build a single-page React 18 + Vite 4 app on IBM i (PASE) using @carbon/react ^1.x with the g100 dark theme that modernises the IBM i 5250 screen shown in the attached screenshot. Create the app in the IFS at $HOME/flight4nn-frontend-apps/screen-name/. Use the g100 dark theme. All fields should have a list of values to select from. The dev server must run in the background using nohup ... & and write output to /tmp/vite-dev.log. Pin the Vite dev server to port 30nn if available."*
-
-### 7.3 — Start the App and Open It in Your Browser
-
-After Bob generates the files, ask Bob to start the dev server:
-
-> *"Please start the dev server for the app you just created."*
-
-Then open `http://localhost:30nn` in your browser — replacing `30nn` with your Dev Port from the Setup table.
-
-> 💡 **Nothing showing in your browser?** Make sure you have completed 0.5 of Environment Setup (the SSH tunnel) and that it includes your port number.
-
-### Wrap-Up — Skills & Tools Used Behind the Scenes
-
-In addition to the sample Skill created in step 1, a set of unique Skills shipped with the **IBM Bob Premium Package for i** powered this exercise:
-
-| Tool / Skill | Role |
-|---|---|
-| `dds-primer-basics` skill | Parses `FRS001DF.DSPF` — screen layout, field names, subfile windows |
-| `rpg-primer-basics` skill | Reads `FRS001.RPG` — extracts pricing logic and field definitions |
-| IFS write tools | Creates project files directly in `$HOME/flight4nn-react/` on IBM i |
-| IBM i PASE | Runs `npm install`, `npm run build`, `npm start` natively on IBM i |
-
-Once you finish playing around with the React app, ask Bob to stop it:
-
-> *"Stop the web service for FLGHT4nn on port 30nn"*
-
-> ⚠️ **This app runs with sample data only.** The natural next step is to add a REST / Web Services layer connecting the React front end to the real IBM i business logic and Db2 for i database.
-
 ---
 
 ## Summary
@@ -971,12 +984,12 @@ Congratulations! In this lab you:
 | Exercise | What You Did |
 |---|---|
 | **Setup** | Installed Bob, connected to IBM i, and found your assigned library |
-| **Exercise 1** | Initialized Bob context with `/init`, mapped the application with the Understand Dashboard, generated architecture docs and an ERD with Bob |
+| **Exercise 1** | Initialized Bob context with `/init`, mapped the application with the Understand Dashboard, generated architecture docs and an ERD |
 | **Exercise 2** | Explained and modernized OPM RPG `FRS409` to free-format ILE RPG |
-| **Exercise 3** | Added a new field end-to-end through DDS and RPG with Bob's help |
-| **Exercise 4** | Reviewed and optimized a SQL query using Bob's database tools |
-| **Exercise 5** | Queried your IBM i system using natural language |
-| **Exercise 6** | Created and implemented an RPGUnit test suite with Bob's guided workflows |
-| **Exercise 7** | Optional: Generated a React Carbon app from a 5250 green screen |
+| **Exercise 3** | Queried your IBM i system using natural language |
+| **Exercise 4** *(Optional)* | Generated a React Carbon app from a 5250 green screen |
+| **Exercise 5** *(Additional)* | Added a new field end-to-end through DDS and RPG |
+| **Exercise 6** *(Additional)* | Reviewed and optimized a SQL query using Bob's database tools |
+| **Exercise 7** *(Additional)* | Created and implemented an RPGUnit test suite with Bob's guided workflows |
 
 > **Next steps:** Explore connecting the React app to live IBM i data via a Node.js or Java REST API, or dive deeper into the RPG modernization workflow for the other FLIGHT4nn programs.
