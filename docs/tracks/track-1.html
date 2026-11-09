@@ -264,7 +264,7 @@
                 <div class="step-body">
                   <div class="step-title">Now have Bob save it</div>
                   <div class="step-desc">Replace <code>4nn</code> with your library number in the prompt below.</div>
-                  <div class="step-prompt"><pre>Save this output as new file titled FLGHT4nn-Architecture.md in /FLGHT4nn/QBOBSRC/.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-prompt"><pre>Save this output to /home/ITZUSER/FLGHT4nn_ARCHITECTURE.md on the IBM i.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
                 </div>
               </div>
             </div>
@@ -283,10 +283,19 @@
                 <div class="step-num">1</div>
                 <div class="step-body">
                   <div class="step-desc">Switch to <strong>IBM i Database</strong> mode using the mode selector. Type the slash command below so <code>/erd</code> is highlighted in the Bob chat. Replace <code>4nn</code> with your number.</div>
-                  <div class="step-prompt"><pre>/erd FLGHT4nn</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-prompt"><pre>/erd FLGHT4nn add this to FLGHT4nn_ARCHITECTURE.md</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
                   <div class="step-screenshot"><img src="img/ibmdb.png" alt="IBM i Database mode with the /erd command"/></div>
-                  <div class="step-screenshot"><img src="img/erd.png" alt="Generated Mermaid ERD"/></div>
+                  <div class="step-screenshot"><img src="img/erd-addtoarch.png" alt="Generated Mermaid ERD added to the architecture document"/></div>
                   <div class="info-box">Bob will introspect the physical files (FLIGHTS, ORDERS, CUSTOMERS, AGENTS, etc.) and generate a Mermaid ERD. Key relationships: ORDERS links to FLIGHTS, CUSTOMERS, and AGENTS; FLIGHTS references FRCITY and TOCITY. Copy the ERD to your architecture document.</div>
+                </div>
+              </div>
+              <div class="mode-step">
+                <div class="step-num">2</div>
+                <div class="step-body">
+                  <div class="step-title">Preview your FLGHT4nn_ARCHITECTURE.md</div>
+                  <div class="step-desc">In the <strong>IFS Browser</strong>, locate <code>FLGHT4nn_ARCHITECTURE.md</code> at <code>/home/ITZUSER/FLGHT4nn_ARCHITECTURE.md</code> and open it. Use the <strong>Preview</strong> button in the editor toolbar to render the Markdown side-by-side with the source.</div>
+                  <div class="step-screenshot"><img src="img/open-arch.png" alt="Opening FLGHT4nn_ARCHITECTURE.md in the IFS Browser"/></div>
+                  <div class="info-box">💡 Right-click on the <code>.md</code> file when it is open and click <strong>Preview</strong> to preview it.</div>
                 </div>
               </div>
             </div>

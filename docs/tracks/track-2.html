@@ -38,16 +38,35 @@
                 <div class="step-num">1</div>
                 <div class="step-body">
                   <div class="step-title">Open FRS409 in the Object Browser</div>
-                  <div class="step-desc">Verify that you are in <strong>IBM i Developer</strong> mode. In the Object Browser, navigate to <code>FLGHT4nn/QRPGSRC</code> and open <code>FRS409</code>.</div>
+                  <div class="step-desc">In the Object Browser, expand the <code>FLGHT400</code> filter → <code>qrpgsrc</code> source file, and click <code>frs409.rpg</code> to open the source in the editor.</div>
+                  <div class="step-screenshot"><img src="img/expand-2.png" alt="Expanding the FLGHT400 filter and opening frs409.rpg in qrpgsrc"/></div>
+                  <div class="info-box">💡 Notice the classic fixed-format OPM RPG style: F-specs at the top, indicator definitions, a workstation data structure (<code>WSDS</code>), <code>*ENTRY PLIST</code> with two parameters (<code>ORDER#</code> and <code>ENDYN</code>), and a <code>DOUEQ</code> / <code>CASEQ</code> dispatch loop handling F3, F12, and Enter keys.</div>
                 </div>
               </div>
               <div class="mode-step">
                 <div class="step-num">2</div>
                 <div class="step-body">
+                  <div class="step-title">Open Bob chat and verify IBM i Developer mode</div>
+                  <div class="step-desc">With <code>FRS409.RPG</code> open in the editor, open the Bob chat panel, click the mode selector at the bottom, and choose <strong>IBM i Developer</strong>.</div>
+                  <div class="step-screenshot"><img src="img/409-chat.jpeg" alt="Bob chat panel with IBM i Developer mode selected"/></div>
+                </div>
+              </div>
+              <div class="mode-step">
+                <div class="step-num">3</div>
+                <div class="step-body">
                   <div class="step-title">Ask Bob what the program does</div>
                   <div class="step-desc">With <code>FRS409</code> open in the editor, type in the Bob chat:</div>
                   <div class="step-prompt"><pre>What does this program do?</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-screenshot"><img src="img/sendbob.jpeg" alt="Sending the prompt to Bob"/></div>
                   <div class="info-box">Bob will explain that <code>FRS409</code> is the <strong>Order Modification Confirmation Window</strong> — an OPM RPG program that displays a confirmation popup when a user modifies an order. It handles F3 (Exit), F12 (Cancel), and Enter key inputs via a DOUEQ loop with CASEQ dispatch subroutines.</div>
+                </div>
+              </div>
+              <div class="mode-step">
+                <div class="step-num">4</div>
+                <div class="step-body">
+                  <div class="step-title">Review the output Bob gives</div>
+                  <div class="step-desc">Bob reads the open source member and returns a complete breakdown of what FRS409 does.</div>
+                  <div class="step-screenshot"><img src="img/409-output.jpeg" alt="Bob's breakdown of what FRS409 does"/></div>
                 </div>
               </div>
             </div>
@@ -82,6 +101,7 @@
                     </ul>
                     Accept the other defaults and click <strong>Analyze Member</strong>. Bob will spin up a subagent to convert the fixed-format RPG to modern free-format ILE RPG, then run the Code for IBM i compile action for ILE RPG, triggering a <code>CRTBNDRPG</code> command on your LPAR. Watch the output in the terminal panel.
                   </div>
+                  <div class="step-screenshot"><img src="img/start-workflow.jpeg" alt="RPG Modernization workflow detecting the active RPG member"/></div>
                 </div>
               </div>
               <div class="mode-step">
@@ -89,6 +109,22 @@
                 <div class="step-body">
                   <div class="step-title">Confirm the output location</div>
                   <div class="step-desc">When Bob prompts <strong>"Confirm Output Member Location"</strong>, ensure the path contains your library number. Approve the requested tasks. Bob will place the modernized source at <code>FLGHT4nn/QRPGLESRC/FRS409.RPGLE</code>.</div>
+                  <div class="step-screenshot"><img src="img/output-workflow.jpeg" alt="Subagent compile output and Confirm Output Member Location prompt"/></div>
+                </div>
+              </div>
+              <div class="mode-step">
+                <div class="step-num">4</div>
+                <div class="step-body">
+                  <div class="step-title">Review and Approve tasks</div>
+                  <div class="step-desc">Bob analyzes the intermediate source file and generates a detailed conversion plan presented as a Todo List.
+                    <ul class="detail-list">
+                      <li>Review the proposed plan carefully to ensure it aligns with your intended modernization approach.</li>
+                      <li>Once the plan has been reviewed, click <strong>Approve todo tools for task</strong>.</li>
+                      <li>Bob will begin executing the conversion workflow.</li>
+                    </ul>
+                    During implementation, Bob may request approval before performing certain actions such as writing files, running compile commands, or fixing errors. Review these requests and approve them as needed to allow Bob to continue the modernization process.
+                  </div>
+                  <div class="step-screenshot"><img src="img/approve-task.jpeg" alt="Approving the todo tools for the task"/></div>
                 </div>
               </div>
             </div>
