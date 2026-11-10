@@ -3,6 +3,7 @@
 > **🎓 Running a Bobathon?** Use the GitHub Pages–hosted version of this guide instead of this README — it provides a polished, event-specific experience for participants. See the [GitHub Pages Instructor Guide](instructor-setup/Github-Pages-Instructor-Guide.md) for how to set that up.
 
 > 🌐 **[Open the Lab Website](https://pages.github.ibm.com/Livia-Fingerson/updated-flight400-demo/)** — interactive, copy-ready lab instructions with step-by-step exercises.
+> 🔧 **[Open the Setup Page](https://pages.github.ibm.com/Livia-Fingerson/updated-flight400-demo/setup.html)** — standalone environment setup guide.
 
 > **Estimated time:** 2–3 hours
 > **Prerequisites:** IBM Bob IDE installed, internet access, IBM i TechZone LPAR (see below), and the Premium Package for i
@@ -12,6 +13,8 @@
 ---
 
 ## Part 0 — Environment Setup
+
+> 🌐 **Prefer the interactive version?** Follow along on the **[Setup Page](https://pages.github.ibm.com/Livia-Fingerson/updated-flight400-demo/setup.html)** for copy-ready steps.
 
 #### Note: Instructors need to complete steps laid out in the [Instructor Setup README](instructor-setup/README.md)
 
@@ -437,9 +440,11 @@ At the end, specify an output path unique to your library number, e.g. `/home/IT
 
 1. With `FRS409` still open in the editor, type in the Bob chat:
 
-   > *"Can you modernize this program?"*
+   > *"Can you modernize this program using the RPG Modernization workflow?"*
 
-2. Bob recognizes the fixed-format OPM RPG code and offers to run the **RPG Modernization (Fixed to Free Format)** workflow. Choose **Start workflow**.
+2. Bob recognizes the fixed-format OPM RPG code and launches the **RPG Modernization (Fixed to Free Format)** workflow. Choose **Start workflow**.
+
+   > 💡 **You can also launch the workflow manually:** click the **workflow icon** at the top of the Bob panel and select **RPG Modernization (Fixed to Free Format)**. Make sure your scope is set to **Library List (QSYS)** so Bob targets the IBM i source.
 
 3. The workflow form opens. Fill in the details:
    - **Source file:** `FLGHT4nn/QRPGSRC`
