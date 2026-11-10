@@ -367,7 +367,7 @@ Bob activates the **understand-app-overview** skill and uses the Understand scan
 
    Replace `4nn` with your library number, then type:
 
-   > *"Save this output as new file titled FLGHT4nn-Architecture.md in /FLGHT4nn/QBOBSRC/."*
+   > *"Save this output to /home/ITZUSER/FLGHT4nn_ARCHITECTURE.md on the IBM i."*
 
 ---
 
@@ -375,12 +375,21 @@ Bob activates the **understand-app-overview** skill and uses the Understand scan
 
 1. Switch to **IBM i Database** mode using the mode selector. Type the slash command so `/erd` is highlighted in the Bob chat. Replace `4nn` with your number:
 
-   > `/erd FLGHT4nn`
+   > `/erd FLGHT4nn add this to FLGHT4nn_ARCHITECTURE.md`
+
    <img src="docs/img/ibmdb.png" alt="IBM i Database mode with the /erd command" width="600"/>
 
-   <img src="docs/img/erd.png" alt="Generated Mermaid ERD" width="600"/>
+   <img src="docs/img/erd-addtoarch.png" alt="Generated Mermaid ERD added to the architecture document" width="600"/>
 
-2. Bob will introspect the physical files (`FLIGHTS`, `ORDERS`, `CUSTOMERS`, `AGENTS`, etc.) and generate a Mermaid ERD. Key relationships: `ORDERS` links to `FLIGHTS`, `CUSTOMERS`, and `AGENTS`; `FLIGHTS` references `FRCITY` and `TOCITY`. Copy the ERD to your architecture document.
+   > 💡 Bob will introspect the physical files (`FLIGHTS`, `ORDERS`, `CUSTOMERS`, `AGENTS`, etc.) and generate a Mermaid ERD. Key relationships: `ORDERS` links to `FLIGHTS`, `CUSTOMERS`, and `AGENTS`; `FLIGHTS` references `FRCITY` and `TOCITY`. Copy the ERD to your architecture document.
+
+2. **Preview your FLGHT4nn_ARCHITECTURE.md**
+
+   In the **IFS Browser**, locate `FLGHT4nn_ARCHITECTURE.md` at `/home/ITZUSER/FLGHT4nn_ARCHITECTURE.md` and open it. Use the **Preview** button in the editor toolbar to render the Markdown side-by-side with the source.
+
+   <img src="docs/img/open-arch.png" alt="Opening FLGHT4nn_ARCHITECTURE.md in the IFS Browser" width="600"/>
+
+   > 💡 Right-click on the `.md` file when it is open and click **Preview** to preview it.
 
 > ✅ You now have a living architecture document and data model generated entirely from the legacy codebase — no manual reverse-engineering required!
 
@@ -428,13 +437,31 @@ At the end, specify an output path unique to your library number, e.g. `/home/IT
 
 ### 2.1 — Understand FRS409 (Order Modification Confirmation)
 
-1. Switch Bob to **IBM i Developer** mode.
-2. In the Object Browser, navigate to `FLGHT4nn/QRPGSRC` and open `FRS409`.
+1. In the Object Browser, expand the `FLGHT400` filter → `qrpgsrc` source file, and click `frs409.rpg` to open the source in the editor.
+
+   <img src="docs/img/expand-2.png" alt="Expanding the FLGHT400 filter and opening frs409.rpg in qrpgsrc" width="600"/>
+
+   > 💡 Notice the classic fixed-format OPM RPG style: F-specs at the top, indicator definitions, a workstation data structure (`WSDS`), `*ENTRY PLIST` with two parameters (`ORDER#` and `ENDYN`), and a `DOUEQ` / `CASEQ` dispatch loop handling F3, F12, and Enter keys.
+
+2. **Open Bob chat and verify IBM i Developer mode**
+
+   With `FRS409.RPG` open in the editor, open the Bob chat panel, click the mode selector at the bottom, and choose **IBM i Developer**.
+
+   <img src="docs/img/409-chat.jpeg" alt="Bob chat panel with IBM i Developer mode selected" width="600"/>
+
 3. With `FRS409` open in the editor, type in the Bob chat:
 
    > *"What does this program do?"*
 
-4. Bob will explain that `FRS409` is the **Order Modification Confirmation Window** — an OPM RPG program that displays a confirmation popup when a user modifies an order. It handles F3 (Exit), F12 (Cancel), and Enter key inputs via a `DOUEQ` loop with `CASEQ` dispatch subroutines.
+   <img src="docs/img/sendbob.jpeg" alt="Sending the prompt to Bob" width="600"/>
+
+   > 💡 Bob will explain that `FRS409` is the **Order Modification Confirmation Window** — an OPM RPG program that displays a confirmation popup when a user modifies an order. It handles F3 (Exit), F12 (Cancel), and Enter key inputs via a `DOUEQ` loop with `CASEQ` dispatch subroutines.
+
+4. **Review the output Bob gives**
+
+   Bob reads the open source member and returns a complete breakdown of what FRS409 does.
+
+   <img src="docs/img/409-output.jpeg" alt="Bob's breakdown of what FRS409 does" width="600"/>
 
 ### 2.2 — Modernize FRS409 Using the RPG Modernization Workflow
 
@@ -453,7 +480,23 @@ At the end, specify an output path unique to your library number, e.g. `/home/IT
 
    Bob spins up a subagent to convert the fixed-format RPG to modern free-format ILE RPG, then runs the Code for IBM i compile action for ILE RPG, triggering a `CRTBNDRPG` command on your LPAR. Watch the output in the terminal panel.
 
+   <img src="docs/img/start-workflow.jpeg" alt="RPG Modernization workflow detecting the active RPG member" width="600"/>
+
 4. When Bob prompts **"Confirm Output Member Location"**, ensure the path contains your library number. Approve the requested tasks. Bob will place the modernized source at `FLGHT4nn/QRPGLESRC/FRS409.RPGLE`.
+
+   <img src="docs/img/output-workflow.jpeg" alt="Subagent compile output and Confirm Output Member Location prompt" width="600"/>
+
+5. **Review and Approve tasks**
+
+   Bob analyzes the intermediate source file and generates a detailed conversion plan presented as a Todo List.
+
+   - Review the proposed plan carefully to ensure it aligns with your intended modernization approach.
+   - Once the plan has been reviewed, click **Approve todo tools for task**.
+   - Bob will begin executing the conversion workflow.
+
+   During implementation, Bob may request approval before performing certain actions such as writing files, running compile commands, or fixing errors. Review these requests and approve them as needed to allow Bob to continue the modernization process.
+
+   <img src="docs/img/approve-task.jpeg" alt="Approving the todo tools for the task" width="600"/>
 
 ### 2.3 — Review the Modernization Summary
 
