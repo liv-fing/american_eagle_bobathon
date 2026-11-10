@@ -135,8 +135,12 @@
   var DEFAULT_TRACK_SLUGS = ['setup', 'track-1', 'track-2', 'track-3', 'track-4', 'track-5', 'track-6', 'track-7'];
   // Tracks shown inside the collapsed "Additional Exercises" group.
   var ADDITIONAL_SLUGS = ['track-3', 'track-4', 'track-6'];
+  // Tracks shown inside the collapsible "Environment Setup" group (index.html only).
+  var SETUP_SLUGS = ['setup'];
   var cfgTracks = (window.FLIGHT400_CONFIG || {}).tracks;
   var TRACK_SLUGS = (cfgTracks && cfgTracks.length) ? cfgTracks : DEFAULT_TRACK_SLUGS;
+  // collapseSetup defaults to true; set to false in config to always render setup expanded (setup.html).
+  var collapseSetup = (window.FLIGHT400_CONFIG || {}).collapseSetup !== false;
 
   // Build the absolute base URL for the current event folder so local overrides
   // are not affected by <base href="../">.
@@ -146,6 +150,32 @@
   var stream = document.getElementById('tracks-stream');
   var extraGroup = null;   // created when the first additional track loads
   var extraInner = null;
+  var setupGroup = null;   // created when the setup track loads (index.html only)
+  var setupInner = null;
+
+  // Builds the collapsible "Environment Setup" group (collapsed by default on index.html).
+  function createSetupGroup() {
+    setupGroup = document.createElement('div');
+    setupGroup.className = 'extra-group';
+    setupGroup.innerHTML =
+      '<button class="extra-toggle" type="button" aria-expanded="false" aria-controls="setup-body">' +
+        '<span class="extra-toggle-label">Environment Setup</span>' +
+        '<span class="card-chevron" aria-hidden="true">' +
+          '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5l5 5 5-5"/></svg>' +
+        '</span>' +
+      '</button>' +
+      '<div class="extra-body" id="setup-body"><div class="extra-body-inner"></div></div>';
+    stream.appendChild(setupGroup);
+    setupInner = setupGroup.querySelector('.extra-body-inner');
+
+    setupGroup.querySelector('.extra-toggle').addEventListener('click', function () {
+      var isOpen = setupGroup.classList.toggle('extra-open');
+      this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (isOpen) {
+        setupInner.querySelectorAll('.bubble-card').forEach(function (c) { c.classList.add('bubble-in'); });
+      }
+    });
+  }
 
   // Builds the collapsed "Additional Exercises" group and returns its inner container.
   function createExtraGroup() {
@@ -201,6 +231,9 @@
         if (ADDITIONAL_SLUGS.indexOf(slug) !== -1) {
           if (!extraGroup) createExtraGroup();
           while (wrapper.firstChild) extraInner.appendChild(wrapper.firstChild);
+        } else if (collapseSetup && SETUP_SLUGS.indexOf(slug) !== -1) {
+          if (!setupGroup) createSetupGroup();
+          while (wrapper.firstChild) setupInner.appendChild(wrapper.firstChild);
         } else {
           // Keep main tracks above the Additional Exercises group, whatever the configured order.
           while (wrapper.firstChild) stream.insertBefore(wrapper.firstChild, extraGroup);
