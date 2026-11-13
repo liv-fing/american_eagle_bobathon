@@ -9,6 +9,7 @@
       <div class="card-label">Setup</div>
       <div class="card-title">Environment Setup</div>
       <div class="card-desc">Connect to your IBM i, install the required extensions, and confirm your assigned library number before starting the exercises.</div>
+      <div class="card-desc card-desc-alert">Action required: in step 0.3, choose your server and click the table row with your assigned library number. This updates the server IP, key file, library, port, and prompts throughout the guide.</div>
       <div class="card-meta">
         <span class="card-tag">~15 min</span>
         <span class="card-tag">Required</span>
@@ -159,7 +160,7 @@
         <!-- Step 3: Library number -->
         <div class="use-case">
           <div class="use-case-header">
-            <div class="uc-title">0.3 — Find Your Assigned Library Number</div>
+            <div class="uc-title">0.3 — Choose Your Server and Library Number</div>
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
@@ -167,7 +168,12 @@
               <div class="mode-step">
                 <div class="step-num">1</div>
                 <div class="step-body">
-                  <div class="step-desc">Your instructor will assign you a library number. Each participant has their own copy of the FLIGHT400 application in a library named <strong>FLGHT4nn</strong> (e.g. FLGHT401, FLGHT402). <strong>Use only your assigned number throughout the exercises so everyone can work independently. To update all references in this guide with your number, select your name below.</strong></div>
+                  <div class="step-desc">Your instructor will assign you a library number. Each participant has their own copy of the FLIGHT400 application in a library named <strong>FLGHT4nn</strong> (e.g. FLGHT401, FLGHT402). Use only your assigned number throughout the exercises so everyone can work independently.</div>
+                  <div class="warn-box"><strong>Action required:</strong> First, <strong>choose your server</strong> (your instructor will tell you which one). Then, in the table below, <strong>click the row with your assigned library number</strong>. Your choices highlight, and the server IP, key file name, library name, dev port, and prompts throughout this guide update to match.</div>
+                  <div class="server-picker" role="group" aria-label="Choose your server">
+                    <button type="button" class="server-option" data-server="primary" aria-pressed="false"><strong>Primary server</strong><span>169.59.252.70</span></button>
+                    <button type="button" class="server-option" data-server="backup" aria-pressed="false"><strong>Backup server</strong><span>169.59.252.205</span></button>
+                  </div>
                   <div class="info-box">💡 <strong>Spelling note:</strong> The library name is <code>FLGHT4nn</code> — note there is <strong>no "I"</strong> in FLGHT. Your instructor may say "Flight 4-nn" verbally, but when typing always use <code>FLGHT4nn</code> (F‑L‑G‑H‑T).</div>
                   <table class="data-table" id="attendee-table">
                     <thead>
@@ -234,7 +240,7 @@
                 </div>
               </div>
             </div>
-            <div class="info-box">💡 The <strong>Dev Port</strong> is only needed for <strong>Exercise 4</strong>. When Bob asks you to pin your Vite dev server to a port, use your Dev Port. Your React app will be reachable at the React App URL shown — provided your SSH tunnel later in 0.5 is active.</div>
+            <div class="info-box">💡 The <strong>Dev Port</strong> is only needed for <strong>Exercise 4</strong>. When Bob asks you to pin your Vite dev server to a port, use your Dev Port. Your React app will be reachable at the React App URL shown — provided your SSH tunnel (Exercise 4, step 4.1.1) is active.</div>
           </div></div>
         </div>
 
@@ -250,7 +256,7 @@
                 <div class="step-num">1</div>
                 <div class="step-body">
                   <div class="step-title">Add a new connection</div>
-                  <div class="step-desc">Click the IBM i icon in the Activity Bar (shown circled in red in the screenshot below), then click <strong>New Connection</strong>. Enter the host IP, user profile, and <code>ae_primary_key.pem</code> provided in <span id="box-folder-link-container">the Box folder↗</span>. When prompted for the private key, browse to the downloaded <code>ae_primary_key.pem</code> file on your computer. <strong>Do not use the password here — use only the <code>ae_primary_key.pem</code> private key file.</strong></div>
+                  <div class="step-desc">Click the IBM i icon in the Activity Bar (shown circled in red in the screenshot below), then click <strong>New Connection</strong>. Enter the host IP <code>&lt;myIPaddress&gt;</code>, the user profile <code>ITZUSER</code>, and the <code>ae_&lt;server&gt;_key.pem</code> private key provided in <span id="box-folder-link-container">the Box folder↗</span>. When prompted for the private key, browse to the downloaded <code>ae_&lt;server&gt;_key.pem</code> file on your computer. <strong>Do not use the password here — use only the <code>ae_&lt;server&gt;_key.pem</code> private key file.</strong></div>
                   <div class="step-screenshot">
                     <img src="img/ibmi_icon.png" alt="IBM i icon in the Bob Activity Bar"/>
                     <div class="step-screenshot-caption">Click the IBM i icon in the Activity Bar</div>
@@ -259,7 +265,7 @@
                     <img src="img/i-connection.png" alt="IBM i connection dialog in Bob IDE"/>
                     <div class="step-screenshot-caption">IBM i connection panel</div>
                   </div>
-                  <div class="info-box">💡 If you get a private key error when connecting, see <strong>0.5 step 1</strong> for instructions on setting the correct file permissions on <code>ae_primary_key.pem</code>.</div>
+                  <div class="info-box">💡 If you get a private key error when connecting, see <strong>0.5</strong> for instructions on setting the correct file permissions on <code>ae_&lt;server&gt;_key.pem</code>.</div>
                 </div>
               </div>
               <div class="mode-step">
@@ -318,14 +324,14 @@
           </div></div>
         </div>
 
-        <!-- Step 5: IBM i Credentials & SSH Tunnel -->
+        <!-- Step 5: Private key permissions -->
         <div class="use-case">
           <div class="use-case-header">
-            <div class="uc-title">0.5 — (Optional) SSH Tunnel — Only Needed for Green Screen and Exercise 4</div>
+            <div class="uc-title">0.5 — Set Private Key Permissions</div>
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">Your instructor will give you the host IP address, user profile, and password for your IBM i environment. You will also need to download a private key from the Box folder and run an SSH tunnel command on your laptop.</p>
+            <p class="uc-desc">Download your private key from the Box folder and set its permissions so OpenSSH will accept it. You need this to connect Bob to IBM i in 0.4 and to open the SSH tunnel in Exercise 4.</p>
             <div class="mode-steps">
               <div class="mode-step">
                 <div class="step-num">1</div>
@@ -333,41 +339,10 @@
                   <div class="step-title">Download the private key from the Box folder</div>
                   <div class="step-desc">From the <a href="https://ibm.ent.box.com/folder/437286700244?box_source=collab-auto-accept-notify-invitee&amp;s=6l9fyh0a0icfwqeexdaqt6ramrbgqqjd" target="_blank" rel="noopener">Box folder↗</a>, download your private key file, then set its permissions so OpenSSH will accept it.</div>
                   <div class="step-desc"><strong>macOS / Linux</strong> — run in <strong>Terminal</strong>:</div>
-                  <div class="step-prompt"><pre>chmod 600 ae_primary_key.pem</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-prompt"><pre>chmod 600 ae_&lt;server&gt;_key.pem</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
                   <div class="step-desc mt-m"><strong>Windows</strong> — run in <strong>PowerShell</strong> (run as Administrator if the command fails):</div>
-                  <div class="step-prompt"><pre>icacls ae_primary_key.pem /inheritance:r /grant:r "$($env:USERNAME):R"</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-prompt"><pre>icacls ae_&lt;server&gt;_key.pem /inheritance:r /grant:r "$($env:USERNAME):R"</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
                   <div class="step-desc">This removes inherited permissions and grants only your user read access — required by OpenSSH on Windows.</div>
-                </div>
-              </div>
-              <div class="mode-step">
-                <div class="step-num">2</div>
-                <div class="step-body">
-                  <div class="step-title">Open the SSH tunnel (required for 5250, database access &amp; React app ports)</div>
-                  <div class="step-desc">Run the command below from the folder containing <code>ae_primary_key.pem</code>, or replace <code>ae_primary_key.pem</code> in the command with the full path to the file. Replace <code>&lt;myuser&gt;@&lt;myIPaddress&gt;</code> with the values from your instructor.</div>
-                  <div class="step-desc"><strong>macOS / Linux</strong> — run in <strong>Terminal</strong> (no <code>sudo</code> needed — all forwarded ports are above 1024). <strong>Windows</strong> — run in <strong>PowerShell</strong> or <strong>Windows Terminal</strong>; no <code>sudo</code>.</div>
- <div class="step-screenshot">
- <img src="img/bob-lab-network.png" alt="Lab network diagram — Bob IDE and ACS connecting via SSH tunnel to IBM i on TechZone"/>
- <div class="step-screenshot-caption">Lab connectivity overview — Bob IDE and ACS connect through an SSH tunnel to your IBM i TechZone LPAR</div>
- </div>
-                  <div class="step-prompt"><pre>ssh -L 50000:localhost:23 -L 2001:localhost:2001 -L 449:localhost:449 -L 8470:localhost:8470 -L 8471:localhost:8471 -L 8472:localhost:8472 -L 2007:localhost:2007 -L 8473:localhost:8473 -L 8474:localhost:8474 -L 8475:localhost:8475 -L 8476:localhost:8476 -L 2003:localhost:2003 -L 2002:localhost:2002 -L 2006:localhost:2006 -L 2300:localhost:2300 -L 2323:localhost:2323 -L 2005:localhost:2005 -L 8076:localhost:8076 -L 3001:localhost:3001 -L 3002:localhost:3002 -L 3003:localhost:3003 -L 3004:localhost:3004 -L 3005:localhost:3005 -L 3006:localhost:3006 -L 3007:localhost:3007 -L 3008:localhost:3008 -L 3009:localhost:3009 -L 3010:localhost:3010 -L 3011:localhost:3011 -L 3012:localhost:3012 -L 3013:localhost:3013 -L 3014:localhost:3014 -L 3015:localhost:3015 -L 3016:localhost:3016 -L 3017:localhost:3017 -L 3018:localhost:3018 -L 3019:localhost:3019 -L 3020:localhost:3020 -L 3021:localhost:3021 -L 3022:localhost:3022 -L 3023:localhost:3023 -L 3024:localhost:3024 -L 3025:localhost:3025 -L 3026:localhost:3026 -L 3027:localhost:3027 -L 3028:localhost:3028 -L 3029:localhost:3029 -L 3030:localhost:3030 -L 3031:localhost:3031 -L 3032:localhost:3032 -L 3033:localhost:3033 -L 3034:localhost:3034 -L 3035:localhost:3035 -L 3036:localhost:3036 -L 3037:localhost:3037 -L 3038:localhost:3038 -L 3039:localhost:3039 -L 3040:localhost:3040 -L 3041:localhost:3041 -L 3042:localhost:3042 -L 3043:localhost:3043 -L 3044:localhost:3044 -L 3045:localhost:3045 -L 3046:localhost:3046 -L 3047:localhost:3047 -L 3048:localhost:3048 -L 3049:localhost:3049 -L 3050:localhost:3050 -o ExitOnForwardFailure=yes -o ServerAliveInterval=15 -o ServerAliveCountMax=3 &lt;myuser&gt;@&lt;myIPaddress&gt; -i ae_primary_key.pem</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-                  <div class="info-box">💡 <strong>No IBM ID yet?</strong> Create one for free at <a href="https://www.ibm.com/account" target="_blank" rel="noopener">ibm.com/account</a>. For 5250 or database access, install <a href="https://www.ibm.com/support/pages/ibm-i-access-client-solutions" target="_blank" rel="noopener">IBM i Access Client Solutions</a>.</div>
-                </div>
-              </div>
-              <div class="mode-step">
-                <div class="step-num">3</div>
-                <div class="step-body">
-                  <div class="step-title">(Optional) Connect IBM i Access Client Solutions for 5250</div>
-                  <div class="step-desc">Only needed if you want to view the green screen. Install <a href="https://www.ibm.com/support/pages/ibm-i-access-client-solutions" target="_blank" rel="noopener">IBM i Access Client Solutions</a>, then make sure the SSH tunnel from step 2 is running.</div>
-                  <div class="warn-box mb-s">⚠️ <strong>ACS requires Java.</strong> If ACS does not open after installation, install a supported Java runtime (e.g. <a href="https://adoptium.net" target="_blank" rel="noopener">Eclipse Temurin</a>) and try again.</div>
-                  <div class="step-desc">Open the 5250 Emulator. Set IP Address to <code>127.0.0.1</code> and port to <code>50000</code>. If it tries port 23, override it in Communication → Configure → Destination Port: <code>50000</code>. Log in with your username and password.</div>
-                  <div class="step-desc">Add your library and open the Flight Maintenance screen:</div>
-                  <div class="step-prompt"><pre>ADDLIBLE FLGHT4nn</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-                  <div class="step-prompt mt-s"><pre>CALL FLGHT4nn/FRS021</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-                  <div class="step-screenshot">
-                    <img src="img/ACS-green-screen.png" alt="Flight Maintenance screen in 5250 emulator"/>
-                    <div class="step-screenshot-caption">Flight Maintenance screen in the 5250 emulator</div>
-                  </div>
-                  <div class="warn-box">⚠️ When finished, exit the 5250 screen by pressing <strong>F3</strong>.</div>
                 </div>
               </div>
             </div>

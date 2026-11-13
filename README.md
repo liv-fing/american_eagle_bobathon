@@ -11,7 +11,7 @@ Everything you need to complete the lab is available on the hosted lab site. Sta
 **Participant Setup** — Interactive setup guide with screenshots.
 https://liv-fing.github.io/american_eagle_bobathon/setup.html
 
-**Lab Credentials & Private Key (Box folder)** — Download your IBM i private key file from this Box folder. You need it to connect Bob IDE to IBM i (Setup 0.4) and to open the SSH tunnel (Setup 0.5).
+**Lab Credentials & Private Key (Box folder)** — Download your IBM i private key file from this Box folder. You need it to connect Bob IDE to IBM i (Setup 0.4) and to open the SSH tunnel (Exercise 4, step 4.1.1).
 https://ibm.ent.box.com/folder/437286700244?box_source=collab-auto-accept-notify-invitee&s=6l9fyh0a0icfwqeexdaqt6ramrbgqqjd
 
 <details>

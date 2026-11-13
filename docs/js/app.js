@@ -342,7 +342,14 @@
       });
     }
 
-    // Restore previously selected student on load
+    // Server picker (Primary / Backup)
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.server-option');
+      if (btn) selectServer(btn.getAttribute('data-server'));
+    });
+
+    // Restore previously selected server and student on load
+    restoreServerSelection();
     restoreStudentSelection();
   }
 
@@ -351,6 +358,44 @@
   var gfBadgeEl      = document.getElementById('gf-student-badge');
   var gfBadgeNameEl  = document.getElementById('student-badge-name');
   var gfBadgeClearEl = document.getElementById('student-badge-clear');
+
+  // ── SERVER SELECTION ─────────────────────────────────────────────────────
+  // Fills <myIPaddress> and ae_<server>_key.pem across the guide.
+  var SERVER_KEY = 'flight400-server-v1';
+  var SERVERS = {
+    primary: { label: 'Primary', ip: '169.59.252.70' },
+    backup:  { label: 'Backup',  ip: '169.59.252.205' }
+  };
+  var studentSel   = null;   // { num, nn, libNum, port } once a row is chosen
+  var serverSel    = null;   // { id, label, ip } once a server is chosen
+  var badgeStudent = null;   // { num, libNum, port, name } for the badge
+
+  function selectServer(id) {
+    if (!SERVERS[id]) return;
+    serverSel = { id: id, label: SERVERS[id].label, ip: SERVERS[id].ip };
+    try { localStorage.setItem(SERVER_KEY, id); } catch (e) {}
+    applyAllReplacements();
+    highlightServer();
+    refreshBadge();
+  }
+
+  function restoreServerSelection() {
+    var id = null;
+    try { id = localStorage.getItem(SERVER_KEY); } catch (e) {}
+    if (!id || !SERVERS[id]) return;
+    serverSel = { id: id, label: SERVERS[id].label, ip: SERVERS[id].ip };
+    applyAllReplacements();
+    highlightServer();
+    refreshBadge();
+  }
+
+  function highlightServer() {
+    document.querySelectorAll('.server-option').forEach(function (b) {
+      var on = !!serverSel && b.getAttribute('data-server') === serverSel.id;
+      b.classList.toggle('server-selected', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
 
   function padNum(n) {
     return n < 10 ? '0' + n : '' + n;
@@ -389,7 +434,7 @@
   }
 
   function clearStudent() {
-    try { localStorage.removeItem(STUDENT_KEY); } catch (e) {}
+    try { localStorage.removeItem(STUDENT_KEY); localStorage.removeItem(SERVER_KEY); } catch (e) {}
     // Reload to restore original placeholder text
     window.location.reload();
   }
@@ -410,33 +455,47 @@
   }
 
   function applyStudentReplacements(num, nn, libNum, port) {
+    studentSel = { num: num, nn: nn, libNum: libNum, port: port };
+    applyAllReplacements();
+  }
+
+  function applyAllReplacements() {
     var root = document.getElementById('tracks-stream') || document.body;
 
     // Replace text in <pre> elements — always from original
     root.querySelectorAll('pre').forEach(function (pre) {
-      pre.textContent = replaceTokens(getOriginal(pre), num, nn, libNum, port);
+      pre.textContent = replaceTokens(getOriginal(pre));
     });
 
     // Replace in step descriptions and info boxes (text nodes only — skip code/pre)
     root.querySelectorAll('.step-desc, .uc-desc, .info-box, .warn-box, .detail-intro, .data-table td, .step-screenshot-caption').forEach(function (el) {
-      replaceTextNodes(el, num, nn, libNum, port);
+      replaceTextNodes(el);
     });
   }
 
-  function replaceTokens(text, num, nn, libNum, port) {
-    // Order matters: most-specific patterns first
-    return text
-      .replace(/FLGHTSZ4nn/gi, 'FLGHTSZ' + libNum)
-      .replace(/FLIGHT4nn/gi,  'FLIGHT' + libNum)
-      .replace(/FLGHT4nn/gi,   'FLGHT' + libNum)
-      .replace(/flght4nn/gi,   'flght' + libNum)
-      .replace(/flight4nn/gi,  'flight' + libNum)
-      .replace(/\b4nn\b/g,     String(libNum))
-      .replace(/\b30nn\b/g,    String(port))
-      .replace(/(?<![0-9])nn\b/g, nn);
+  function replaceTokens(text) {
+    if (studentSel) {
+      var nn = studentSel.nn, libNum = studentSel.libNum, port = studentSel.port;
+      // Order matters: most-specific patterns first
+      text = text
+        .replace(/FLGHTSZ4nn/gi, 'FLGHTSZ' + libNum)
+        .replace(/FLIGHT4nn/gi,  'FLIGHT' + libNum)
+        .replace(/FLGHT4nn/gi,   'FLGHT' + libNum)
+        .replace(/flght4nn/gi,   'flght' + libNum)
+        .replace(/flight4nn/gi,  'flight' + libNum)
+        .replace(/\b4nn\b/g,     String(libNum))
+        .replace(/\b30nn\b/g,    String(port))
+        .replace(/(?<![0-9])nn\b/g, nn);
+    }
+    if (serverSel) {
+      text = text
+        .replace(/<myIPaddress>/g, serverSel.ip)
+        .replace(/<server>/g,      serverSel.id);
+    }
+    return text;
   }
 
-  function replaceTextNodes(el, num, nn, libNum, port) {
+  function replaceTextNodes(el) {
     var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
       acceptNode: function (node) {
         var tag = node.parentElement && node.parentElement.tagName;
@@ -447,13 +506,13 @@
     var node;
     while ((node = walker.nextNode())) {
       var orig = getOriginal(node);
-      var replaced = replaceTokens(orig, num, nn, libNum, port);
+      var replaced = replaceTokens(orig);
       if (replaced !== node.textContent) node.textContent = replaced;
     }
     // Also replace inside <code> elements (inline code, not pre>code)
     el.querySelectorAll('code').forEach(function (c) {
       if (c.closest('pre')) return;
-      c.textContent = replaceTokens(getOriginal(c), num, nn, libNum, port);
+      c.textContent = replaceTokens(getOriginal(c));
     });
   }
 
@@ -472,14 +531,26 @@
   }
 
   function updateStudentBadge(num, libNum, port, name) {
+    badgeStudent = { num: num, libNum: libNum, port: port, name: name };
+    refreshBadge();
+  }
+
+  function refreshBadge() {
     if (!gfBadgeEl) return;
-    if (gfBadgeNameEl) {
-      var dot = '<span style="opacity:0.4;margin:0 5px">·</span>';
-      var label = name
-        ? '<strong>' + name + '</strong>' + dot + 'FLGHT' + libNum
-        : '<span style="opacity:0.6;font-weight:500;font-size:0.68rem">Student&nbsp;</span><strong>' + num + '</strong>' + dot + 'FLGHT' + libNum;
-      gfBadgeNameEl.innerHTML = label + dot + '<span style="font-family:var(--font-mono)">:' + port + '</span>';
+    var dot = '<span style="opacity:0.4;margin:0 5px">·</span>';
+    var parts = [];
+    if (badgeStudent) {
+      var st = badgeStudent;
+      parts.push(st.name
+        ? '<strong>' + st.name + '</strong>' + dot + 'FLGHT' + st.libNum
+        : '<span style="opacity:0.6;font-weight:500;font-size:0.68rem">Student&nbsp;</span><strong>' + st.num + '</strong>' + dot + 'FLGHT' + st.libNum);
+      parts.push('<span style="font-family:var(--font-mono)">:' + st.port + '</span>');
     }
+    if (serverSel) {
+      parts.push('<strong>' + serverSel.label + '</strong>' + (badgeStudent ? '' : ' server'));
+    }
+    if (!parts.length) return;
+    if (gfBadgeNameEl) gfBadgeNameEl.innerHTML = parts.join(dot);
     gfBadgeEl.classList.remove('hidden');
     syncBadgeOffset();
   }

@@ -56,9 +56,18 @@ Two extensions are required. The **IBM Bob Premium Package for i** is often pre-
 
 ---
 
-## 0.3 — Find Your Assigned Library Number
+## 0.3 — Choose Your Server and Library Number
 
-Your instructor will assign you a library number. Each participant has their own copy of the FLIGHT400 application in a library named **FLGHT4nn** (e.g. FLGHT401, FLGHT402). **Use only your assigned number throughout the exercises.**
+Your instructor will assign you a library number. Each participant has their own copy of the FLIGHT400 application in a library named **FLGHT4nn** (e.g. FLGHT401, FLGHT402). Use only your assigned number throughout the exercises.
+
+> ⚠️ **Action required:** Your instructor will tell you which server to use. Find the row in the table below with your assigned library number. Wherever this guide shows `4nn` or `30nn`, use the values from your row.
+
+| Server | IP address | Private key file |
+|--------|-----------|------------------|
+| Primary | `169.59.252.70` | `ae_primary_key.pem` |
+| Backup | `169.59.252.205` | `ae_backup_key.pem` |
+
+Wherever this guide shows `<myIPaddress>` or `ae_<server>_key.pem`, use the values for your server. The user profile is `ITZUSER` on both.
 
 > 💡 **Spelling note:** The library name is `FLGHT4nn` — there is **no "I"** in FLGHT.
 
@@ -115,19 +124,19 @@ Your instructor will assign you a library number. Each participant has their own
 | 49 | `FLGHT449` | 3049 | `http://localhost:3049` |
 | 50 | `FLGHT450` | 3050 | `http://localhost:3050` |
 
-> 💡 The **Dev Port** is only needed for **Exercise 4**. Your React app will be reachable at the React App URL shown — provided your SSH tunnel (0.5) is active.
+> 💡 The **Dev Port** is only needed for **Exercise 4**. Your React app will be reachable at the React App URL shown — provided your SSH tunnel (Exercise 4, step 4.1.1) is active.
 
 ---
 
 ## 0.4 — Connect Bob IDE to IBM i
 
-1. **Add a new connection** — Click the IBM i icon in the Activity Bar, then click **New Connection**. Enter the host IP, user profile, and `ae_primary_key.pem` provided in the [Box folder](https://ibm.ent.box.com/folder/437286700244?box_source=collab-auto-accept-notify-invitee&s=6l9fyh0a0icfwqeexdaqt6ramrbgqqjd). **Do not use the password here — use only the private key file.**
+1. **Add a new connection** — Click the IBM i icon in the Activity Bar, then click **New Connection**. Enter the host IP, the user profile `ITZUSER`, and the `ae_<server>_key.pem` private key provided in the [Box folder](https://ibm.ent.box.com/folder/437286700244?box_source=collab-auto-accept-notify-invitee&s=6l9fyh0a0icfwqeexdaqt6ramrbgqqjd). **Do not use the password here — use only the private key file.**
 
    ![IBM i icon in the Bob Activity Bar](img/ibmi_icon.png)
 
    ![IBM i connection dialog in Bob IDE](img/i-connection.png)
 
-   > 💡 If you get a private key error, see step 1 of 0.5 for instructions on setting the correct file permissions.
+   > 💡 If you get a private key error, see 0.5 for instructions on setting the correct file permissions.
 
 2. **Add your library to the User Library List** — In the Code for IBM i extension, go to **User Library List** and click **+**. Type `FLGHT4nn` and press **Enter**.
 
@@ -147,35 +156,16 @@ Your instructor will assign you a library number. Each participant has their own
 
 ---
 
-## 0.5 — SSH Tunnel (for Green Screen and Exercise 4)
+## 0.5 — Set Private Key Permissions
 
-1. **Set private key permissions** — After downloading `ae_primary_key.pem` from the [Box folder](https://ibm.ent.box.com/folder/437286700244?box_source=collab-auto-accept-notify-invitee&s=6l9fyh0a0icfwqeexdaqt6ramrbgqqjd):
+After downloading `ae_<server>_key.pem` from the [Box folder](https://ibm.ent.box.com/folder/437286700244?box_source=collab-auto-accept-notify-invitee&s=6l9fyh0a0icfwqeexdaqt6ramrbgqqjd):
 
-   **macOS / Linux:**
-   ```bash
-   chmod 600 ae_primary_key.pem
-   ```
+**macOS / Linux:**
+```bash
+chmod 600 ae_<server>_key.pem
+```
 
-   **Windows (PowerShell):**
-   ```powershell
-   icacls ae_primary_key.pem /inheritance:r /grant:r "$($env:USERNAME):R"
-   ```
-
-2. **Open the SSH tunnel** — Replace `<myuser>@<myIPaddress>` with the values from your instructor. Run from the folder containing `ae_primary_key.pem`.
-
-   ![Lab network diagram](img/bob-lab-network.png)
-
-   ```bash
-   ssh -L 50000:localhost:23 -L 2001:localhost:2001 -L 449:localhost:449 -L 8470:localhost:8470 -L 8471:localhost:8471 -L 8472:localhost:8472 -L 2007:localhost:2007 -L 8473:localhost:8473 -L 8474:localhost:8474 -L 8475:localhost:8475 -L 8476:localhost:8476 -L 2003:localhost:2003 -L 2002:localhost:2002 -L 2006:localhost:2006 -L 2300:localhost:2300 -L 2323:localhost:2323 -L 2005:localhost:2005 -L 8076:localhost:8076 -L 3001:localhost:3001 -L 3002:localhost:3002 -L 3003:localhost:3003 -L 3004:localhost:3004 -L 3005:localhost:3005 -L 3006:localhost:3006 -L 3007:localhost:3007 -L 3008:localhost:3008 -L 3009:localhost:3009 -L 3010:localhost:3010 -L 3011:localhost:3011 -L 3012:localhost:3012 -L 3013:localhost:3013 -L 3014:localhost:3014 -L 3015:localhost:3015 -L 3016:localhost:3016 -L 3017:localhost:3017 -L 3018:localhost:3018 -L 3019:localhost:3019 -L 3020:localhost:3020 -L 3021:localhost:3021 -L 3022:localhost:3022 -L 3023:localhost:3023 -L 3024:localhost:3024 -L 3025:localhost:3025 -L 3026:localhost:3026 -L 3027:localhost:3027 -L 3028:localhost:3028 -L 3029:localhost:3029 -L 3030:localhost:3030 -L 3031:localhost:3031 -L 3032:localhost:3032 -L 3033:localhost:3033 -L 3034:localhost:3034 -L 3035:localhost:3035 -L 3036:localhost:3036 -L 3037:localhost:3037 -L 3038:localhost:3038 -L 3039:localhost:3039 -L 3040:localhost:3040 -L 3041:localhost:3041 -L 3042:localhost:3042 -L 3043:localhost:3043 -L 3044:localhost:3044 -L 3045:localhost:3045 -L 3046:localhost:3046 -L 3047:localhost:3047 -L 3048:localhost:3048 -L 3049:localhost:3049 -L 3050:localhost:3050 -o ExitOnForwardFailure=yes -o ServerAliveInterval=15 -o ServerAliveCountMax=3 <myuser>@<myIPaddress> -i ae_primary_key.pem
-   ```
-
-3. **(Optional) Connect IBM i Access Client Solutions for 5250** — Only needed if you want to view the green screen. Install [IBM i Access Client Solutions](https://www.ibm.com/support/pages/ibm-i-access-client-solutions), make sure the SSH tunnel is running, then open the 5250 Emulator with IP `127.0.0.1` and port `50000`.
-
-   ```
-   ADDLIBLE FLGHT4nn
-   CALL FLGHT4nn/FRS021
-   ```
-
-   ![Flight Maintenance screen in 5250 emulator](img/ACS-green-screen.png)
-
-   > ⚠️ Exit the 5250 screen with **F3** when finished.
+**Windows (PowerShell):**
+```powershell
+icacls ae_<server>_key.pem /inheritance:r /grant:r "$($env:USERNAME):R"
+```

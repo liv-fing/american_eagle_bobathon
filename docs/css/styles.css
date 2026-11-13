@@ -440,6 +440,8 @@ pre, code, kbd, samp {
 
 .card-title { font-size: 1.2rem; font-weight: 800; color: var(--text); margin-bottom: 6px; line-height: 1.3; }
 .card-desc  { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+.card-desc.card-desc-alert { color: #d1242f; font-weight: 600; margin-top: 6px; }
+
 
 .card-meta { margin-top: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
 .card-tag {
@@ -720,6 +722,21 @@ pre, code, kbd, samp {
 .data-table tbody tr.attendee-selected td { background: rgba(15,98,254,0.12); }
 .data-table tbody tr.attendee-selected td:first-child { border-left: 3px solid var(--ibm-blue); padding-left: 9px; }
 .data-table code { color: #7db3f5; }
+
+/* Server picker (Setup 0.3) */
+.server-picker { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+.server-option {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  min-width: 180px; padding: 10px 14px; cursor: pointer;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); border-radius: 10px;
+  font: inherit; text-align: left;
+  transition: border-color 150ms var(--ease-out), background 150ms var(--ease-out);
+}
+.server-option span { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+.server-option:hover { border-color: var(--ibm-blue); }
+.server-option:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.server-option.server-selected { background: rgba(15,98,254,0.12); border-color: var(--ibm-blue); box-shadow: inset 3px 0 0 var(--ibm-blue); }
 
 /* SQL / code block */
 .code-block {
