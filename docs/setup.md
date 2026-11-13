@@ -121,7 +121,7 @@ Your instructor will assign you a library number. Each participant has their own
 
 ## 0.4 — Connect Bob IDE to IBM i
 
-1. **Add a new connection** — Click the IBM i icon in the Activity Bar, then click **New Connection**. Enter the host IP, user profile, and `ssh_private_key.pem` provided by your instructor. **Do not use the password here — use only the private key file.**
+1. **Add a new connection** — Click the IBM i icon in the Activity Bar, then click **New Connection**. Enter the host IP, user profile, and `ssh_private_key.pem` provided in the [Box folder](https://ibm.ent.box.com/folder/437286700244?box_source=collab-auto-accept-notify-invitee&s=6l9fyh0a0icfwqeexdaqt6ramrbgqqjd). **Do not use the password here — use only the private key file.**
 
    ![IBM i icon in the Bob Activity Bar](img/ibmi_icon.png)
 
@@ -149,7 +149,7 @@ Your instructor will assign you a library number. Each participant has their own
 
 ## 0.5 — SSH Tunnel (for Green Screen and Exercise 4)
 
-1. **Set private key permissions** — After downloading `ssh_private_key.pem` from the Box folder:
+1. **Set private key permissions** — After downloading `ssh_private_key.pem` from the [Box folder](https://ibm.ent.box.com/folder/437286700244?box_source=collab-auto-accept-notify-invitee&s=6l9fyh0a0icfwqeexdaqt6ramrbgqqjd):
 
    **macOS / Linux:**
    ```bash

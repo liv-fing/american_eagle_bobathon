@@ -325,13 +325,13 @@
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">Your instructor will give you the host IP address, user profile, and password for your IBM i environment. You will also need to download a private key from TechZone and run an SSH tunnel command on your laptop.</p>
+            <p class="uc-desc">Your instructor will give you the host IP address, user profile, and password for your IBM i environment. You will also need to download a private key from the Box folder and run an SSH tunnel command on your laptop.</p>
             <div class="mode-steps">
               <div class="mode-step">
                 <div class="step-num">1</div>
                 <div class="step-body">
-                  <div class="step-title">Download the private key from TechZone</div>
-                  <div class="step-desc">In your TechZone reservation, download <code>ssh_private_key.pem</code>, then set its permissions so OpenSSH will accept it.</div>
+                  <div class="step-title">Download the private key from the Box folder</div>
+                  <div class="step-desc">From the <a href="https://ibm.ent.box.com/folder/437286700244?box_source=collab-auto-accept-notify-invitee&amp;s=6l9fyh0a0icfwqeexdaqt6ramrbgqqjd" target="_blank" rel="noopener">Box folder↗</a>, download your private key file, then set its permissions so OpenSSH will accept it.</div>
                   <div class="step-desc"><strong>macOS / Linux</strong> — run in <strong>Terminal</strong>:</div>
                   <div class="step-prompt"><pre>chmod 600 ssh_private_key.pem</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
                   <div class="step-desc mt-m"><strong>Windows</strong> — run in <strong>PowerShell</strong> (run as Administrator if the command fails):</div>
@@ -343,7 +343,7 @@
                 <div class="step-num">2</div>
                 <div class="step-body">
                   <div class="step-title">Open the SSH tunnel (required for 5250, database access &amp; React app ports)</div>
-                  <div class="step-desc">Run the command below from the folder containing <code>ssh_private_key.pem</code>, or replace <code>ssh_private_key.pem</code> in the command with the full path to the file. Replace <code>&lt;myuser&gt;@&lt;myIPaddress&gt;</code> with the values from your TechZone reservation.</div>
+                  <div class="step-desc">Run the command below from the folder containing <code>ssh_private_key.pem</code>, or replace <code>ssh_private_key.pem</code> in the command with the full path to the file. Replace <code>&lt;myuser&gt;@&lt;myIPaddress&gt;</code> with the values from your instructor.</div>
                   <div class="step-desc"><strong>macOS / Linux</strong> — run in <strong>Terminal</strong> (no <code>sudo</code> needed — all forwarded ports are above 1024). <strong>Windows</strong> — run in <strong>PowerShell</strong> or <strong>Windows Terminal</strong>; no <code>sudo</code>.</div>
  <div class="step-screenshot">
  <img src="img/bob-lab-network.png" alt="Lab network diagram — Bob IDE and ACS connecting via SSH tunnel to IBM i on TechZone"/>
