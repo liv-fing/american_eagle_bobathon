@@ -4,13 +4,13 @@ Complete all steps below before starting any exercise. Start by installing and l
 
 ---
 
-## 0.1 — Pre-Requisite Bob Setup
+## 0.1 — Prerequisite Bob Setup
 
 Check your inbox for the **"You've been invited to join your team"** email, then follow these steps to install Bob and sign in for the first time.
 
 1. **Create your IBM ID** — Open the invitation email and click the link to create your IBM ID. This gives you an account to access IBM Bob.
 
-2. **Download & open Bob** — Download Bob using the correct installer for your computer, then open it. If Bob asks whether to import settings from another editor, click your regular IDE or **Skip for now**. If it asks about chat migration, click **Skip migration**.
+2. **Download & open Bob** — Download Bob using the correct installer for your computer, then open it. If Bob asks whether to import settings from another editor, select your regular IDE or click **Skip for now**. If it asks about chat migration, click **Skip migration**.
 
 3. **Log in to Bob** — In the Bob chat window, click **Log in to Bob**. When asked to allow Bob to sign in, click **Allow**. Bob will then ask if you want to open a link — click **Open**. This opens your browser to complete the sign-in.
 
@@ -58,7 +58,7 @@ Two extensions are required. The **IBM Bob Premium Package for i** is often pre-
 
 ## 0.3 — Find Your Assigned Library Number
 
-Your instructor will assign you a library number. Each participant has their own copy of the FLIGHT400 application in a library named **FLGHT4nn** (e.g. FLGHT401, FLGHT402). **Use only your assigned number throughout all exercises.**
+Your instructor will assign you a library number. Each participant has their own copy of the FLIGHT400 application in a library named **FLGHT4nn** (e.g. FLGHT401, FLGHT402). **Use only your assigned number throughout the exercises.**
 
 > 💡 **Spelling note:** The library name is `FLGHT4nn` — there is **no "I"** in FLGHT.
 
