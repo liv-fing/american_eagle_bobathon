@@ -351,6 +351,14 @@
     // Restore previously selected server and student on load
     restoreServerSelection();
     restoreStudentSelection();
+    refreshBadge();   // shows the "choose" flag if nothing is selected yet
+
+    if (gfBadgeNameEl) {
+      gfBadgeNameEl.addEventListener('click', jumpToSelection);
+      gfBadgeNameEl.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); jumpToSelection(); }
+      });
+    }
   }
 
   // ── STUDENT SELECTION ────────────────────────────────────────────────────
@@ -468,7 +476,7 @@
     });
 
     // Replace in step descriptions and info boxes (text nodes only — skip code/pre)
-    root.querySelectorAll('.step-desc, .uc-desc, .info-box, .warn-box, .detail-intro, .data-table td, .step-screenshot-caption').forEach(function (el) {
+    root.querySelectorAll('.step-title, .step-desc, .uc-desc, .info-box, .warn-box, .detail-intro, .data-table td, .step-screenshot-caption').forEach(function (el) {
       replaceTextNodes(el);
     });
   }
@@ -549,10 +557,45 @@
     if (serverSel) {
       parts.push('<strong>' + serverSel.label + '</strong>' + (badgeStudent ? '' : ' server'));
     }
-    if (!parts.length) return;
-    if (gfBadgeNameEl) gfBadgeNameEl.innerHTML = parts.join(dot);
+    var missing = [];
+    if (!serverSel)   missing.push('server');
+    if (!badgeStudent) missing.push('library');
+    if (missing.length) {
+      parts.push('<span class="badge-flag">⚠ Choose your ' + missing.join(' and ') + ' (step 0.3)</span>');
+    }
+    gfBadgeEl.classList.toggle('needs-choice', missing.length > 0);
+    if (gfBadgeClearEl) gfBadgeClearEl.style.display = (serverSel || badgeStudent) ? '' : 'none';
+    if (gfBadgeNameEl) {
+      gfBadgeNameEl.innerHTML = parts.join(dot);
+      gfBadgeNameEl.setAttribute('role', 'button');
+      gfBadgeNameEl.setAttribute('tabindex', '0');
+      gfBadgeNameEl.setAttribute('title', 'Go to step 0.3');
+    }
     gfBadgeEl.classList.remove('hidden');
     syncBadgeOffset();
+  }
+
+  // Opens Setup (if collapsed), the Setup card and step 0.3, then scrolls to it.
+  function jumpToSelection() {
+    var table = document.getElementById('attendee-table');
+    if (!table) return;
+    var uc   = table.closest('.use-case');
+    var card = table.closest('.bubble-card');
+    if (setupGroup && !setupGroup.classList.contains('extra-open')) {
+      var toggle = setupGroup.querySelector('.extra-toggle');
+      if (toggle) toggle.click();
+    }
+    if (card && !card.classList.contains('open')) {
+      document.querySelectorAll('.bubble-card.open').forEach(function (c) { c.classList.remove('open'); });
+      card.classList.add('open');
+    }
+    if (uc) {
+      uc.closest('.use-cases').querySelectorAll('.use-case').forEach(function (u) { u.classList.remove('uc-open'); });
+      uc.classList.add('uc-open');
+    }
+    setTimeout(function () {
+      (uc || table).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 500);
   }
 
   if (gfBadgeClearEl) {

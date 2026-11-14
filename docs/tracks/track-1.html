@@ -145,7 +145,7 @@
           </div>
           <div class="uc-body"><div class="uc-body-inner">
             <p class="uc-desc"><strong>New feature of IBM Bob Premium Package for i.</strong> The <strong>Understand Dashboard</strong> scans your IBM i library and builds a live dependency graph of every program, file, service program, menu, and command — without you reading a single line of source.</p>
-            <div class="info-box mb-l">💡 <strong>Metadata Database &amp; Multi-Developer Sharing:</strong> Understand is configured with a metadata database (library) to store the scanned application metadata. In a team environment, this metadata library can be shared across multiple developers so everyone benefits from a single scan, assuming each developer has the necessary authority to access the 'understand' library (ex: BOBLIB). For these labs on a shared IBM i, each lab practitioner can also create and use their own metadata library (e.g., <code>BOBLIBnn</code>, replacing <code>nn</code> with your assigned number), though in practice it could be shared.</div>
+            <div class="info-box mb-l">💡 <strong>Metadata Database &amp; Multi-Developer Sharing:</strong> Understand is configured with a metadata database (library) to store the scanned application metadata. In a team environment, this metadata library can be shared across multiple developers so everyone benefits from a single scan, assuming each developer has the necessary authority to access the 'understand' library (ex: BOBLIB). For these labs on a shared IBM i, each lab practitioner can also create and use their own metadata library (e.g., <code>BOBLIBnn</code>), though in practice it could be shared.</div>
             <div class="mode-steps">
               <div class="mode-step">
                 <div class="step-num">1</div>
@@ -179,7 +179,7 @@
                 <div class="step-num">3</div>
                 <div class="step-body">
                   <div class="step-title">Adding an Application</div>
-                  <div class="step-desc">If no application exists yet, click <strong>New Application</strong>, name it <code>FLGHT4nn</code> (replace <code>nn</code> with your number), add your application library <code>FLGHT4nn</code> (the library containing compiled objects, not source) and metadata library <code>BOBLIBnn</code>, then click <strong>Scan</strong>. The scan takes about 30–60 seconds.</div>
+                  <div class="step-desc">If no application exists yet, click <strong>New Application</strong>, name it <code>FLGHT4nn</code>, add your application library <code>FLGHT4nn</code> (the library containing compiled objects, not source) and metadata library <code>BOBLIBnn</code>, then click <strong>Scan</strong>. The scan takes about 30–60 seconds.</div>
                   <div class="step-screenshot">
                     <img src="img/clickaddapp.png" alt="Click New Application in the Understand Dashboard"/>
                     <div class="step-screenshot-caption">Click New Application</div>
@@ -254,7 +254,7 @@
               <div class="mode-step">
                 <div class="step-num">1</div>
                 <div class="step-body">
-                  <div class="step-desc">Verify that you are in <strong>IBM i Developer</strong> mode. Click the <strong>+ (Scope) button</strong> and select <strong>(QSYS) Library List</strong> as the context scope. Make sure <code>FLGHT4nn</code> is in the library list. Replace <code>nn</code> with your library number in the prompt below.</div>
+                  <div class="step-desc">Verify that you are in <strong>IBM i Developer</strong> mode. Click the <strong>+ (Scope) button</strong> and select <strong>(QSYS) Library List</strong> as the context scope. Make sure <code>FLGHT4nn</code> is in the library list.</div>
                   <div class="step-prompt"><pre>Generate a comprehensive architecture overview of the FLGHT4nn application in QSYS in Markdown format. Include a high-level description, the main program flows, key programs and their roles, a Mermaid architecture diagram, and a summary of the database tables used.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
                   <div class="step-desc">Bob will analyze the programs, source members, and database files and return a structured Markdown document. Review the output — notice how it identifies the menu-driven architecture, the core transaction programs, and the underlying database schema.</div>
                 </div>
@@ -263,7 +263,6 @@
                 <div class="step-num">2</div>
                 <div class="step-body">
                   <div class="step-title">Now have Bob save it</div>
-                  <div class="step-desc">Replace <code>4nn</code> with your library number in the prompt below.</div>
                   <div class="step-prompt"><pre>Save this output to /home/ITZUSER/FLGHT4nn_ARCHITECTURE.md on the IBM i.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
                 </div>
               </div>
@@ -282,7 +281,7 @@
               <div class="mode-step">
                 <div class="step-num">1</div>
                 <div class="step-body">
-                  <div class="step-desc">Switch to <strong>IBM i Database</strong> mode using the mode selector. Type the slash command below so <code>/erd</code> is highlighted in the Bob chat. Replace <code>4nn</code> with your number.</div>
+                  <div class="step-desc">Switch to <strong>IBM i Database</strong> mode using the mode selector. Type the slash command below so <code>/erd</code> is highlighted in the Bob chat.</div>
                   <div class="step-prompt"><pre>/erd FLGHT4nn add this to FLGHT4nn_ARCHITECTURE.md</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
                   <div class="step-screenshot"><img src="img/ibmdb.png" alt="IBM i Database mode with the /erd command"/></div>
                   <div class="step-screenshot"><img src="img/erd-addtoarch.png" alt="Generated Mermaid ERD added to the architecture document"/></div>
