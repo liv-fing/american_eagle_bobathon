@@ -323,27 +323,7 @@
                   <div class="step-title">Extract the encrypted private key archive</div>
                   <div class="step-desc">Your instructor has provided a password-protected zip file containing your private key. Double-click the zip file, and you will be prompted to enter a password. Enter the password your instructor gives you. This should leave you with the <code>ae_primary_key.pem</code> file, which is the private key you will use to connect to your IBM i server for today's lab.</div>
                   <div class="info-box">💡 <strong>Tip:</strong> Keep <code>ae_primary_key.pem</code> in a known folder on your computer (such as your <strong>Downloads</strong> folder) so you can easily browse to it when connecting.</div>
-                </div>
-              </div>
-
-              <!-- Sub-step 2: Set private key permissions -->
-              <div class="mode-step">
-                <div class="step-num">2</div>
-                <div class="step-body">
-                  <div class="step-title">Tighten private key permissions</div>
-                  <div class="step-desc">If you run into permission issues, please follow the additional step below. Otherwise, you are OK to skip this step. Open your terminal or command prompt. You <strong>must be in the directory / folder where you have the key saved</strong>. If you just downloaded it, odds are it is in your Downloads folder, so <code>cd</code> to Downloads first:</div>
-                  
-                  <div class="step-desc mt-m"><strong>macOS / Linux</strong> — in <strong>Terminal</strong>, navigate to your Downloads folder:</div>
-                  <div class="step-prompt"><pre>cd ~/Downloads</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-                  <div class="step-desc mt-s">In the terminal, tighten the permissions on the SSH private key so it can be used for authentication. Copy and paste the following command, then press <strong>Enter</strong>:</div>
-                  <div class="step-prompt"><pre>chmod 600 ae_primary_key.pem</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-
-                  <div class="step-desc mt-m"><strong>Windows</strong> — in <strong>PowerShell</strong>, navigate to your Downloads folder:</div>
-                  <div class="step-prompt"><pre>cd $HOME\Downloads</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-                  <div class="step-desc mt-s">In the terminal, tighten the permissions on the SSH private key so it can be used for authentication. Copy and paste the following command, then press <strong>Enter</strong> (run PowerShell as Administrator if the command fails):</div>
-                  <div class="step-prompt"><pre>icacls ae_primary_key.pem /inheritance:r /grant:r "$($env:USERNAME):R"</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-
-                  <div class="info-box mt-m">💡 <strong>Why this matters:</strong> SSH will refuse to use a private key that is readable by other users on the system. <code>chmod 600</code> (and the equivalent <code>icacls</code> rule on Windows) restricts read and write access to only your user account, satisfying SSH's security check.</div>
+                  <div class="info-box">💡 <strong>Key permissions:</strong> You don't need to change anything on the key file now. If you reach Lab 4 and SSH reports <strong>UNPROTECTED PRIVATE KEY FILE</strong>, follow the key-permissions fix (<strong>T2</strong>, mostly Windows) in the <strong>Lab 4 Troubleshooting</strong> section.</div>
                 </div>
               </div>
             </div>

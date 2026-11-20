@@ -785,6 +785,7 @@ These rules apply before any `npm`, `node`, `npx`, or `vite` command:
                   <div class="step-title">Copy the prompt and paste it</div>
                   <div class="step-desc">With the screenshot in the chat prompt, copy the prompt below, paste it after the screenshot, and send.</div>
                   <div class="step-prompt"><pre>Given this screenshot of the 5250 flight order screen from the Application Flight4nn in @FLGHT4nn, Build a single-page React 18 + Vite 4 app on IBM i (PASE) using @carbon/react ^1.x with the g100 dark theme that modernizes the IBM i 5250 screen shown in the attached screenshot. Create the app in the IFS at $HOME/flight4nn-frontend-apps/screen-name/. Use the g100 dark theme. All fields should have a list of values to select from. The dev server must run in the background using nohup … &amp; and write output to /tmp/vite-30nn.log and save the process ID to /tmp/vite-30nn.pid. Pin the Vite dev server to port 30nn if available.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="info-box">🛠️ <strong>Problems?</strong> Bob looks stuck starting Vite: see <strong>T1</strong>. Page is blank later on: see <strong>T4</strong>. Both are in <strong>Lab 4 Troubleshooting</strong> below.</div>
                   <div class="step-screenshot">
                     <img src="img/Flight-react-agentic.png" alt="Example of the React Carbon app generated from a 5250 screen"/>
                     <div class="step-screenshot-caption">Example result — React Carbon app modernizing a 5250 screen</div>
@@ -807,13 +808,16 @@ These rules apply before any `npm`, `node`, `npx`, or `vite` command:
                 <div class="step-body">
                   <div class="step-desc">After Bob generates the files, ask Bob to start the dev server for you:</div>
                   <div class="step-prompt"><pre>Start the dev server for the app you just created.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="info-box">🛠️ <strong>Bob keeps running without finishing?</strong> See <strong>T1</strong> in <strong>Lab 4 Troubleshooting</strong> below.</div>
                 </div>
               </div>
               <div class="mode-step">
                 <div class="step-num">2</div>
                 <div class="step-body">
                   <div class="step-title">Forward your port to your laptop</div>
-                  <div class="step-desc">The app runs on the IBM i, so your laptop needs a tunnel to port <code>30nn</code>. In <strong>PowerShell</strong> / <strong>Windows Terminal</strong> (Windows) or <strong>Terminal</strong> (macOS), from the folder that contains <code>ae_primary_key.pem</code> (for example <code>cd ~/Downloads</code>), run the command below and leave it running. No <code>sudo</code> or administrator rights are needed because port <code>30nn</code> is above 1024.</div>
+                  <div class="step-desc">The app runs on the IBM i, so your laptop needs a tunnel to port <code>30nn</code>. In <strong>PowerShell</strong> / <strong>Windows Terminal</strong> (Windows) or <strong>Terminal</strong> (macOS) on your laptop, from the folder that contains <code>ae_primary_key.pem</code> (for example <code>cd ~/Downloads</code>), run the command below and leave it running. No <code>sudo</code> or administrator rights are needed because port <code>30nn</code> is above 1024.</div>
+                  <div class="warn-box">⚠️ Run this on your <strong>laptop</strong>, never in Bob's IBM i PASE terminal.</div>
+                  <div class="info-box">🛠️ <strong>Problems?</strong> SSH says <strong>UNPROTECTED PRIVATE KEY FILE</strong>: see <strong>T2</strong>. The command errors or the tunnel will not stay up: see <strong>T3</strong>. Both are in <strong>Lab 4 Troubleshooting</strong> below.</div>
                   <div class="step-prompt"><pre>ssh -L 30nn:127.0.0.1:30nn -o ServerAliveInterval=15 -i ae_primary_key.pem ITZUSER@&lt;myIPaddress&gt;</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
                   <div class="step-screenshot">
                     <img src="img/cmdworked.png" alt="Terminal showing the Welcome to IBM Technology Zone banner and a $ prompt after the port forward connected"/>
@@ -827,7 +831,7 @@ These rules apply before any `npm`, `node`, `npx`, or `vite` command:
                 <div class="step-body">
                   <div class="step-title">Open the app</div>
                   <div class="step-desc">Open <code>http://localhost:30nn</code> in your browser.</div>
-                  <div class="info-box">💡 <strong>Nothing showing in your browser?</strong> Make sure your port forward from step 2 is still active and uses your port number. Note that the port number and the look &amp; feel of the generated app may differ from any examples shown.</div>
+                  <div class="info-box">💡 <strong>Nothing showing in your browser?</strong> Make sure your port forward from step 2 is still active and uses your port number. Note that the port number and the look &amp; feel of the generated app may differ from any examples shown. For more help, see <strong>T3</strong> (connection refused or port already used; Windows checks) and <strong>T4</strong> (blank page; all systems) in <strong>Lab 4 Troubleshooting</strong> below.</div>
                 </div>
               </div>
               <div class="mode-step">
@@ -840,6 +844,96 @@ These rules apply before any `npm`, `node`, `npx`, or `vite` command:
               </div>
             </div>
             <div class="info-box">⚠️ <strong>This app runs with sample data only.</strong> The natural next step is to add a REST / Web Services layer connecting the React front end to the real IBM i business logic and Db2 for i database.</div>
+          </div></div>
+        </div>
+
+        <div class="use-case">
+          <div class="use-case-header">
+            <div class="uc-title">Lab 4 Troubleshooting</div>
+            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
+          </div>
+          <div class="uc-body"><div class="uc-body-inner">
+            <p class="uc-desc">Only open this if something went wrong. Find the symptom that matches what you see. Everything here applies to your own library, project folder, and port only. Never change another attendee's files or shared server settings.</p>
+            <div class="info-box">🪟 <strong>Mostly for Windows.</strong> These fixes came from a Windows session. <strong>T2</strong> and <strong>T3</strong> are mainly for Windows attendees (PowerShell commands). <strong>T2</strong> also has a short macOS / Linux fix, and the <code>ssh</code> commands in <strong>T3</strong> work on macOS / Linux too. <strong>T1</strong>, <strong>T4</strong> and <strong>T5</strong> apply to every attendee on any operating system.</div>
+            <div class="mode-steps">
+
+              <div class="mode-step">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                  <div class="step-title">T1 — Bob looks stuck starting Vite (all systems)</div>
+                  <div class="step-desc">Do not recreate the project. If needed, stop only the stuck Bob task. Then open an <strong>IBM i PASE</strong> terminal in Bob (Terminals, then <strong>PASE</strong>) and check that the server is running on your port:</div>
+                  <div class="step-prompt"><pre>ps -ef | grep '[v]ite'
+curl -I http://127.0.0.1:30nn</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="info-box">💡 <code>HTTP 200</code> means the server responds. It does not guarantee the React page renders. Continue with the tunnel in step 4.4.</div>
+                </div>
+              </div>
+
+              <div class="mode-step">
+                <div class="step-num">2</div>
+                <div class="step-body">
+                  <div class="step-title">T2 — SSH says "UNPROTECTED PRIVATE KEY FILE" (mainly Windows; macOS / Linux fix included)</div>
+                  <div class="step-desc">SSH refuses a private key that other users on your laptop can read. Fix it from the folder that holds <code>ae_primary_key.pem</code>.</div>
+                  <div class="step-desc mt-m"><strong>macOS / Linux</strong> — in <strong>Terminal</strong>:</div>
+                  <div class="step-prompt"><pre>cd ~/Downloads
+chmod 600 ae_primary_key.pem</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-desc mt-m"><strong>Windows</strong> — in <strong>PowerShell</strong>, first look at who has access:</div>
+                  <div class="step-prompt"><pre>cd $HOME\Downloads
+icacls ae_primary_key.pem</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-desc mt-s">Your own account must keep access. Other users or groups must not be able to read the key. To remove inherited access and grant read access to only your account, run (as Administrator if it fails):</div>
+                  <div class="step-prompt"><pre>icacls ae_primary_key.pem /inheritance:r /grant:r "$($env:USERNAME):R"</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-desc mt-s">Run <code>icacls ae_primary_key.pem</code> again to confirm, then retry the SSH command from 4.4.</div>
+                  <div class="warn-box">⚠️ <strong>Only if</strong> <code>icacls</code> still lists an unusual <code>BUILTIN\BUILTIN</code> entry (SID <code>S-1-5-32</code>) after the command above, remove that one entry. Do not remove other entries, and ask your IT team if you cannot change permissions safely:<br/><br/><code>icacls ae_primary_key.pem /remove:g "*S-1-5-32"</code></div>
+                </div>
+              </div>
+
+              <div class="mode-step">
+                <div class="step-num">3</div>
+                <div class="step-body">
+                  <div class="step-title">T3 — The tunnel will not start, or the browser says "connection refused" (Windows checks)</div>
+                  <div class="step-desc">Check, in order:
+                    <ul class="detail-list">
+                      <li>The command runs in <strong>PowerShell / Terminal on your laptop</strong>, not in Bob's PASE terminal.</li>
+                      <li>The key file exists. <strong>Windows:</strong> in PowerShell run <code>Test-Path ae_primary_key.pem</code> from the folder that holds it. <strong>macOS / Linux:</strong> run <code>ls ae_primary_key.pem</code>.</li>
+                      <li>On the first connection SSH asks you to confirm the host fingerprint. Ask your instructor to confirm it before typing <code>yes</code>.</li>
+                      <li>The terminal window stays open. If you are back at a plain prompt, the tunnel stopped. Run the command again.</li>
+                    </ul>
+                  </div>
+                  <div class="step-desc mt-s">To make SSH fail loudly when the local port cannot be used, add <code>-N</code> and <code>-o ExitOnForwardFailure=yes</code>:</div>
+                  <div class="step-prompt"><pre>ssh -o ExitOnForwardFailure=yes -N -L 30nn:127.0.0.1:30nn -o ServerAliveInterval=15 -i ae_primary_key.pem ITZUSER@&lt;myIPaddress&gt;</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-desc mt-s"><strong>Windows only:</strong> in a <strong>second</strong> PowerShell window you can test whether the local port is listening. <code>TcpTestSucceeded : True</code> means the tunnel is up:</div>
+                  <div class="step-prompt"><pre>Test-NetConnection 127.0.0.1 -Port 30nn</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-desc mt-s"><strong>Port already used on your laptop?</strong> Keep the remote port <code>30nn</code> and forward to a different local port, for example <code>8080</code>:</div>
+                  <div class="step-prompt"><pre>ssh -o ExitOnForwardFailure=yes -N -L 8080:127.0.0.1:30nn -o ServerAliveInterval=15 -i ae_primary_key.pem ITZUSER@&lt;myIPaddress&gt;</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-desc mt-s">Then open <code>http://127.0.0.1:8080</code> instead.</div>
+                </div>
+              </div>
+
+              <div class="mode-step">
+                <div class="step-num">4</div>
+                <div class="step-body">
+                  <div class="step-title">T4 — The browser page is blank (all systems)</div>
+                  <div class="step-desc">In Chrome press <strong>F12</strong>, open the <strong>Console</strong> tab, then press <strong>Ctrl+Shift+R</strong> (hard refresh). Fix the specific red JavaScript error. Do not regenerate the project.</div>
+                  <div class="step-desc mt-s">A common cause is an import Bob generated that does not exist in your installed Carbon version, in <code>src/CreateOrder.jsx</code>:</div>
+                  <ul class="detail-list">
+                    <li><code>Airplane</code> from <code>@carbon/icons-react</code>: use <code>Plane</code> instead (in the import and every usage).</li>
+                    <li><code>Divider</code> from <code>@carbon/react</code>: it does not exist. Use <code>&lt;hr className="cds--divider" /&gt;</code> instead (in every usage).</li>
+                  </ul>
+                  <div class="step-desc mt-s">Ask Bob to fix it, without starting another server:</div>
+                  <div class="step-prompt"><pre>The React app for FLGHT4nn shows a blank page. Check every named import from @carbon/react and @carbon/icons-react in my project against the versions installed in node_modules and fix any that do not exist. Edit only my project in $HOME/flight4nn-frontend-apps/. Do not start another Vite server.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-desc mt-s">Refresh Chrome and confirm the Create Order screen appears.</div>
+                  <div class="info-box">💡 IBM Plex font <code>404</code> messages in the console are harmless and do not stop the page from rendering.</div>
+                </div>
+              </div>
+
+              <div class="mode-step">
+                <div class="step-num">5</div>
+                <div class="step-body">
+                  <div class="step-title">T5 — Final check (all systems)</div>
+                  <div class="step-desc">Click through a few dropdowns and buttons to confirm the screen behaves. The page uses sample data only, so a working screen does not verify real IBM i data or end-to-end order processing.</div>
+                </div>
+              </div>
+
+            </div>
           </div></div>
         </div>
 

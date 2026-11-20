@@ -173,33 +173,7 @@ In this step, we are linking the SSH key with the server to make a connection. Y
 
    > 💡 **Tip:** Keep `ae_primary_key.pem` in a known folder on your computer (such as your **Downloads** folder) so you can easily browse to it when connecting.
 
-2. **Tighten private key permissions** — If you run into permission issues, please follow the additional step below. Otherwise, you are OK to skip this step. Open your terminal or command prompt. You **must be in the directory / folder where you have the key saved**. If you just downloaded it, odds are it is in your Downloads folder, so `cd` to Downloads first:
-
-   **macOS / Linux** — in **Terminal**, navigate to your Downloads folder:
-
-   ```
-   cd ~/Downloads
-   ```
-
-   In the terminal, tighten the permissions on the SSH private key so it can be used for authentication. Copy and paste the following command, then press **Enter**:
-
-   ```
-   chmod 600 ae_primary_key.pem
-   ```
-
-   **Windows** — in **PowerShell**, navigate to your Downloads folder:
-
-   ```
-   cd $HOME\Downloads
-   ```
-
-   In the terminal, tighten the permissions on the SSH private key so it can be used for authentication. Copy and paste the following command, then press **Enter** (run PowerShell as Administrator if the command fails):
-
-   ```
-   icacls ae_primary_key.pem /inheritance:r /grant:r "$($env:USERNAME):R"
-   ```
-
-   > 💡 **Why this matters:** SSH will refuse to use a private key that is readable by other users on the system. `chmod 600` (and the equivalent `icacls` rule on Windows) restricts read and write access to only your user account, satisfying SSH's security check.
+   > 💡 **Key permissions:** You don't need to change anything on the key file now. If you reach Lab 4 and SSH reports **UNPROTECTED PRIVATE KEY FILE**, follow the key-permissions fix (**T2**, mostly Windows) in the **Lab 4 Troubleshooting** section.
 
 ---
 
