@@ -8,7 +8,7 @@
     <div class="card-text">
       <div class="card-label">Setup</div>
       <div class="card-title">Environment Setup</div>
-      <div class="card-desc">Connect to your IBM i, install the required extensions, and confirm your assigned library number before starting the exercises.</div>
+      <div class="card-desc">Connect to your IBM i, install the required extensions, and confirm your assigned library number before starting the labs.</div>
       <div class="card-desc card-desc-alert">Action required: in step 0.3, paste your server IP address and click the table row with your assigned library number. This updates the IP address, library, port, and prompts throughout the guide.</div>
       <div class="card-meta">
         <span class="card-tag">~15 min</span>
@@ -23,7 +23,7 @@
   <div class="card-detail">
     <div class="card-detail-inner">
 
-      <div class="detail-intro">Complete all steps below before starting any exercise. Start by installing and logging in to Bob, then verify your extensions, find your library number, and finally connect to IBM i.</div>
+      <div class="detail-intro">Complete all steps below before starting any lab. Start by installing and logging in to Bob, then verify your extensions, find your library number, and finally connect to IBM i.</div>
 
       <div class="use-cases">
 
@@ -34,7 +34,7 @@
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">Check your inbox for the <strong>"You've been invited to join your team"</strong> email, then follow these steps to install Bob and sign in for the first time.</p>
+            <p class="uc-desc">Check your inbox for the <strong>"You've been invited to join your team"</strong> email, then follow these steps to install Bob and sign in for the first time. If you did not receive an email, please reach out to your manager or IBM representative.</p>
             <div class="mode-steps">
               <div class="mode-step">
                 <div class="step-num">1</div>
@@ -85,7 +85,7 @@
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">Two extensions are required. The <strong>IBM Bob Premium Package for i</strong> is often pre-installed for your team — verify it below. The <strong>IBM i Development Pack</strong> must be installed manually.</p>
+            <p class="uc-desc">In this step, you will be installing two extensions required for the Bob for i Lab. The <strong>IBM Bob Premium Package for i</strong> is often pre-installed for your team, so verify it below. The <strong>IBM i Development Pack</strong> must be installed manually.</p>
             <div class="mode-steps">
               <div class="mode-step">
                 <div class="step-num">1</div>
@@ -102,11 +102,15 @@
                 <div class="step-num">2</div>
                 <div class="step-body">
                   <div class="step-title">Verify IBM Bob Premium Package for i</div>
-                  <div class="step-desc">Search for <strong>"IBM Bob Premium Package for i"</strong>. If <strong>IBM Bob Premium Package for i</strong> (publisher: IBM) appears with an <strong>Install</strong> button on the right, click <strong>Install</strong> now. If there is no <strong>Install</strong> button, you're all set — skip to step 3. This package includes Code for IBM i (source editing, object browser, IFS browser, Db2 for i, and more).</div>
+                  <div class="step-desc">Search for <strong>"IBM Bob Premium Package for i"</strong>. If <strong>IBM Bob Premium Package for i</strong> (publisher: IBM) appears with an <strong>Install</strong> button on the right, click <strong>Install</strong> now. A prompt will ask whether you trust the publishers. Click <strong>Trust Publishers &amp; Install</strong> to continue. If there is no <strong>Install</strong> button, you're all set — skip to step 3. This package includes Code for IBM i (source editing, object browser, IFS browser, Db2 for i, and more).</div>
                   <div class="info-box">💡 <strong>What is IBM Bob Premium Package for i?</strong><br/>IBM Bob is an AI coding assistant, a lot like having a smart helper sitting next to you while you code. By default, Bob only works on files on your PC. The Premium Package for i is the add-on that connects Bob directly to your IBM i. Bob can then read, explain, edit, and test your RPG, CL, and SQL right where it lives. You don’t export it, edit it, and copy it back. It also comes with the Code for IBM i tools you already know.</div>
                   <div class="step-screenshot">
                     <img src="img/searching-ibm-i.png" alt="Searching for IBM Bob Premium Package for i in the Extensions panel"/>
                     <div class="step-screenshot-caption">Search for "IBM Bob Premium Package for i" — an Install button on the right means it still needs to be installed</div>
+                  </div>
+                  <div class="step-screenshot">
+                    <img src="img/trust-publishers.png" alt="Trust publishers prompt with the Trust Publishers and Install button"/>
+                    <div class="step-screenshot-caption">Click Trust Publishers &amp; Install when prompted</div>
                   </div>
                 </div>
               </div>
@@ -114,7 +118,7 @@
                 <div class="step-num">3</div>
                 <div class="step-body">
                   <div class="step-title">Install IBM i Development Pack</div>
-                  <div class="step-desc">Just like the previous step, search for <strong>"IBM i Development Pack"</strong> in the Extensions panel. This extension is <strong>not</strong> pre-installed — click <strong>Install</strong> if it does not appear under <em>Installed</em>. Reload Bob if prompted.</div>
+                  <div class="step-desc">Now you are installing the second extension. Use the search bar again to find <strong>"IBM i Development Pack"</strong>. Click the blue <strong>Install</strong> button. Reload Bob if prompted.</div>
                   <div class="info-box">💡 <strong>What is the IBM i Development Pack?</strong><br/>The IBM i Development Pack adds all the IBM i tools to Bob in one install, so Bob can use them. That includes the connection to your system and the editing and database tools for RPG, CL, COBOL, and SQL. Think of it as the toolbox, and Bob is the AI helper that uses it.</div>
                 </div>
               </div>
@@ -122,7 +126,7 @@
                 <div class="step-num">4</div>
                 <div class="step-body">
                   <div class="step-title">Open Bob Settings</div>
-                  <div class="step-desc">Click the <strong>Bob Settings</strong> button in the bottom-right corner of the Bob IDE to open the Settings panel.</div>
+                  <div class="step-desc">Next, in the bottom right corner of the screen, click <strong>Open Bob Settings</strong>.</div>
                   <div class="step-screenshot">
                     <img src="img/bob_settings.png" alt="Bob Settings button in the bottom-right corner of the Bob IDE"/>
                     <div class="step-screenshot-caption">Click Bob Settings in the bottom-right corner of the Bob IDE</div>
@@ -133,7 +137,8 @@
                 <div class="step-num">5</div>
                 <div class="step-body">
                   <div class="step-title">Install Premium Package for i</div>
-                  <div class="step-desc">Further down the panel, next to the <strong>Add ons</strong> setting, you should see "IBM Bob Premium Package for i" displayed. Click <strong>Install</strong>, this might seem redundant but it is a required activation within Settings to fully connect the Premium Package. After its done downloading, Bob may ask you to restart the IDE — if so, accept and restart.</div>
+                  <div class="step-desc">Further down the panel, next to the <strong>Add ons</strong> setting, you should see "IBM Bob Premium Package for i" displayed. Click <strong>Install</strong>. This is a required activation within Settings to fully connect the Premium Package. After it's done downloading, Bob may ask you to restart. If so, accept and re-open the Bob app.</div>
+                  <div class="warn-box">⚠️ If you do not see the add-on, please contact your manager or IBM representative. This means you likely do not have access to the environment. Also make sure you are in the right team.</div>
                   <div class="step-screenshot">
                     <img src="img/activatedd.png" alt="IBM Bob Premium Package for i shown next to the Add ons setting with an Install button"/>
                     <div class="step-screenshot-caption">Click Install next to IBM Bob Premium Package for i under Add ons</div>
@@ -144,7 +149,7 @@
                 <div class="step-num">6</div>
                 <div class="step-body">
                   <div class="step-title">Confirm it is activated in Bob</div>
-                  <div class="step-desc">Now click the icon in the very top-right corner (shown in the first screenshot below) to return to your Bob chat. From there, click either <strong>Agent</strong> or the <strong>+</strong> sign, and you should see the <strong>IBM i Developer</strong> and <strong>IBM i Database</strong> modes listed as options. If they don't appear, your IBM Bob account likely hasn't been linked to your Premium Package for i entitlements yet.</div>
+                  <div class="step-desc">Finally, click the icon in the very top right corner (shown in the first screenshot below). This will open the Bob chat interface on the right-hand side. Using this interface is how you will interact with Bob. Then click <strong>Agent</strong> or the <strong>+</strong> sign, and you should see the <strong>IBM i Developer</strong> and <strong>IBM i Database</strong> modes listed as options. If they do not appear, your IBM Bob account likely has not been linked to your Premium Package for i entitlements yet. If you do not see both modes, reach out to your manager or IBM representative.</div>
                   <div class="step-screenshot step-screenshot--sm">
                     <img src="img/sidebar-button.png" alt="Icon in the top-right corner of Bob to return to the chat"/>
                     <div class="step-screenshot-caption">Click the icon in the top-right corner to return to the Bob chat</div>
@@ -159,6 +164,8 @@
                 <div class="step-num">7</div>
                 <div class="step-body">
                   <div class="step-title">Understanding Bob Modes</div>
+                  <div class="info-box"><strong>Note:</strong> This step is only to help you learn about Bob modes. Nothing on your end needs to be completed.</div>
+                  <div class="step-desc">Bob comes with 3 modes, and the Premium Package for i adds 2 more. In total, you will have 5 modes that Bob can use.</div>
                   <div class="step-desc">A mode is like a job description for Bob. It tells Bob two things: how to act (its role and expertise), and what it is allowed to touch (its permissions). Switching modes is like giving the same assistant a different job.</div>
                   <div class="step-desc"><strong>Bob comes with 3 default modes:</strong></div>
                   
@@ -195,12 +202,13 @@
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
+            <p class="uc-desc">Now we will connect to the TechZone Application by choosing your server, IP address, and library number.</p>
             <div class="mode-steps">
               <!-- Sub-step 1: Find IP and library assignment -->
               <div class="mode-step">
                 <div class="step-num">1</div>
                 <div class="step-body">
-                  <div class="step-title">Find your assigned IP address and library number</div>
+                  <div class="step-title">Locate your assigned IP address and library number</div>
                   <div class="step-desc">Your instructor will share the server IP address with you and display a spreadsheet assigning each participant a library number. Each participant has their own copy of the FLIGHT400 application in an isolated library named <strong>FLGHT4nn</strong> (e.g. FLGHT401, FLGHT402). Use only your assigned number throughout the lab so everyone can work independently without overwriting each other.</div>
                   <div class="info-box">💡 <strong>Spelling note:</strong> The library name is <code>FLGHT4nn</code> — note there is <strong>no "I"</strong> in FLGHT. Your instructor may say "Flight 4-nn" verbally, but when typing always use <code>FLGHT4nn</code> (F‑L‑G‑H‑T).</div>
                 </div>
@@ -211,10 +219,10 @@
                 <div class="step-num">2</div>
                 <div class="step-body">
                   <div class="step-title">Type in the IP address from your instructor</div>
-                  <div class="step-desc">Paste or type the IP address provided by your instructor into the box below. You only do this once — all connection settings and prompts across this guide will update to match.</div>
+                  <div class="step-desc">Type the IP address provided by your instructor into the box below. You only do this once — all connection settings and prompts across this guide will update to match.</div>
                   <div class="server-ip-field">
                     <label for="server-ip">IP address of your server (from your instructor)</label>
-                    <input type="text" id="server-ip" inputmode="decimal" autocomplete="off" spellcheck="false" maxlength="15" placeholder="paste the IP address here" aria-describedby="server-ip-msg" />
+                    <input type="text" id="server-ip" inputmode="decimal" autocomplete="off" spellcheck="false" maxlength="15" placeholder="Type the IP address here" aria-describedby="server-ip-msg" />
                     <div class="server-ip-msg" id="server-ip-msg" role="status" aria-live="polite"></div>
                     <div class="ip-status-badge hidden" id="server-ip-status" role="status"></div>
                   </div>
@@ -261,7 +269,7 @@
                       <tr><td style="text-align:center">20</td><td style="text-align:center"><button type="button" class="btn-select-row">Select</button></td><td><code>FLGHT420</code></td><td style="text-align:center">3020</td><td><code>http://localhost:3020</code></td></tr>
                     </tbody>
                   </table>
-                  <div class="info-box">💡 <strong>Note:</strong> The <strong>Dev Port</strong> (<code>30nn</code>) is only used later in <strong>Exercise 4</strong> when launching the modernized web application.</div>
+                  <div class="info-box">💡 <strong>Note:</strong> The <strong>Dev Port</strong> (<code>30nn</code>) is only used later in <strong>Lab 4</strong> when launching the modernized web application.</div>
                 </div>
               </div>
 
@@ -272,7 +280,7 @@
                   <div class="step-title">Verify it is working</div>
                   <div class="info-box" style="margin-top:0;">
                     ✅ <strong>Verify your setup</strong><br/><br/>
-                    When setup is complete, you should see a floating status banner in the bottom-right corner of your screen with a green check mark and no warning icon. For example: <code>✅ Student 8 · FLGHT408 :3008</code><br/><br/>
+                    When setup is complete, you should see a floating status banner in the bottom-right corner of this screen with a green check mark and no warning icon. For example: <code>✅ Student 8 · FLGHT408 :3008</code><br/><br/>
                     Your numbers will match the library row you selected. If you see a warning icon or anything looks different, don't worry. See the <strong>Debugging</strong> step below, which explains the common errors and how to fix them.
                     
                     <details class="skill-details" style="margin-top:10px;">
@@ -306,7 +314,7 @@
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">Your instructor has sent you a zip file. Double-click it to open it. When it asks for a password, enter the password your instructor gives you. After you enter it, you will see a <strong>.pem key file</strong>. Save it somewhere you can find it, because you will use this private key to connect Bob to IBM i.</p>
+            <p class="uc-desc">In this step, we are linking the SSH key with the server to make a connection. Your instructor has sent you a zip file. Double-click it to open it. When it asks for a password, enter the password your instructor gives you. After you enter it, you will see a <strong>.pem key file</strong>. Save it somewhere you can find it, because you will use this private key to connect Bob to IBM i.</p>
             <div class="mode-steps">
               <!-- Sub-step 1: Extract encrypted key archive -->
               <div class="mode-step">
@@ -323,7 +331,7 @@
                 <div class="step-num">2</div>
                 <div class="step-body">
                   <div class="step-title">Tighten private key permissions</div>
-                  <div class="step-desc">Open your terminal or command prompt. You <strong>must be in the directory / folder where you have the key saved</strong>. If you just downloaded it, odds are it is in your Downloads folder, so <code>cd</code> to Downloads first:</div>
+                  <div class="step-desc">If you run into permission issues, please follow the additional step below. Otherwise, you are OK to skip this step. Open your terminal or command prompt. You <strong>must be in the directory / folder where you have the key saved</strong>. If you just downloaded it, odds are it is in your Downloads folder, so <code>cd</code> to Downloads first:</div>
                   
                   <div class="step-desc mt-m"><strong>macOS / Linux</strong> — in <strong>Terminal</strong>, navigate to your Downloads folder:</div>
                   <div class="step-prompt"><pre>cd ~/Downloads</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
@@ -354,10 +362,14 @@
                 <div class="step-num">1</div>
                 <div class="step-body">
                   <div class="step-title">Add a new connection</div>
-                  <div class="step-desc">Click the IBM i icon in the Activity Bar (indicated by the red arrow in the screenshot below), then click <strong>New Connection</strong>. Enter the host IP <code>&lt;myIPaddress&gt;</code>, the user profile <code>ITZUSER</code>, and select the <code>ae_primary_key.pem</code> private key file you prepared in step 0.4. When prompted for the private key, browse to where you saved <code>ae_primary_key.pem</code> on your computer. <strong>Do not use a password here — use only the <code>ae_primary_key.pem</code> private key file.</strong></div>
+                  <div class="step-desc">Click the IBM i icon in the Activity Bar (indicated by the red arrow in the screenshot below), then click the blue <strong>Connect to an IBM i</strong> button. For the connection name, enter <code>FLGHT4nn</code>. Enter the host IP <code>&lt;myIPaddress&gt;</code> and the user profile <code>ITZUSER</code>. You don't need a password. You will use the private key instead. Click <strong>Select File</strong> to find the <code>ae_primary_key.pem</code> private key you saved in step 0.4, then click <strong>Connect</strong>.</div>
                   <div class="step-screenshot">
                     <img src="img/ibmi_icon.png" alt="IBM i icon in the Bob Activity Bar"/>
                     <div class="step-screenshot-caption">Click the IBM i icon in the Activity Bar</div>
+                  </div>
+                  <div class="step-screenshot">
+                    <img src="img/new-connection.png" alt="IBM i panel with the blue Connect to an IBM i button"/>
+                    <div class="step-screenshot-caption">Click the blue Connect to an IBM i button</div>
                   </div>
                   <div class="step-screenshot">
                     <img src="img/i-connection.png" alt="IBM i connection dialog in Bob IDE"/>
@@ -415,6 +427,7 @@
                     <img src="img/librarylist.png" alt="Library List scope selected in the Bob chat"/>
                     <div class="step-screenshot-caption">Verify the chat scope shows Library List</div>
                   </div>
+                  <div class="info-box">🎉 <strong>Congratulations!</strong> You have completed the environment setup and are now ready to move on to the labs!</div>
                 </div>
               </div>
             </div>

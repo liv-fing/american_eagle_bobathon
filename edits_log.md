@@ -1,0 +1,80 @@
+# Lab Guide Edits Log
+
+Working log for the edits listed in `edits_to_make.md`. Edits are proposed and approved one at a time.
+
+Order: Setup first (17 clear edits), then Lab 1, Lab 2, Lab 3, then the 4 clarification items.
+
+After all approved edits: run `python3 build-setup-md.py` (Setup changed), then `python3 build-offline.py`, then commit `docs/setup.md`, `offline/`, and `offline.zip`.
+
+## Applied
+
+| # | Section | File | Change |
+|---|---|---|---|
+| S1 | Setup 0.1, Prerequisite Bob Setup | `docs/tracks/setup.html` | Added to the end of the 0.1 intro paragraph: "If you did not receive an email, please reach out to your manager or IBM representative." The blank in the original note was filled with "your manager or IBM representative". |
+| S3 | Setup 0.2, intro | `docs/tracks/setup.html` | Replaced the 0.2 intro with: "In this step, you will be installing two extensions required for the Bob for i Lab. The IBM Bob Premium Package for i is often pre-installed for your team, so verify it below. The IBM i Development Pack must be installed manually." |
+| S4 | Setup 0.2 step 2, Trust Publishers prompt | `docs/tracks/setup.html`, `docs/img/trust-publishers.png` | Added "A prompt will ask whether you trust the publishers. Click Trust Publishers & Install to continue." to the step text. Added the screenshot (copied from the repo root `0.2.2_trustpublisher.png` to `docs/img/trust-publishers.png`) with caption "Click Trust Publishers & Install when prompted". Step 3 is unchanged because the prompt only appears on the first install. |
+| S5 | Setup 0.2 step 3, Install IBM i Development Pack | `docs/tracks/setup.html` | Replaced the step text with: "Now you are installing the second extension. Use the search bar again to find "IBM i Development Pack". Click the blue Install button. Reload Bob if prompted." Removed the "not pre-installed / appears under Installed" wording. |
+| S6 | Setup 0.2 step 4, Open Bob Settings | `docs/tracks/setup.html` | Replaced the step text with: "Next, in the bottom right corner of the screen, click Open Bob Settings." |
+| S7 | Setup 0.2 step 5, Install Premium Package for i | `docs/tracks/setup.html` | Removed "this might seem redundant". Changed the restart wording to "Bob may ask you to restart. If so, accept and re-open the Bob app." Added a warning box: "If you do not see the add-on, please contact your manager or IBM representative. This means you likely do not have access to the environment. Also make sure you are in the right team." |
+| S8 | Setup 0.2 step 6, Confirm it is activated in Bob | `docs/tracks/setup.html` | Replaced the step text. It now says the top-right icon opens the Bob chat interface on the right-hand side and that this is how you interact with Bob, then to click Agent or the + sign to see the IBM i Developer and IBM i Database modes. Added: "If you do not see both modes, reach out to your manager or IBM representative." |
+| S9 | Setup 0.2 step 7, Understanding Bob Modes | `docs/tracks/setup.html` | Added a note box at the top of the step: "Note: This step is only to help you learn about Bob modes. Nothing on your end needs to be completed." Added: "Bob comes with 3 modes, and the Premium Package for i adds 2 more. In total, you will have 5 modes that Bob can use." Per instruction, the new text does not call a mode a "job". |
+| S10 | Setup 0.3, intro | `docs/tracks/setup.html` | Added an intro paragraph at the top of 0.3: "Now we will connect to the TechZone Application by choosing your server, IP address, and library number." The section title is unchanged. |
+| S11 | Setup 0.3 step 1 | `docs/tracks/setup.html` | Changed the step title from "Find your assigned IP address and library number" to "Locate your assigned IP address and library number". Step 3's "Find your assigned Student #" is unchanged. |
+| S12 | Setup 0.3 step 2, IP address entry | `docs/tracks/setup.html` | Changed the input placeholder from "paste the IP address here" to "Type the IP address here". Changed the step text from "Paste or type the IP address…" to "Type the IP address…". |
+| S13 | Setup 0.3 step 4, Verify it is working | `docs/tracks/setup.html` | Changed "bottom-right corner of your screen" to "bottom-right corner of this screen" in the verify box. |
+| S14 | Setup 0.4, intro | `docs/tracks/setup.html` | Added to the start of the 0.4 intro: "In this step, we are linking the SSH key with the server to make a connection." |
+| S15 | Setup 0.4 step 2, Tighten private key permissions | `docs/tracks/setup.html` | Added to the start of the step text: "If you run into permission issues, please follow the additional step below. Otherwise, you are OK to skip this step." |
+| S16 | Setup 0.5 step 1, Add a new connection | `docs/tracks/setup.html`, `docs/img/new-connection.png` | Replaced the step text. It now says to click the blue "Connect to an IBM i" button, enter the connection name `FLGHT4nn` (auto-fills from the selected library; not hardcoded), enter the host IP and `ITZUSER`, note that no password is needed, click Select File to choose `ae_primary_key.pem`, then click Connect. Added the screenshot (copied from the repo root `0.5.1_newconnection.png` to `docs/img/new-connection.png`) after the IBM i icon screenshot, with caption "Click the blue Connect to an IBM i button". The button label comes from the screenshot ("Connect to an IBM i"), not from the reviewer's note ("Connect to IBM i"). |
+| S17 | Setup 0.5 step 4, Set workspace to Library List | `docs/tracks/setup.html` | Added a closing callout after the last screenshot: "Congratulations! You have completed the environment setup and are now ready to move on to the labs!" |
+
+## Lab edits
+
+| # | Section | File | Change |
+|---|---|---|---|
+| G1 | Global rename: "Exercise" to "Lab" | `docs/tracks/*.html`, `docs/index.html`, `docs/setup.html`, `docs/js/app.js` | Renamed every reader-visible "Exercise N" to "Lab N" (card labels, wrap-up titles, cross-references such as "Lab 4 → 4.1"). Changed body text: "this exercise" to "this lab", "every subsequent exercise" to "every subsequent lab", "other steps and exercises" to "other steps and labs", "before starting the exercises" to "before starting the labs". `index.html`: hero text "Hands-on labs using…", heading "Labs", "work through the labs in order". `app.js`: group label "Additional Exercises" to "Additional Labs". Not changed: `docs/_template/` (project rule), code comments, track file names. `docs/setup.md` updates when `build-setup-md.py` runs. |
+| L1 | Lab 1 intro (clarification item: "You spelled Modernization wrong") | `docs/tracks/track-1.html` | Replaced the intro with the reviewer's text. The `detail-intro` now reads "Lab goal: Automatically generate a living architecture document and ERD from the legacy FLGHT4nn codebase, with no manual reverse-engineering." The PPi box now has the heading "IBM Bob Premium Package for i (PPi)", the lead-in "Two features change how you work with large IBM i codebases:", the `/init` and Understand bullets, and a "Why it matters" closing paragraph. "modernisation" is now "modernization". The reviewer's "FLGHT418" is written as `FLGHT4nn` so it fills in per attendee. |
+| L3 | Lab 1 step 1.1, context for opening the folder (user request, not in the reviewer's list) | `docs/tracks/track-1.html` | Added to the 1.1 intro: "Before Bob documents the application, it helps to see what the application looks like to the people who use it. The screens are defined in display files, and their DDS source lives in the QDDSSRCD source file. Opening that folder and previewing a screen shows you the green-screen layouts of the app, so you understand what Bob will be explaining in the rest of this lab." Also corrected step 1: QDDSSRCD "is where the DDS source for the application's green-screen display files is stored" (it said "the classic fixed-format RPG programs", which was wrong). |
+| L5 | Lab 1 step 1.3, Understand intro | `docs/tracks/track-1.html` | Replaced the intro paragraph with: "New in IBM Bob Premium Package for i: The Understand Dashboard scans your IBM i library and builds a live dependency map of every program, file, service program, menu, and command. You get a full picture of how your application fits together without reading a single line of source code." Replaced the info box with: "No setup required: Understand is already installed in the shared database library on your IBM i. You don't need to create or configure anything. Just use the existing installation to scan and view your assigned application (FLGHT4nn)." The reviewer's "FLGHT418" is written as `FLGHT4nn`. |
+| L2 | Lab 1 step 1.2, intro (rows 5 and 6 of `edits_to_make.md`) | `docs/tracks/track-1.html` | Replaced the two intro paragraphs under the 1.2 heading with one `info-box`: "New in IBM Bob Premium Package for i: /init works with QSYS (library list), IFS, and local workspace projects. Running /init creates an AGENTS.md file that gives Bob lasting, project-specific knowledge of your codebase…" (reviewer's text). Previously skipped, now applied. |
+| L6 | Lab 1 step 1.2.2, Run /init: chat panel location and "+" note (row 7 of `edits_to_make.md`) | `docs/tracks/track-1.html` | Changed "In the Bob chat panel, confirm…" to "In the Bob chat panel on the right-hand side, confirm…". Added a note box after it: "If you don't see IBM i Developer mode, click the + button on the right side of the chat panel to add it." The longer "Edit with this…" rewrite of this step (row 12) is still skipped (L4). |
+| L7 | Lab 1 step 1.3.2, Verify Understand Component (row 9 of `edits_to_make.md`) | `docs/tracks/track-1.html` | Added a note box after the install bullets: "If you cannot install, enter UNDERLIB inside the Change Install Library option." Worded to follow the reviewer's note as written. |
+| L4 | Lab 1 step 1.2.2, Run /init: full rewrite (row 12 of `edits_to_make.md`) | `docs/tracks/track-1.html` | Step text is now a numbered list: (1) check the mode is IBM i Developer and the scope is Library List (QSYS) in the Bob chat panel on the right-hand side; (2) type /init in the chat box and press Enter. The "+" note from L6 was kept. Slash commands box reworded to "Tip: Slash commands. Anything that starts with / is a built-in Bob command…". Post-run text is now "What happens next:" with two bullets (create QBOBSRC in FLGHT4nn; write the AGENTS member at FLGHT4nn/QBOBSRC/AGENTS) and a separate note box: "Bob may pause and ask for your approval during the process. Click Approve each time to continue." The reviewer's "FLGHT418" is written as `FLGHT4nn`. Previously skipped, now applied. |
+| L14 | Labs overview card (clarification item: "Add a note here – you have 4 labs below…") | `docs/tracks/overview.html` (new), `docs/js/app.js`, `build-offline.py` | Added a new "About the Labs" card (label "Overview", reuses the Setup color `track-0`) that loads right after Environment Setup and before Lab 1. It has a short description and, when expanded, four rows for Labs 1 to 4, each with a one-line summary, time, and a "Why it matters" box, plus a closing note about Labs 5 to 7 in the Additional Labs group. The "why it matters" wording was drafted from the track files and the reviewer's Lab 2 and Lab 3 text, so it needs review. `overview` added to `DEFAULT_TRACK_SLUGS` (`app.js`) and `SLUGS` (`build-offline.py`), kept in sync. The earlier version placed in `docs/index.html` was reverted. `docs/_template/` was not changed. |
+| G2 | American English spelling pass | `docs/tracks/track-1.html`, `docs/tracks/track-7.html` | Lab 1 card description: "initialise" to "initialize", "analyse" to "analyze". Lab 4: "modernises" to "modernizes", "modernising" to "modernizing", "utilisation" to "utilization", "behaviour" to "behavior", and "cancelled" to "canceled" (3 places). "cancellation" is already correct in US English and is unchanged. `docs/_template/` was not changed. |
+| L15 | Better lab descriptions in the "About the Labs" card | `docs/tracks/overview.html` | Replaced the one-line summary in each of the four lab rows with a fuller "what you'll do" description based on each lab's steps and wrap-up. Lab 1: browse FLGHT4nn, `/init`, Understand dependency map, architecture explanation and ERD. Lab 2: explain FRS409, run the RPG Modernization workflow, compile, review summary, output in `FLGHT4nn/QRPGLESRC/FRS409.RPGLE`. Lab 3: three plain-English questions (CPU by active job, top job, stale programs). Lab 4: 5250 screen in Bob's terminal and screenshot, helper skill, generated React Carbon app, port forward and open in browser. Titles and "Why it matters" boxes unchanged. Uses `FLGHT4nn` tokens (`.uc-desc` is autofilled). |
+
+
+
+
+## Skipped for now (needs a decision)
+
+| # | Section | Original note | Reason skipped |
+|---|---|---|---|
+| S2 | Setup 0.2, Verify and Install Required Extensions | "Do you mean (Mac or Windows)? If yes, specify in the instructions" | The reviewer's note is a question and the location it points to is unclear. Proposed change, if confirmed: in 0.2 step 1, change "(macOS)" and "(Windows/Linux)" to "(Mac)" and "(Windows)" next to the Extensions shortcut in `docs/tracks/setup.html`, line 94. |
+| L8 | Lab 1 step 1.2.3, Explore the result: Object Browser icon photo (row 13 of `edits_to_make.md`) | "show a photo of the icon to click to get back to the Object browser" | Skipped for now: no image provided. Needs a screenshot of the icon added to the repo root, then copied to `docs/img/` and added to step 3 with a caption. |
+| L9 | Lab 1 step 1.3.3, Add and Scan Your Application (row 10 of `edits_to_make.md`) | "Add you might need to go to manage application. You will also need to name the application." | Skipped at the user's request. Not applied. The "Manage applications" label was never confirmed. |
+| L10 | Lab 1 step 1.3.5, Insights tab (row 11 of `edits_to_make.md`) | "Put a red box around Insights tab please" | Skipped at the user's request. Image edit: needs the red box drawn on `docs/img/understand4.png`, or an edited image added to the repo root. |
+| L11 | Lab 2 intro (row 31 of `edits_to_make.md`) | "Edit to… EXERCISE 2 Program-Level Explanation & Modernization…" | Skipped at the user's request. Not applied. |
+| L12 | Lab 2 wrap-up (row 32 of `edits_to_make.md`) | "Exercise 2 Wrap-Up…" | Skipped at the user's request. Not applied. |
+| L13 | Lab 3 intro (row 33 of `edits_to_make.md`) | "Update to… EXERCISE 3 Ask Bob About Your System…" | Skipped at the user's request. Not applied. Lab 3 is in `docs/tracks/track-5.html`. |
+
+## Open clarification item (not done)
+
+| # | Section | Original note | Reason not done |
+|---|---|---|---|
+| C1 | Unnamed screenshot (clarification list in `edits_to_make.md`) | "Why am I doing this???!" | The note points at a screenshot but does not say which lab or step. Needs the lab and step number before anything can be changed. |
+
+## Summary of everything not applied
+
+- S2: Setup 0.2, "(Mac or Windows)" wording. Needs confirmation.
+- L8: Lab 1 1.2.3, Object Browser icon photo. Needs an image.
+- L9: Lab 1 1.3.3, "Manage applications" note. Skipped at the user's request.
+- L10: Lab 1 1.3.5, red box on the Insights tab. Skipped at the user's request. Needs an image edit.
+- L11: Lab 2 intro. Skipped at the user's request.
+- L12: Lab 2 wrap-up. Skipped at the user's request.
+- L13: Lab 3 intro. Skipped at the user's request.
+- C1: "Why am I doing this???!". Lab and step unknown.
+
+Everything else in `edits_to_make.md` is applied (see the Applied table). Builds were run after the last edit: `docs/setup.md`, `offline/`, and `offline.zip` are regenerated.
+
+Housekeeping: the root-level images `0.2.2_trustpublisher.png` and `0.5.1_newconnection.png` are originals. The published copies are `docs/img/trust-publishers.png` and `docs/img/new-connection.png`.

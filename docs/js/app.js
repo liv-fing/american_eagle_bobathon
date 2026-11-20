@@ -132,7 +132,7 @@
   // window.FLIGHT400_TRACK_PREFIX is retained for backwards compatibility
   // but is superseded by the local-override mechanism above.
 
-  var DEFAULT_TRACK_SLUGS = ['setup', 'track-1', 'track-2', 'track-3', 'track-4', 'track-5', 'track-6', 'track-7'];
+  var DEFAULT_TRACK_SLUGS = ['setup', 'overview', 'track-1', 'track-2', 'track-3', 'track-4', 'track-5', 'track-6', 'track-7'];
   // Tracks shown inside the collapsed "Additional Exercises" group.
   var ADDITIONAL_SLUGS = ['track-3', 'track-4', 'track-6'];
   // Tracks shown inside the collapsible "Environment Setup" group (index.html only).
@@ -183,7 +183,7 @@
     extraGroup.className = 'extra-group';
     extraGroup.innerHTML =
       '<button class="extra-toggle" type="button" aria-expanded="false" aria-controls="extra-body">' +
-        '<span class="extra-toggle-label">Additional Exercises</span>' +
+        '<span class="extra-toggle-label">Additional Labs</span>' +
         '<span class="card-chevron" aria-hidden="true">' +
           '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5l5 5 5-5"/></svg>' +
         '</span>' +

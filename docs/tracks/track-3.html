@@ -6,7 +6,7 @@
       </svg>
     </div>
     <div class="card-text">
-      <div class="card-label">Exercise 5</div>
+      <div class="card-label">Lab 5</div>
       <div class="card-title">Field Expansion: Add Total Flight Hours</div>
       <div class="card-desc">Use Bob's <em>IBM i Developer mode</em> to plan the change first, then implement it — adding a new business field, <em>Total Flight Hours</em>, from the physical file all the way to the 5250 screen.</div>
       <div class="card-meta">
@@ -31,7 +31,7 @@
             <tr><td>Screen (DDS)</td><td><code>SFLHRS</code></td><td>4/0, input/output, after Mileage</td></tr>
           </tbody>
         </table>
-        <div class="info-box mt-m"><strong>Before you begin:</strong> In the Bob chat panel, verify that you are in <strong>IBM i Developer</strong> mode, set scope to <strong>Library List (QSYS)</strong>, and confirm <code>FLGHT4nn</code> is on the library list. You stay in Developer mode for the whole exercise.</div>
+        <div class="info-box mt-m"><strong>Before you begin:</strong> In the Bob chat panel, verify that you are in <strong>IBM i Developer</strong> mode, set scope to <strong>Library List (QSYS)</strong>, and confirm <code>FLGHT4nn</code> is on the library list. You stay in Developer mode for the whole lab.</div>
       </div>
 
       <div class="use-cases">
@@ -114,7 +114,7 @@
               <div class="mode-step">
                 <div class="step-num">2</div>
                 <div class="step-body">
-                  <div class="step-desc"><strong>Optional — see it live in Bob's 5250 terminal:</strong> Open and sign on to the 5250 terminal in Bob by following <strong>Exercise 4 → 4.1</strong> (steps 1 and 2), then run:</div>
+                  <div class="step-desc"><strong>Optional — see it live in Bob's 5250 terminal:</strong> Open and sign on to the 5250 terminal in Bob by following <strong>Lab 4 → 4.1</strong> (steps 1 and 2), then run:</div>
                   <div class="step-prompt"><pre>ADDLIBLE FLGHT4nn
 CALL FLGHT4nn/FRS021</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
                   <div class="step-screenshot">
@@ -306,7 +306,7 @@ CRTRPGPGM PGM(FLGHT4nn/FRS021) SRCFILE(FLGHT4nn/QRPGSRC) SRCMBR(FRS021) REPLACE(
               <div class="mode-step">
                 <div class="step-num">2</div>
                 <div class="step-body">
-                  <div class="step-desc">Repeat step <strong>5.2</strong> (and optionally the 5250 view in Bob's 5250 terminal — see <strong>Exercise 4 → 4.1</strong>) — you should now see the new <strong>Flight Hours</strong> field on the flight schedule screen! 🎉</div>
+                  <div class="step-desc">Repeat step <strong>5.2</strong> (and optionally the 5250 view in Bob's 5250 terminal — see <strong>Lab 4 → 4.1</strong>) — you should now see the new <strong>Flight Hours</strong> field on the flight schedule screen! 🎉</div>
                 </div>
               </div>
             </div>
@@ -315,11 +315,11 @@ CRTRPGPGM PGM(FLGHT4nn/FRS021) SRCFILE(FLGHT4nn/QRPGSRC) SRCMBR(FRS021) REPLACE(
 
         <div class="use-case">
           <div class="use-case-header">
-            <div class="uc-title">Exercise 5 Wrap-Up</div>
+            <div class="uc-title">Lab 5 Wrap-Up</div>
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">In this exercise you added a new business field — Total Flight Hours — end-to-end through the Flight Maintenance application, from the physical file through the logical file, RPG program, and 5250 display file. Bob planned the change with you first, then implemented each layer with diff-level precision.</p>
+            <p class="uc-desc">In this lab you added a new business field — Total Flight Hours — end-to-end through the Flight Maintenance application, from the physical file through the logical file, RPG program, and 5250 display file. Bob planned the change with you first, then implemented each layer with diff-level precision.</p>
           </div></div>
         </div>
 

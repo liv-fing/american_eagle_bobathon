@@ -2,13 +2,13 @@
 
 # Environment Setup
 
-Complete all steps below before starting any exercise. Start by installing and logging in to Bob, then verify your extensions, find your library number, and finally connect to IBM i.
+Complete all steps below before starting any lab. Start by installing and logging in to Bob, then verify your extensions, find your library number, and finally connect to IBM i.
 
 ---
 
 ## 0.1 — Prerequisite Bob Setup
 
-Check your inbox for the **"You've been invited to join your team"** email, then follow these steps to install Bob and sign in for the first time.
+Check your inbox for the **"You've been invited to join your team"** email, then follow these steps to install Bob and sign in for the first time. If you did not receive an email, please reach out to your manager or IBM representative.
 
 1. **Create your IBM ID** — Open the invitation email and click the link to create your IBM ID. This gives you an account to access IBM Bob.
 
@@ -34,7 +34,7 @@ Check your inbox for the **"You've been invited to join your team"** email, then
 
 ## 0.2 — Verify and Install Required Extensions
 
-Two extensions are required. The **IBM Bob Premium Package for i** is often pre-installed for your team — verify it below. The **IBM i Development Pack** must be installed manually.
+In this step, you will be installing two extensions required for the Bob for i Lab. The **IBM Bob Premium Package for i** is often pre-installed for your team, so verify it below. The **IBM i Development Pack** must be installed manually.
 
 1. **Open the Extensions view** — Click the Extensions icon in the Activity Bar — the vertical strip of icons on the far left side of Bob — or press `Cmd+Shift+X` (macOS) or `Ctrl+Shift+X` (Windows/Linux) to open the Extensions panel.
 
@@ -42,7 +42,7 @@ Two extensions are required. The **IBM Bob Premium Package for i** is often pre-
 
    *Click the Extensions icon in the Activity Bar to open the Extensions panel*
 
-2. **Verify IBM Bob Premium Package for i** — Search for **"IBM Bob Premium Package for i"**. If **IBM Bob Premium Package for i** (publisher: IBM) appears with an **Install** button on the right, click **Install** now. If there is no **Install** button, you're all set — skip to step 3. This package includes Code for IBM i (source editing, object browser, IFS browser, Db2 for i, and more).
+2. **Verify IBM Bob Premium Package for i** — Search for **"IBM Bob Premium Package for i"**. If **IBM Bob Premium Package for i** (publisher: IBM) appears with an **Install** button on the right, click **Install** now. A prompt will ask whether you trust the publishers. Click **Trust Publishers & Install** to continue. If there is no **Install** button, you're all set — skip to step 3. This package includes Code for IBM i (source editing, object browser, IFS browser, Db2 for i, and more).
 
    > 💡 **What is IBM Bob Premium Package for i?** IBM Bob is an AI coding assistant, a lot like having a smart helper sitting next to you while you code. By default, Bob only works on files on your PC. The Premium Package for i is the add-on that connects Bob directly to your IBM i. Bob can then read, explain, edit, and test your RPG, CL, and SQL right where it lives. You don’t export it, edit it, and copy it back. It also comes with the Code for IBM i tools you already know.
 
@@ -50,23 +50,29 @@ Two extensions are required. The **IBM Bob Premium Package for i** is often pre-
 
    *Search for "IBM Bob Premium Package for i" — an Install button on the right means it still needs to be installed*
 
-3. **Install IBM i Development Pack** — Just like the previous step, search for **"IBM i Development Pack"** in the Extensions panel. This extension is **not** pre-installed — click **Install** if it does not appear under *Installed*. Reload Bob if prompted.
+   ![Trust publishers prompt with the Trust Publishers and Install button](img/trust-publishers.png)
+
+   *Click Trust Publishers & Install when prompted*
+
+3. **Install IBM i Development Pack** — Now you are installing the second extension. Use the search bar again to find **"IBM i Development Pack"**. Click the blue **Install** button. Reload Bob if prompted.
 
    > 💡 **What is the IBM i Development Pack?** The IBM i Development Pack adds all the IBM i tools to Bob in one install, so Bob can use them. That includes the connection to your system and the editing and database tools for RPG, CL, COBOL, and SQL. Think of it as the toolbox, and Bob is the AI helper that uses it.
 
-4. **Open Bob Settings** — Click the **Bob Settings** button in the bottom-right corner of the Bob IDE to open the Settings panel.
+4. **Open Bob Settings** — Next, in the bottom right corner of the screen, click **Open Bob Settings**.
 
    ![Bob Settings button in the bottom-right corner of the Bob IDE](img/bob_settings.png)
 
    *Click Bob Settings in the bottom-right corner of the Bob IDE*
 
-5. **Install Premium Package for i** — Further down the panel, next to the **Add ons** setting, you should see "IBM Bob Premium Package for i" displayed. Click **Install**, this might seem redundant but it is a required activation within Settings to fully connect the Premium Package. After its done downloading, Bob may ask you to restart the IDE — if so, accept and restart.
+5. **Install Premium Package for i** — Further down the panel, next to the **Add ons** setting, you should see "IBM Bob Premium Package for i" displayed. Click **Install**. This is a required activation within Settings to fully connect the Premium Package. After it's done downloading, Bob may ask you to restart. If so, accept and re-open the Bob app.
+
+   > ⚠️ If you do not see the add-on, please contact your manager or IBM representative. This means you likely do not have access to the environment. Also make sure you are in the right team.
 
    ![IBM Bob Premium Package for i shown next to the Add ons setting with an Install button](img/activatedd.png)
 
    *Click Install next to IBM Bob Premium Package for i under Add ons*
 
-6. **Confirm it is activated in Bob** — Now click the icon in the very top-right corner (shown in the first screenshot below) to return to your Bob chat. From there, click either **Agent** or the **+** sign, and you should see the **IBM i Developer** and **IBM i Database** modes listed as options. If they don't appear, your IBM Bob account likely hasn't been linked to your Premium Package for i entitlements yet.
+6. **Confirm it is activated in Bob** — Finally, click the icon in the very top right corner (shown in the first screenshot below). This will open the Bob chat interface on the right-hand side. Using this interface is how you will interact with Bob. Then click **Agent** or the **+** sign, and you should see the **IBM i Developer** and **IBM i Database** modes listed as options. If they do not appear, your IBM Bob account likely has not been linked to your Premium Package for i entitlements yet. If you do not see both modes, reach out to your manager or IBM representative.
 
    ![Icon in the top-right corner of Bob to return to the chat](img/sidebar-button.png)
 
@@ -76,7 +82,13 @@ Two extensions are required. The **IBM Bob Premium Package for i** is often pre-
 
    *IBM i Developer and IBM i Database appear in the mode list*
 
-7. **Understanding Bob Modes** — A mode is like a job description for Bob. It tells Bob two things: how to act (its role and expertise), and what it is allowed to touch (its permissions). Switching modes is like giving the same assistant a different job.
+7. **Understanding Bob Modes**
+
+   > **Note:** This step is only to help you learn about Bob modes. Nothing on your end needs to be completed.
+
+   Bob comes with 3 modes, and the Premium Package for i adds 2 more. In total, you will have 5 modes that Bob can use.
+
+   A mode is like a job description for Bob. It tells Bob two things: how to act (its role and expertise), and what it is allowed to touch (its permissions). Switching modes is like giving the same assistant a different job.
 
    **Bob comes with 3 default modes:**
 
@@ -110,11 +122,13 @@ Two extensions are required. The **IBM Bob Premium Package for i** is often pre-
 
 ## 0.3 — Choose Your Server, IP Address and Library Number
 
-1. **Find your assigned IP address and library number** — Your instructor will share the server IP address with you and display a spreadsheet assigning each participant a library number. Each participant has their own copy of the FLIGHT400 application in an isolated library named **FLGHT4nn** (e.g. FLGHT401, FLGHT402). Use only your assigned number throughout the lab so everyone can work independently without overwriting each other.
+Now we will connect to the TechZone Application by choosing your server, IP address, and library number.
+
+1. **Locate your assigned IP address and library number** — Your instructor will share the server IP address with you and display a spreadsheet assigning each participant a library number. Each participant has their own copy of the FLIGHT400 application in an isolated library named **FLGHT4nn** (e.g. FLGHT401, FLGHT402). Use only your assigned number throughout the lab so everyone can work independently without overwriting each other.
 
    > 💡 **Spelling note:** The library name is `FLGHT4nn` — note there is **no "I"** in FLGHT. Your instructor may say "Flight 4-nn" verbally, but when typing always use `FLGHT4nn` (F‑L‑G‑H‑T).
 
-2. **Type in the IP address from your instructor** — Paste or type the IP address provided by your instructor into the box below. You only do this once — all connection settings and prompts across this guide will update to match.
+2. **Type in the IP address from your instructor** — Type the IP address provided by your instructor into the box below. You only do this once — all connection settings and prompts across this guide will update to match.
 
    Your instructor will give you the IP address of your server. Wherever this guide shows `<myIPaddress>`, use that address.
 
@@ -143,23 +157,23 @@ Two extensions are required. The **IBM Bob Premium Package for i** is often pre-
    | 19 |  | `FLGHT419` | 3019 | `http://localhost:3019` |
    | 20 |  | `FLGHT420` | 3020 | `http://localhost:3020` |
 
-   > 💡 **Note:** The **Dev Port** (`30nn`) is only used later in **Exercise 4** when launching the modernized web application.
+   > 💡 **Note:** The **Dev Port** (`30nn`) is only used later in **Lab 4** when launching the modernized web application.
 
 4. **Verify it is working**
 
-   > ✅ **Verify your setup** When setup is complete, you should see a floating status banner in the bottom-right corner of your screen with a green check mark and no warning icon. For example: `✅ Student 8 · FLGHT408 :3008` Your numbers will match the library row you selected. If you see a warning icon or anything looks different, don't worry. See the **Debugging** step below, which explains the common errors and how to fix them. Need help debugging the status banner? `⚠ Set your IP address and library (step 0.3)` — neither your IP nor library has been set up yet. `⚠ Set your library (step 0.3)` — your IP is saved, but you haven't clicked **Select** on your library row. `Student 1 · FLGHT401 :3001 · ⚠ Set your IP address (step 0.3)` — your library is selected, but your IP address is missing. `✅ Student 1 · FLGHT401 :3001` — all set! The green check mark appears, warnings disappear, and your guide is ready. Want to switch or change your current library? This should only be done if you accidentally clicked the wrong library or if the instructor reassigned you to a different library number. To switch, click the **Switch Library** button located to the right of `✅ Active Library: FLGHT4nn (Student #nn) | Dev Port: 30nn`. This will expand all library rows while keeping your currently selected library highlighted. Simply click **Select** on your new library number and confirm the switch.
+   > ✅ **Verify your setup** When setup is complete, you should see a floating status banner in the bottom-right corner of this screen with a green check mark and no warning icon. For example: `✅ Student 8 · FLGHT408 :3008` Your numbers will match the library row you selected. If you see a warning icon or anything looks different, don't worry. See the **Debugging** step below, which explains the common errors and how to fix them. Need help debugging the status banner? `⚠ Set your IP address and library (step 0.3)` — neither your IP nor library has been set up yet. `⚠ Set your library (step 0.3)` — your IP is saved, but you haven't clicked **Select** on your library row. `Student 1 · FLGHT401 :3001 · ⚠ Set your IP address (step 0.3)` — your library is selected, but your IP address is missing. `✅ Student 1 · FLGHT401 :3001` — all set! The green check mark appears, warnings disappear, and your guide is ready. Want to switch or change your current library? This should only be done if you accidentally clicked the wrong library or if the instructor reassigned you to a different library number. To switch, click the **Switch Library** button located to the right of `✅ Active Library: FLGHT4nn (Student #nn) | Dev Port: 30nn`. This will expand all library rows while keeping your currently selected library highlighted. Simply click **Select** on your new library number and confirm the switch.
 
 ---
 
 ## 0.4 — Save and Prepare Your Private Key
 
-Your instructor has sent you a zip file. Double-click it to open it. When it asks for a password, enter the password your instructor gives you. After you enter it, you will see a **.pem key file**. Save it somewhere you can find it, because you will use this private key to connect Bob to IBM i.
+In this step, we are linking the SSH key with the server to make a connection. Your instructor has sent you a zip file. Double-click it to open it. When it asks for a password, enter the password your instructor gives you. After you enter it, you will see a **.pem key file**. Save it somewhere you can find it, because you will use this private key to connect Bob to IBM i.
 
 1. **Extract the encrypted private key archive** — Your instructor has provided a password-protected zip file containing your private key. Double-click the zip file, and you will be prompted to enter a password. Enter the password your instructor gives you. This should leave you with the `ae_primary_key.pem` file, which is the private key you will use to connect to your IBM i server for today's lab.
 
    > 💡 **Tip:** Keep `ae_primary_key.pem` in a known folder on your computer (such as your **Downloads** folder) so you can easily browse to it when connecting.
 
-2. **Tighten private key permissions** — Open your terminal or command prompt. You **must be in the directory / folder where you have the key saved**. If you just downloaded it, odds are it is in your Downloads folder, so `cd` to Downloads first:
+2. **Tighten private key permissions** — If you run into permission issues, please follow the additional step below. Otherwise, you are OK to skip this step. Open your terminal or command prompt. You **must be in the directory / folder where you have the key saved**. If you just downloaded it, odds are it is in your Downloads folder, so `cd` to Downloads first:
 
    **macOS / Linux** — in **Terminal**, navigate to your Downloads folder:
 
@@ -191,11 +205,15 @@ Your instructor has sent you a zip file. Double-click it to open it. When it ask
 
 ## 0.5 — Connect Bob IDE to IBM i
 
-1. **Add a new connection** — Click the IBM i icon in the Activity Bar (indicated by the red arrow in the screenshot below), then click **New Connection**. Enter the host IP `<myIPaddress>`, the user profile `ITZUSER`, and select the `ae_primary_key.pem` private key file you prepared in step 0.4. When prompted for the private key, browse to where you saved `ae_primary_key.pem` on your computer. **Do not use a password here — use only the `ae_primary_key.pem` private key file.**
+1. **Add a new connection** — Click the IBM i icon in the Activity Bar (indicated by the red arrow in the screenshot below), then click the blue **Connect to an IBM i** button. For the connection name, enter `FLGHT4nn`. Enter the host IP `<myIPaddress>` and the user profile `ITZUSER`. You don't need a password. You will use the private key instead. Click **Select File** to find the `ae_primary_key.pem` private key you saved in step 0.4, then click **Connect**.
 
    ![IBM i icon in the Bob Activity Bar](img/ibmi_icon.png)
 
    *Click the IBM i icon in the Activity Bar*
+
+   ![IBM i panel with the blue Connect to an IBM i button](img/new-connection.png)
+
+   *Click the blue Connect to an IBM i button*
 
    ![IBM i connection dialog in Bob IDE](img/i-connection.png)
 
@@ -240,3 +258,5 @@ Your instructor has sent you a zip file. Double-click it to open it. When it ask
    ![Library List scope selected in the Bob chat](img/librarylist.png)
 
    *Verify the chat scope shows Library List*
+
+   > 🎉 **Congratulations!** You have completed the environment setup and are now ready to move on to the labs!

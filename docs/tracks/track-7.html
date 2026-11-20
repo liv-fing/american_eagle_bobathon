@@ -6,7 +6,7 @@
       </svg>
     </div>
     <div class="card-text">
-      <div class="card-label">Exercise 4</div>
+      <div class="card-label">Lab 4</div>
       <div class="card-title">Generate a React Carbon App from a Green Screen</div>
       <div class="card-desc">Use Bob in IBM i Developer mode to analyze the FLIGHT400 5250 screen and generate a modern React web application styled with IBM Carbon, running directly on IBM i PASE.</div>
       <div class="card-meta">
@@ -32,7 +32,7 @@
           </div>
           <div class="uc-body"><div class="uc-body-inner">
             <p class="uc-desc">Bob has a built-in 5250 terminal that uses your existing IBM i connection. There is nothing to install, no extra SSH command, and it works the same on Windows and macOS.</p>
-            <div class="info-box">💡 If the 5250 emulator doesn't work for you, don't worry. Just keep going. You can complete the rest of the exercise without it. It is only here to show you the existing green-screen application before we modernize it.</div>
+            <div class="info-box">💡 If the 5250 emulator doesn't work for you, don't worry. Just keep going. You can complete the rest of the lab without it. It is only here to show you the existing green-screen application before we modernize it.</div>
             <div class="mode-steps">
               <div class="mode-step">
                 <div class="step-num">1</div>
@@ -377,7 +377,7 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       output: {
-        // Split Carbon into its own chunks for better browser cache utilisation
+        // Split Carbon into its own chunks for better browser cache utilization
         manualChunks: {
           carbon: ['@carbon/react'],
           icons:  ['@carbon/icons-react'],
@@ -659,9 +659,9 @@ A successful start looks like:
 
 ### Why this works where `npm run dev &lt; /dev/null &amp;` does not
 
-| Approach | Stdin behaviour | Safe? |
+| Approach | Stdin behavior | Safe? |
 |---|---|---|
-| `nohup npm run dev &lt; /dev/null &amp;` | `npm` gets `/dev/null`, but its **subshell** for `$(node -e ...)` inherits the original PASE pipe | ❌ Hangs / cancelled |
+| `nohup npm run dev &lt; /dev/null &amp;` | `npm` gets `/dev/null`, but its **subshell** for `$(node -e ...)` inherits the original PASE pipe | ❌ Hangs / canceled |
 | `start-dev.sh` with pre-resolved `ESBUILD_BINARY_PATH` + direct `./node_modules/.bin/vite` | No subshell at fork time; `nohup` fully detaches | ✅ Reliable |
 
 ### Managing the running server
@@ -684,7 +684,7 @@ kill $(cat /tmp/vite-&lt;screen-name&gt;.pid)
 | Problem / Trap | Root Cause | Solution |
 |---|---|---|
 | **PASE command hangs on `npm create`** | Interactive prompt when directory exists | Always run `rm -rf &lt;dir&gt;` before `npm create` |
-| **`nohup npm run dev &amp;` gets cancelled** | `npm run` subshell keeps PASE pipe open | Use `start-dev.sh` — resolve env vars first, call `./node_modules/.bin/vite` directly |
+| **`nohup npm run dev &amp;` gets canceled** | `npm run` subshell keeps PASE pipe open | Use `start-dev.sh` — resolve env vars first, call `./node_modules/.bin/vite` directly |
 | **Command substitution freeze** | `xargs` buffering in PASE subshells | Use `process.stdout.write(...)` without `xargs` |
 | **Script parsing syntax errors** | Inlining multiline bash with JSX quotes via `node -e` | Use `write_stream_file` or `apply_diff` to create the script file first |
 | **Port conflict on startup** | Previous Vite instance still listening | Check `/tmp/vite-&lt;screen-name&gt;.log` for the actual bound port |
@@ -706,7 +706,7 @@ kill $(cat /tmp/vite-&lt;screen-name&gt;.pid)
 | `DEPRECATION WARNING [legacy-js-api]` floods output | Vite 4 uses Sass legacy JS API | Add `'legacy-js-api'` to `silenceDeprecations` |
 | Dev server unreachable from browser | `host` defaults to `localhost` | Set `server: { host: '0.0.0.0' }` in vite config |
 | `npm install` hangs or download fails | esbuild/other postinstall scripts run | Always pass `--ignore-scripts` |
-| `nohup npm run dev` tool call cancelled by Bob | PASE pipe kept open by npm subshell | Use `start-dev.sh` pattern (Step 11) |
+| `nohup npm run dev` tool call canceled by Bob | PASE pipe kept open by npm subshell | Use `start-dev.sh` pattern (Step 11) |
 | `node: No such file or directory` in any script | PATH not inherited in PASE shell | Export full PATH at top of every wrapper script (see Step 1) |
 
 ---
@@ -762,7 +762,7 @@ These rules apply before any `npm`, `node`, `npx`, or `vite` command:
                 <div class="step-body">
                   <div class="step-title">New task in Library List, then paste the screenshot</div>
                   <div class="step-desc">Confirm you are in <strong>IBM i Developer</strong> mode, then click the <strong>+</strong> button and start a new task in <strong>Library List</strong> with your <strong>FLGHT4nn</strong> library list as the context. Next, right-click the screenshot below, choose <strong>Copy Image</strong>, and paste it into the Bob chat prompt.</div>
-                  <div class="info-box">💡 <strong>Node.js:</strong> If Node.js is not yet installed on your IBM i, Bob will handle the installation as part of this exercise.</div>
+                  <div class="info-box">💡 <strong>Node.js:</strong> If Node.js is not yet installed on your IBM i, Bob will handle the installation as part of this lab.</div>
                   <div class="step-screenshot">
                     <img src="img/flight400.png" alt="FLIGHT400 5250 Create Order screen — copy this screenshot and paste it into the Bob prompt"/>
                     <div class="step-screenshot-caption">Right-click this screenshot of the FLIGHT400 Create Order screen, copy it, and paste it into the Bob prompt</div>
@@ -774,10 +774,10 @@ These rules apply before any `npm`, `node`, `npx`, or `vite` command:
                 <div class="step-body">
                   <div class="step-title">Copy the prompt and paste it</div>
                   <div class="step-desc">With the screenshot in the chat prompt, copy the prompt below, paste it after the screenshot, and send.</div>
-                  <div class="step-prompt"><pre>Given this screenshot of the 5250 flight order screen from the Application Flight4nn in @FLGHT4nn, Build a single-page React 18 + Vite 4 app on IBM i (PASE) using @carbon/react ^1.x with the g100 dark theme that modernises the IBM i 5250 screen shown in the attached screenshot. Create the app in the IFS at $HOME/flight4nn-frontend-apps/screen-name/. Use the g100 dark theme. All fields should have a list of values to select from. The dev server must run in the background using nohup … &amp; and write output to /tmp/vite-30nn.log and save the process ID to /tmp/vite-30nn.pid. Pin the Vite dev server to port 30nn if available.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
+                  <div class="step-prompt"><pre>Given this screenshot of the 5250 flight order screen from the Application Flight4nn in @FLGHT4nn, Build a single-page React 18 + Vite 4 app on IBM i (PASE) using @carbon/react ^1.x with the g100 dark theme that modernizes the IBM i 5250 screen shown in the attached screenshot. Create the app in the IFS at $HOME/flight4nn-frontend-apps/screen-name/. Use the g100 dark theme. All fields should have a list of values to select from. The dev server must run in the background using nohup … &amp; and write output to /tmp/vite-30nn.log and save the process ID to /tmp/vite-30nn.pid. Pin the Vite dev server to port 30nn if available.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
                   <div class="step-screenshot">
                     <img src="img/Flight-react-agentic.png" alt="Example of the React Carbon app generated from a 5250 screen"/>
-                    <div class="step-screenshot-caption">Example result — React Carbon app modernising a 5250 screen</div>
+                    <div class="step-screenshot-caption">Example result — React Carbon app modernizing a 5250 screen</div>
                   </div>
                 </div>
               </div>
@@ -835,11 +835,11 @@ These rules apply before any `npm`, `node`, `npx`, or `vite` command:
 
         <div class="use-case">
           <div class="use-case-header">
-            <div class="uc-title">Exercise 4 Wrap-Up</div>
+            <div class="uc-title">Lab 4 Wrap-Up</div>
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">In this exercise you analyzed a 5250 green screen and generated a modern React 18 + Vite app styled with IBM Carbon, running natively on IBM i PASE — in about 30 minutes. The natural next step is connecting the React front end to the real IBM i business logic and Db2 for i database via a REST or Web Services layer.</p>
+            <p class="uc-desc">In this lab you analyzed a 5250 green screen and generated a modern React 18 + Vite app styled with IBM Carbon, running natively on IBM i PASE — in about 30 minutes. The natural next step is connecting the React front end to the real IBM i business logic and Db2 for i database via a REST or Web Services layer.</p>
           </div></div>
         </div>
 

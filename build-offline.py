@@ -29,7 +29,7 @@ OUT = ROOT / "offline"
 ZIP = ROOT / "offline.zip"
 
 # Same order as DEFAULT_TRACK_SLUGS in docs/js/app.js.
-SLUGS = ["setup", "track-1", "track-2", "track-3", "track-4", "track-5", "track-6", "track-7"]
+SLUGS = ["setup", "overview", "track-1", "track-2", "track-3", "track-4", "track-5", "track-6", "track-7"]
 
 MIME = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
         ".gif": "image/gif", ".svg": "image/svg+xml", ".webp": "image/webp"}

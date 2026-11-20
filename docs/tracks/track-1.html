@@ -6,9 +6,9 @@
       </svg>
     </div>
     <div class="card-text">
-      <div class="card-label">Exercise 1</div>
+      <div class="card-label">Lab 1</div>
       <div class="card-title">Code Explanation &amp; Architecture Documentation</div>
-      <div class="card-desc">Use Bob to browse the application, initialise context with <code>/init</code>, analyse dependencies with the Understand Dashboard, generate an architecture overview, and produce an Entity Relationship Diagram.</div>
+      <div class="card-desc">Use Bob to browse the application, initialize context with <code>/init</code>, analyze dependencies with the Understand Dashboard, generate an architecture overview, and produce an Entity Relationship Diagram.</div>
       <div class="card-meta">
         <span class="card-tag">~40 min</span>
         <span class="mode-pill mode-pill--developer">IBM i Developer mode</span>
@@ -23,15 +23,16 @@
 
   <div class="card-detail">
     <div class="card-detail-inner">
-      <div class="detail-intro">Generate a living architecture document and ERD from the legacy FLGHT4nn codebase — no manual reverse-engineering required.</div>
+      <div class="detail-intro"><strong>Lab goal:</strong> Automatically generate a living architecture document and ERD from the legacy FLGHT4nn codebase, with no manual reverse-engineering.</div>
 
       <div class="info-box mb-l">
-        <strong>📦 IBM Bob Premium Package for i (PPi) — two features that change how you work with large codebases:</strong>
+        <strong>📦 IBM Bob Premium Package for i (PPi)</strong><br/>
+        Two features change how you work with large IBM i codebases:
         <ul class="detail-list">
-          <li><strong><code>/init</code></strong> — scans your library once and writes a persistent <code>AGENTS</code> context file. Every subsequent Bob session reads it automatically, so Bob always knows your source layout, compile conventions, and project-specific gotchas without re-reading source each time.</li>
-          <li><strong>Understand</strong> — builds a persistent, scanned dependency graph of your entire application. Instead of feeding source members to the AI, Bob queries the pre-built metadata: object inventory, inbound/outbound dependencies, signals, and usage statistics are answered instantly from the scan.</li>
+          <li><strong><code>/init</code>:</strong> Scans your library once and creates a persistent AGENTS context file. Every future Bob session reads it automatically, so Bob already knows your source layout, compile conventions, and project-specific quirks without re-reading your code each time.</li>
+          <li><strong>Understand:</strong> Builds a persistent dependency map of your entire application. Bob doesn't have to feed source members to the AI. It queries the pre-built scan, so it can answer instantly about object inventory, inbound and outbound dependencies, signals, and usage.</li>
         </ul>
-        <p class="mt-s">Together, these two features make IBM i modernisation tasks <strong>more accurate and dramatically cheaper in Bob Coins</strong> — Bob reasons from structured metadata rather than consuming tokens re-reading hundreds of source members on every question. Less token usage, deterministic dependency data, and shared metadata across your whole team: this is what PPi is designed for.</p>
+        <p class="mt-s"><strong>Why it matters:</strong> Bob works from structured metadata instead of re-reading hundreds of source members for every question. That makes IBM i modernization work more accurate and far less costly in Bob Coins. You get lower token usage, reliable dependency data, and shared metadata your whole team can use.</p>
       </div>
 
       <div class="use-cases">
@@ -42,13 +43,13 @@
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">Explore the FLGHT4nn library structure before generating documentation.</p>
+            <p class="uc-desc">Explore the FLGHT4nn library structure before generating documentation. Before Bob documents the application, it helps to see what the application looks like to the people who use it. The screens are defined in display files, and their DDS source lives in the <code>QDDSSRCD</code> source file. Opening that folder and previewing a screen shows you the green-screen layouts of the app, so you understand what Bob will be explaining in the rest of this lab.</p>
             <div class="mode-steps">
               <div class="mode-step">
                 <div class="step-num">1</div>
                 <div class="step-body">
                   <div class="step-title">Expand your library in the Object Browser</div>
-                  <div class="step-desc">In the IBM i sidebar, expand <strong>User Library List</strong> and <strong>Object Browser</strong>, then expand <strong>Source Files</strong>. From there, search for the folder <code>QDDSSRCD</code>, which is where the classic fixed-format RPG programs are stored.</div>
+                  <div class="step-desc">In the IBM i sidebar, expand <strong>User Library List</strong> and <strong>Object Browser</strong>, then expand <strong>Source Files</strong>. From there, search for the folder <code>QDDSSRCD</code>, which is where the DDS source for the application's green-screen display files is stored.</div>
                   <div class="step-screenshot">
                     <img src="img/expand.png" alt="Expanding the Object Browser filter and Source Files"/>
                     <div class="step-screenshot-caption">Expand your library filter and Source Files in the Object Browser</div>
@@ -72,7 +73,7 @@
                     <img src="img/prev.png" alt="Rendered preview of the FRS001DF screen"/>
                     <div class="step-screenshot-caption">Rendered preview of FRS001DF</div>
                   </div>
-                  <div class="info-box">💡 Try <code>FRS021DF</code> as well — this is the <strong>Flight Maintenance</strong> screen used in Exercise 5.</div>
+                  <div class="info-box">💡 Try <code>FRS021DF</code> as well — this is the <strong>Flight Maintenance</strong> screen used in Lab 5.</div>
                   <div class="step-screenshot">
                     <img src="img/search3.png" alt="Opening FRS021DF in QDDSSRCD and clicking Preview All"/>
                     <div class="step-screenshot-caption">Open FRS021DF and click Preview All</div>
@@ -93,8 +94,7 @@
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc"><strong>New feature of IBM Bob Premium Package for i</strong> — <code>/init</code> works in QSYS (library list), IFS, and local workspace modes.</p>
-            <p class="uc-desc">An <strong>AGENTS.md</strong> file gives Bob persistent, project-specific context about your codebase — source file layout, compile conventions, naming patterns, and critical gotchas. Instead of rediscovering your project from scratch each session, Bob reads this file first and immediately knows how your library is structured, which source files contain what, and what to watch out for.</p>
+            <div class="info-box mb-l"><strong>New in IBM Bob Premium Package for i:</strong> <code>/init</code> works with QSYS (library list), IFS, and local workspace projects. Running <code>/init</code> creates an <strong>AGENTS.md</strong> file that gives Bob lasting, project-specific knowledge of your codebase. That includes your source file layout, compile conventions, naming patterns, and key things to watch out for. Bob reads this file at the start of every session, so it doesn't have to rediscover your project each time. It already knows how your library is organized, what each source file contains, and where the pitfalls are.</div>
             <div class="mode-steps">
               <div class="mode-step">
                 <div class="step-num">1</div>
@@ -113,13 +113,25 @@
                 <div class="step-body">
                   <span class="mode-pill mode-pill--developer">IBM i Developer mode</span>
                   <div class="step-title">Run <code>/init</code></div>
-                  <div class="step-desc">In the Bob chat panel, confirm you are in <strong>IBM i Developer</strong> mode with scope set to <strong>Library List (QSYS)</strong>. Type <code>/init</code> in the chat and press <strong>Enter</strong>.</div>
-                  <div class="info-box">💡 <strong>Slash commands:</strong> The <code>/</code> prefix triggers a Bob built-in action. Typing <code>/</code> followed by a command name tells Bob to run that specific action rather than treating it as a regular chat message.</div>
+                  <div class="step-desc">
+                    <ol class="detail-list">
+                      <li>In the Bob chat panel on the right-hand side, check that the mode is set to <strong>IBM i Developer</strong> and the scope is set to <strong>Library List (QSYS)</strong>.</li>
+                      <li>Type <code>/init</code> in the chat box and press <strong>Enter</strong>.</li>
+                    </ol>
+                  </div>
+                  <div class="info-box">💡 If you don't see <strong>IBM i Developer</strong> mode, click the <strong>+</strong> button on the right side of the chat panel to add it.</div>
+                  <div class="info-box">💡 <strong>Tip: Slash commands.</strong> Anything that starts with <code>/</code> is a built-in Bob command. Typing <code>/</code> plus a command name tells Bob to run that action instead of treating it as a regular chat message.</div>
                   <div class="step-screenshot">
                     <img src="img/initc.png" alt="Running /init in the Bob chat in IBM i Developer mode with Library List scope"/>
                     <div class="step-screenshot-caption">Run /init in IBM i Developer mode with Library List scope</div>
                   </div>
-                  <div class="step-desc mt-s">Bob will scan your library — measuring source files, member types, service programs, IWS web services, naming conventions, and database objects — then create a <code>QBOBSRC</code> source physical file in <code>FLGHT4nn</code> (if it does not exist) and write an <code>AGENTS</code> member at <code>FLGHT4nn/QBOBSRC/AGENTS</code> in Markdown format. Bob may ask for your approval at points during the process — click <strong>Approve</strong> to continue.</div>
+                  <div class="step-desc mt-s"><strong>What happens next:</strong> Bob scans your library and catalogs source files, member types, service programs, IWS web services, naming conventions, and database objects. It then:
+                    <ul class="detail-list">
+                      <li>Creates a <code>QBOBSRC</code> source physical file in <code>FLGHT4nn</code> (if one doesn't already exist)</li>
+                      <li>Writes an <code>AGENTS</code> member in Markdown format at <code>FLGHT4nn/QBOBSRC/AGENTS</code></li>
+                    </ul>
+                  </div>
+                  <div class="info-box"><strong>Note:</strong> Bob may pause and ask for your approval during the process. Click <strong>Approve</strong> each time to continue.</div>
                 </div>
               </div>
               <div class="mode-step">
@@ -144,8 +156,8 @@
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc"><strong>New feature of IBM Bob Premium Package for i.</strong> The <strong>Understand Dashboard</strong> scans your IBM i library and builds a live dependency graph of every program, file, service program, menu, and command — without you reading a single line of source.</p>
-            <div class="info-box mb-l">💡 <strong>Shared Understand Database:</strong> The Understand component is pre-installed in the shared database library on your IBM i. You do not need to create or configure a separate metadata library — everyone uses the existing installation to scan and view their assigned application (<code>FLGHT4nn</code>).</div>
+            <p class="uc-desc"><strong>New in IBM Bob Premium Package for i:</strong> The <strong>Understand Dashboard</strong> scans your IBM i library and builds a live dependency map of every program, file, service program, menu, and command. You get a full picture of how your application fits together without reading a single line of source code.</p>
+            <div class="info-box mb-l">💡 <strong>No setup required:</strong> Understand is already installed in the shared database library on your IBM i. You don't need to create or configure anything. Just use the existing installation to scan and view your assigned application (<code>FLGHT4nn</code>).</div>
             <div class="mode-steps">
               <div class="mode-step">
                 <div class="step-num">1</div>
@@ -165,6 +177,7 @@
                   <div class="step-title">Verify Understand Component</div>
                   <div class="step-desc">Look at the <strong>Understand component</strong> card at the top of the dashboard:</div>
                   <div class="step-desc mt-s">• If it shows <strong class="badge badge--green">● Installed</strong>, the shared backend is ready — you can skip directly to Step 3.<br/>• If it shows <strong>Not installed</strong>, click <strong>Install Understand</strong> and click <strong>Proceed</strong> on the confirmation popup to use the default settings.</div>
+                  <div class="info-box">💡 If you cannot install, enter <code>UNDERLIB</code> inside the <strong>Change Install Library</strong> option.</div>
                   <div class="step-screenshot">
                     <img src="img/udl.png" alt="Understand overview showing the component status and Install Understand button"/>
                     <div class="step-screenshot-caption">Verify the component shows Installed, or click Install Understand if needed</div>
@@ -237,7 +250,7 @@
                 </div>
               </div>
             </div>
-            <div class="info-box mt-m">💡 <strong>Tip:</strong> The <strong>Understand</strong> component and <strong>Documentation</strong> (IBM i Documentation RAG-based tool) can be leveraged across all other steps and exercises (such as Documentation, Refactoring, and Testing). Make sure to enable both <strong>Documentation</strong> and <strong>Understand</strong> in the <strong>Permissions</strong> menu for each Bob Task (chat) to fully leverage these capabilities.</div>
+            <div class="info-box mt-m">💡 <strong>Tip:</strong> The <strong>Understand</strong> component and <strong>Documentation</strong> (IBM i Documentation RAG-based tool) can be leveraged across all other steps and labs (such as Documentation, Refactoring, and Testing). Make sure to enable both <strong>Documentation</strong> and <strong>Understand</strong> in the <strong>Permissions</strong> menu for each Bob Task (chat) to fully leverage these capabilities.</div>
             <div class="step-screenshot"><img src="img/enable-permissions.png" alt="Enable Documentation and Understand permissions in Bob chat"/></div>
             <div class="info-box">✅ <strong>What Understand tells you in under 5 minutes:</strong> Map programs, files and dependencies. Find the most referenced objects, reveal dependencies, and review dynamic SQL, triggers and foreign keys.</div>
           </div></div>
@@ -303,11 +316,11 @@
 
         <div class="use-case">
           <div class="use-case-header">
-            <div class="uc-title">Exercise 1 Wrap-Up</div>
+            <div class="uc-title">Lab 1 Wrap-Up</div>
             <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
           <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">In this exercise you explored the FLGHT4nn codebase, initialized Bob's persistent context with <code>/init</code>, mapped the full application dependency graph using Understand, and generated an architecture overview and ERD. Bob now has everything it needs to reason about your application in every subsequent exercise — without re-reading source each time.</p>
+            <p class="uc-desc">In this lab you explored the FLGHT4nn codebase, initialized Bob's persistent context with <code>/init</code>, mapped the full application dependency graph using Understand, and generated an architecture overview and ERD. Bob now has everything it needs to reason about your application in every subsequent lab — without re-reading source each time.</p>
           </div></div>
         </div>
 

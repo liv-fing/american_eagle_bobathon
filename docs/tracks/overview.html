@@ -1,0 +1,78 @@
+<div class="bubble-card track-0" id="card-overview">
+  <div class="card-summary">
+    <div class="card-icon" aria-label="Lab overview">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--c0)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/>
+      </svg>
+    </div>
+    <div class="card-text">
+      <div class="card-label">Overview</div>
+      <div class="card-title">About the Labs</div>
+      <div class="card-desc">There are four main labs below, each with a different purpose. Together they take you from understanding an application to modernizing it.</div>
+      <div class="card-meta">
+        <span class="card-tag">Read first</span>
+      </div>
+    </div>
+    <div class="card-chevron" aria-hidden="true">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5l5 5 5-5"/></svg>
+    </div>
+  </div>
+
+  <div class="card-detail">
+    <div class="card-detail-inner">
+
+      <div class="detail-intro">Here is what each main lab covers and why it matters. You will work through them in order, and each one builds on the one before it.</div>
+
+      <div class="use-cases">
+
+        <div class="use-case">
+          <div class="use-case-header">
+            <div class="uc-title">Lab 1 — Code Explanation &amp; Architecture Documentation (~40 min)</div>
+            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
+          </div>
+          <div class="uc-body"><div class="uc-body-inner">
+            <p class="uc-desc">You start by browsing the FLGHT4nn library and previewing the green-screen layouts in the Object Browser. Next you initialize Bob's context with <code>/init</code> and use the Understand dashboard to build a live dependency map of the programs, files, service programs, menus, and commands. Finally, you have Bob write an architecture explanation and an Entity Relationship Diagram (ERD). You finish with a documented application that Bob understands, and you'll use that context in the later labs.</p>
+            <div class="info-box">💡 <strong>Why it matters:</strong> Before you change an application, you need to understand it. Bob does in minutes what normally takes days of reading source.</div>
+          </div></div>
+        </div>
+
+        <div class="use-case">
+          <div class="use-case-header">
+            <div class="uc-title">Lab 2 — Program-Level Explanation &amp; Modernization (~15 min)</div>
+            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
+          </div>
+          <div class="uc-body"><div class="uc-body-inner">
+            <p class="uc-desc">You open FRS409, a 30-year-old OPM RPG program, and ask Bob to explain what it does. Then you run Bob's RPG Modernization workflow to convert it to modern free-format ILE RPG. Bob compiles the result on your IBM i, and you review the modernization summary. The modernized source ends up in <code>FLGHT4nn/QRPGLESRC/FRS409.RPGLE</code>.</p>
+            <div class="info-box">💡 <strong>Why it matters:</strong> Most IBM i shops have older programs that only a few people still understand. This lab shows how to make that code readable and maintainable.</div>
+          </div></div>
+        </div>
+
+        <div class="use-case">
+          <div class="use-case-header">
+            <div class="uc-title">Lab 3 — Ask Bob About Your System (~10 min)</div>
+            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
+          </div>
+          <div class="uc-body"><div class="uc-body-inner">
+            <p class="uc-desc">You ask Bob three plain-English questions about your live IBM i. They cover which active jobs use the most CPU, what the top job is doing, and which programs in your library haven't been used recently. You don't need to know any system commands.</p>
+            <div class="info-box">💡 <strong>Why it matters:</strong> Anyone on the team can get clear answers about the system without knowing the underlying commands.</div>
+          </div></div>
+        </div>
+
+        <div class="use-case">
+          <div class="use-case-header">
+            <div class="uc-title">Lab 4 — Generate a React Carbon App from a Green Screen (~30 min)</div>
+            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
+          </div>
+          <div class="uc-body"><div class="uc-body-inner">
+            <p class="uc-desc">You open the 5250 green screen in Bob's built-in terminal and take a screenshot of it. You create a helper skill so Bob knows how to run React and Vite on IBM i PASE. Then Bob generates a modern React app styled with IBM Carbon from the screenshot. You forward a port and open the running app in your browser.</p>
+            <div class="info-box">💡 <strong>Why it matters:</strong> It shows how to give an existing application a modern face without rewriting the business logic.</div>
+          </div></div>
+        </div>
+
+      </div>
+
+      <div class="info-box mt-m">Labs 5 to 7 are additional labs you can try if time allows. You will find them in the <strong>Additional Labs</strong> group below Lab 4.</div>
+
+    </div>
+  </div>
+</div>
