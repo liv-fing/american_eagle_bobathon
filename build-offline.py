@@ -34,6 +34,8 @@ SLUGS = ["setup", "overview", "track-1", "track-2", "track-3", "track-4", "track
 MIME = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
         ".gif": "image/gif", ".svg": "image/svg+xml", ".webp": "image/webp"}
 IMG_ATTR_RE = re.compile(r'(src|href)="img/([^"]+)"')
+VIDEO_RE = re.compile(r'<video\b.*?</video>\s*', re.S)
+VIDEO_LINK_RE = re.compile(r'<a class="overview-video-link"[^>]*>.*?</a>')
 FONT_LINE_RE = re.compile(
     r'^[ \t]*<link[^>]*(?:fonts\.googleapis\.com|fonts\.gstatic\.com)[^>]*>[ \t]*\n', re.M
 )
@@ -66,6 +68,12 @@ def inline_images(text):
     return IMG_ATTR_RE.sub(lambda m: '%s="%s"' % (m.group(1), data_uri(m.group(2))), text)
 
 
+def strip_videos(text):
+    """Videos are too large for the offline copy; replace the players with a note."""
+    text = VIDEO_RE.sub("", text)
+    return VIDEO_LINK_RE.sub('<p class="uc-desc">Video available in the online guide only.</p>', text)
+
+
 def script_safe(text):
     """Make text safe to place inside a <script> or <style> element."""
     return text.replace("</", "<\\/").replace("<!--", "<\\!--")
@@ -81,9 +89,9 @@ def main():
         path = DOCS / "tracks" / (slug + ".html")
         if not path.is_file():
             fail("missing track file " + str(path))
-        tracks[slug] = inline_images(path.read_text(encoding="utf-8"))
+        tracks[slug] = inline_images(strip_videos(path.read_text(encoding="utf-8")))
 
-    html = index.read_text(encoding="utf-8")
+    html = strip_videos(index.read_text(encoding="utf-8"))
 
     # 1. Drop the Google Fonts tags (not available offline).
     html, removed = FONT_LINE_RE.subn("", html)
@@ -131,7 +139,8 @@ def main():
         "self-contained file: no other files, web server or internet connection\n"
         "are needed to read the guide.\n\n"
         "Still needs internet:\n"
-        "  - Links to external sites, for example IBM i Access Client Solutions.\n\n"
+        "  - Links to external sites, for example IBM i Access Client Solutions.\n"
+        "  - The lab videos. They are only in the online guide.\n\n"
         "Get your private key file and server IP address from your instructor\n"
         "BEFORE going offline.\n\n"
         "Fonts fall back to your system fonts, so the layout looks slightly\n"

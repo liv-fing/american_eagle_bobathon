@@ -7,6 +7,7 @@ are needed to read the guide.
 
 Still needs internet:
   - Links to external sites, for example IBM i Access Client Solutions.
+  - The lab videos. They are only in the online guide.
 
 Get your private key file and server IP address from your instructor
 BEFORE going offline.
