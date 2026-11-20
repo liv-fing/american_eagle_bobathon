@@ -66,16 +66,17 @@
                   <div class="step-title">Browse source members and preview a display file</div>
                   <div class="step-desc">Then navigate to <code>QDDSSRCD</code>, expand the folder, and open <code>FRS001DF</code>. Click <strong>Preview All</strong> on the first line to see the green-screen layout rendered visually.</div>
                   <div class="step-screenshot">
-                    <img src="img/search2.png" alt="Opening FRS001DF in QDDSSRCD and clicking Preview All"/>
+                    <img src="img/updated-search2.png" alt="Opening FRS001DF in QDDSSRCD and clicking Preview All"/>
                     <div class="step-screenshot-caption">Open FRS001DF and click Preview All</div>
                   </div>
                   <div class="step-screenshot">
                     <img src="img/prev.png" alt="Rendered preview of the FRS001DF screen"/>
                     <div class="step-screenshot-caption">Rendered preview of FRS001DF</div>
                   </div>
+                  <div class="info-box"><strong>Why this matters:</strong> The preview draws the screen straight from the DDS source. You don’t have to compile the display file (CRTDSPF) or run the program to see it. Nothing on the system changes. You can see what a screen looks like before you touch it.</div>
                   <div class="info-box">💡 Try <code>FRS021DF</code> as well — this is the <strong>Flight Maintenance</strong> screen used in Lab 5.</div>
                   <div class="step-screenshot">
-                    <img src="img/search3.png" alt="Opening FRS021DF in QDDSSRCD and clicking Preview All"/>
+                    <img src="img/updated-search3.png" alt="Opening FRS021DF in QDDSSRCD and clicking Preview All"/>
                     <div class="step-screenshot-caption">Open FRS021DF and click Preview All</div>
                   </div>
                   <div class="step-screenshot">
@@ -119,7 +120,10 @@
                       <li>Type <code>/init</code> in the chat box and press <strong>Enter</strong>.</li>
                     </ol>
                   </div>
-                  <div class="info-box">💡 If you don't see <strong>IBM i Developer</strong> mode, click the <strong>+</strong> button on the right side of the chat panel to add it.</div>
+                  <div class="info-box">💡 If you don't see <strong>IBM i Developer</strong> mode, click the <strong>+</strong> button on the left side of the chat panel to add it.</div>
+                  <div class="step-screenshot">
+                    <img src="img/new-modes.png" alt="Add IBM i Developer mode using the + button on the left side of the chat panel"/>
+                  </div>
                   <div class="info-box">💡 <strong>Tip: Slash commands.</strong> Anything that starts with <code>/</code> is a built-in Bob command. Typing <code>/</code> plus a command name tells Bob to run that action instead of treating it as a regular chat message.</div>
                   <div class="step-screenshot">
                     <img src="img/initc.png" alt="Running /init in the Bob chat in IBM i Developer mode with Library List scope"/>
@@ -139,6 +143,10 @@
                 <div class="step-body">
                   <div class="step-title">Explore the result</div>
                   <div class="step-desc">Open the <strong>Object Browser</strong>, expand <code>FLGHT4nn</code> → <code>QBOBSRC</code>, and click <strong>agents.md</strong> to view the generated member. It contains IBM i–specific facts discovered directly from your source — compile conventions, legacy logical files to avoid, function key constants, and non-default compile parameters.</div>
+                  <div class="step-screenshot">
+                    <img src="img/ibm-i-icon-new.png" alt="IBM i icon in the Activity Bar"/>
+                    <div class="step-screenshot-caption">Click on the IBM i icon to see your Object Browser</div>
+                  </div>
                   <div class="step-screenshot">
                     <img src="img/checking.png" alt="Checking QBOBSRC in the Object Browser for the generated AGENTS member"/>
                     <div class="step-screenshot-caption">Find QBOBSRC in the Object Browser and open agents.md</div>
@@ -177,7 +185,7 @@
                   <div class="step-title">Verify Understand Component</div>
                   <div class="step-desc">Look at the <strong>Understand component</strong> card at the top of the dashboard:</div>
                   <div class="step-desc mt-s">• If it shows <strong class="badge badge--green">● Installed</strong>, the shared backend is ready — you can skip directly to Step 3.<br/>• If it shows <strong>Not installed</strong>, click <strong>Install Understand</strong> and click <strong>Proceed</strong> on the confirmation popup to use the default settings.</div>
-                  <div class="info-box">💡 If you cannot install, enter <code>UNDERLIB</code> inside the <strong>Change Install Library</strong> option.</div>
+                  <div class="info-box">💡 <strong>Note:</strong> For this step if you cannot install, enter <code>UNDERLIB</code> inside the <strong>Change Install Library</strong> option.</div>
                   <div class="step-screenshot">
                     <img src="img/udl.png" alt="Understand overview showing the component status and Install Understand button"/>
                     <div class="step-screenshot-caption">Verify the component shows Installed, or click Install Understand if needed</div>
@@ -193,6 +201,11 @@
                 <div class="step-body">
                   <div class="step-title">Add and Scan Your Application</div>
                   <div class="step-desc">If your application is not already listed, click <strong>+ Add application</strong>. In the dialog, set the application name to <code>FLGHT4nn</code>, select your assigned library <code>FLGHT4nn</code>, click <strong>+ Add</strong>, and click <strong>Add application</strong>. Then click <strong>Scan</strong>. The scan takes about 30–60 seconds.</div>
+                  <div class="info-box">💡 If you do not see the <strong>Add application</strong> option, you will need to click on the <strong>Applications</strong> tab, then click <strong>Add application</strong> from there.</div>
+                  <div class="step-screenshot">
+                    <img src="img/add-application.png" alt="Click Applications tab then Add Application in Understand Dashboard"/>
+                    <div class="step-screenshot-caption">Click Applications tab then Add Application if not visible</div>
+                  </div>
                   <div class="step-screenshot">
                     <img src="img/clickaddapp.png" alt="Click Add application in the Understand Dashboard"/>
                     <div class="step-screenshot-caption">Click + Add application</div>
@@ -235,7 +248,7 @@
                 <div class="step-body">
                   <div class="step-title">Identify the most referenced objects</div>
                   <div class="step-desc">In the <strong>Insights</strong> tab, explore the <strong>Most referenced objects</strong> list. It shows which objects have the most inbound dependencies — these are your highest change-risk objects. Note which types of objects appear at the top and what that tells you about where the application's core data dependencies lie.</div>
-                  <div class="step-screenshot"><img src="img/understand4.png" alt="Most referenced objects in Understand Insights tab"/></div>
+                  <div class="step-screenshot"><img src="img/insights-tabb.png" alt="Most referenced objects in Understand Insights tab"/></div>
                 </div>
               </div>
               <div class="mode-step">
